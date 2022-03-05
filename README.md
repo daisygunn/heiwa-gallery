@@ -4,7 +4,6 @@
 
 This is a full-stack e-commerce projecy built using Django, Python, HTML, CSS and JavaScript. I have created a website for 'Heiwa Gallery' that has been designed to display exhibition information and allows customers to purchase prints of the photography/art from previous exhibition.
 
-
 ---
 ## UX
 
@@ -79,6 +78,7 @@ Please find all my defined user stories & their acceptance criteria [here](https
 27. As an **admin user** I have created a FB shop page to increase traction to my website.
 
 ## Scope
+
 In order to achieve the desired user & business goals, the following features will be included in this release:
 
 - Responsive navbar that will navigate to the various pages throughout the site
@@ -91,15 +91,12 @@ In order to achieve the desired user & business goals, the following features wi
 
 ### Databases
 
-The menus and reservations app both require databases to store information so I have built 5 custom models. 
-
-
 Entity Relationship Diagram below to see how the models relate to each other: 
 
 ![Database Schemas can be found here](assets/images/database_schemas.jpg)
 
 ### Skeleton
-[Wireframes can be viewed here](assets/documents/.pdf)
+[Wireframes can be viewed here](assets/documents/heiwa_wireframe.pdf)
 
 Please note the actual website differs slightly from the original wireframes. 
 
@@ -107,7 +104,13 @@ The theme of simplicity follows through to the design, I've used bootstrap colum
 
 ### Surface
 
-![Colour Palette](assets/images/heiwa_colours.png)
+I have chosen the name 'heiwa' for the name of the gallery, which is the Japanese word for 'peace', this choice of name heavily influences the design choices that I have made. I researched which colours in Japanese culture represent peace which is why I have chosen blues and greens to use as my accent colours and the colour for the main logo/header. The main bulk of the website will be black and white and feature flecks of blues and greens. As this is an art gallery the design and feel of the website is minimilastic to reflect the art displayed in the galleries and to continue the theme of peace.
+
+![Colour Palette](assets/images/heiwa_colours.jpg)
+
+For the font I have chosen 'josefin sans' as I felt it contiuned with the peaceful theme:
+
+![Fonts](assets/images/font.jpg)
 
 ---
 ## Features
