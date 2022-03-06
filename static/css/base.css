@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;600&display=swap');
+
+.container-clip {
+    width: 960px;
+    margin: 0 auto;
+    background: #fff;
+/*     border: 2px solid #cdcdcd; */
+}
+
+
+#clipped-title1 h1 {
+    font-size: 200px;
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    -webkit-transition: text-shadow 1s ease;
+    text-shadow: 0 0 1px rgba(0,0,0,.1);
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-size: 40px;
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    -webkit-transition: text-shadow 1s ease;
+    text-shadow: 0 0 1px rgba(0,0,0,.1);
+    margin: 0;
+    padding: 0;
+}
+
+#clipped-title1 {
+    background-color: #0d5c63;
+/*     background-image: linear-gradient(90deg, #0d5c63 25%, #85c280 63%, #b7ffb0 88%); center;
+    background-color: #0d5c63; */
+background-image: linear-gradient(90deg, #0d5c63 25%, #85c280 63%, #b7ffb0 88%);
+    background-size: cover;
+    color: #fff;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-transition: all 2s cubic-bezier(0.42,0,0.58,1);
+    -moz-transition: all 2s cubic-bezier(0.42,0,0.58,1);
+    -o-transition: all 2s cubic-bezier(0.42,0,0.58,1);
+    transition: all 2s cubic-bezier(0.42,0,0.58,1);
+}
