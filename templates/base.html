@@ -37,8 +37,8 @@
     <title>heiwa</title>
 </head>
 
-<body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-black" id="main-nav">
+<body class="d-flex flex-column min-vh-100">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-brand-blue" id="main-nav">
         <a class="navbar-brand brand-text" href="{% url 'home' %}" id="nav-heading">heiwa</a>
         <!-- Collapsible icon for smaller screens -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -76,40 +76,91 @@
                     <a class="nav-link" href=""></a>
                 </li>
                 <li class="nav-item ml-auto">
-                    <a class="nav-link" href="">Update
-                        Details</a>
+                    <a class="nav-link" href="">my account</a>
                 </li>
                 <li class="nav-item ml-auto">
-                    <a class="nav-link" href="">Logout</a>
+                    <a class="nav-link" href="">logout</a>
                 </li>
                 <!-- If user is not logged in display Register & Login -->
                 {% else %}
                 <li class="nav-item ml-auto">
-                    <a class="nav-link" href="">Register</a>
+                    <a class="nav-link" href="">register</a>
                 </li>
                 <li class="nav-item ml-auto">
-                    <a class="nav-link" href="">Login</a>
+                    <a class="nav-link" href="">login</a>
                 </li>
                 {% endif %}
+                <li class="nav-item ml-auto">
+                    <a class="nav-link" href="">basket</a>
+                </li>
+                <li class="nav-item ml-auto">
+                    <a class="nav-link" href="">checkout</a>
+                </li>
             </ul>
         </div>
     </nav>
     <header>
-        <div class="container-clip mt-5">
-            <div id="clipped-title1">
-                <h1>heiwa</h1>
+        <div class="container container-clip mt-5">
+            <div id="main-title" class="text-center">
+                <h1 class="mb-0">heiwa</h1>
+                {% block subtitle %}
+                <h2 class="mt-0" id="subtitle"></h2>
+                {% endblock %}
             </div>
-            <h2>photography & art gallery</h2>
         </div>
-     </header>
 
-        {% block page_header %}
+    </header>
 
-        {% endblock %}
+    {% block content %}
+    {% endblock %}
 
-        {% block content %}
-        {% endblock %}
+    <!-- Site footer https://codepen.io/scanfcode/pen/MEZPNd-->
+    <footer class="site-footer bg-brand-blue mt-auto">
+        <div class="container">
+            <div class="row">
 
+                <div class="col-xs-6 col-md-3">
+                    <h6>opening hours</h6>
+                    <ul class="footer-links">
+                        <li>Monday: closed</li>
+                        <li>Tuesday - Friday: 10am - 7pm</li>
+                        <li>Saturday - Sunday: 9am - 8pm</li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>location</h6>
+                    <ul class="footer-links">
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+                    <h6>newsletter sign up!</h6>
+
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2022 All Rights Reserved by
+                        <a href="https://github.com/daisygunn" target="_blank">Daisy Lindsay-Gunn</a>.
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
