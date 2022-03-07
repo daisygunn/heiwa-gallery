@@ -306,6 +306,7 @@ In the Deploy tab:
 ## Credits
 
 Throughout the process of building this website, I have used various sources online to help me fix bugs & tackle problems, in addition to various modules to build the functionality of this website:
+[Hewia](https://japaneseparticlesmaster.xyz/peace-in-japanese/)
 
 [Coverage](https://coverage.readthedocs.io/en/6.2/)
 

@@ -51,7 +51,7 @@
                     <a class="nav-link" href="{% url 'home' %}">home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">about</a>
+                    <a class="nav-link" href="{% url 'about' %}">about</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="">exhibitions</a>
@@ -72,23 +72,23 @@
             </ul>
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
-                <li class="nav-item ml-auto">
-                    <a class="nav-link" href=""></a>
-                </li>
-                <li class="nav-item ml-auto">
-                    <a class="nav-link" href="">my account</a>
-                </li>
-                <li class="nav-item ml-auto">
-                    <a class="nav-link" href="">logout</a>
-                </li>
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link" href=""></a>
+                    </li>
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link" href="">my account</a>
+                    </li>
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link" href="">logout</a>
+                    </li>
                 <!-- If user is not logged in display Register & Login -->
                 {% else %}
-                <li class="nav-item ml-auto">
-                    <a class="nav-link" href="">register</a>
-                </li>
-                <li class="nav-item ml-auto">
-                    <a class="nav-link" href="">login</a>
-                </li>
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link" href="">register</a>
+                    </li>
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link" href="">login</a>
+                    </li>
                 {% endif %}
                 <li class="nav-item ml-auto">
                     <a class="nav-link" href="">basket</a>
