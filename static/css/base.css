@@ -20,6 +20,22 @@ body {
 /*     border: 2px solid #cdcdcd; */
 }
 
+.message-container {
+  position: relative; 
+  min-height: 200px;
+}
+
+.toast {
+  position: absolute; 
+  top: 0; 
+  right: 0;
+}
+
+.close-button {
+  background-color: #fff!important;
+  border: solid 0px #fff!important;
+  float: right;
+}
 
 #main-title h1 {
     font-size: 150px;
