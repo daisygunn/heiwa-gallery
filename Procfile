@@ -1,1 +1,1 @@
-web: gunicorn heiwa-gallery.wsgi
+web: gunicorn heiwa_gallery.wsgi
