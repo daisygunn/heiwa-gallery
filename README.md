@@ -8,9 +8,9 @@ This is a full-stack e-commerce projecy built using Django, Python, HTML, CSS an
 ## UX
 
 ## Strategy
-Using the core UX principles I first started with Strategy, thinking about the target audience for this restaurant & the features they would benefit from.
+Using the core UX principles I first started with Strategy, thinking about the target audience for this gallery & the features they would benefit from.
 
-The target audience for 'Grow' are:
+The target audience for 'heiwa' are:
 - 25-55 year olds
 - Photographers & creatives
 - People that enjoy visiting exhibitions, partaking in cultural activities in their spare time
