@@ -8,7 +8,7 @@ class Category(models.Model):
     name_to_display = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
-        """ progrommatic name """
+        """ programmatic name """
         return self.category_name
 
     def get_name_to_display(self):
@@ -50,3 +50,8 @@ class Product(models.Model):
         """ get number in stock """
         return self.quantity_in_stock
 
+    def change_to_out_of_stock(self):
+        """ automatically change stock label """
+        if self.quantity_in_stock < 1:
+            self.in_stock = False
+            self.save()

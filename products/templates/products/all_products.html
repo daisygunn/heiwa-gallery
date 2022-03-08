@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-8">
+            {% for product in products %}
+            <p>{{ product.name }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
