@@ -12,7 +12,7 @@
 {% block content %}
 <div class="container">
     <div class="row d-flex justify-content-around">
-        <div class="col-sm-12 col-md-8 text-center mb-3">
+        <div class="col-sm-12 col-md-8 col-lg-6 text-center mb-3">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -22,21 +22,21 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img class="d-block w-100" src="{{ MEDIA_URL }}carousel_image_1.jpg" alt="First slide ">
-                        <div class="carousel-caption d-none d-md-block">
+                        <div class="carousel-caption d-block">
                             <h5>exhibitions</h5>
                             <p>see which <a href="#" class="green-link">exhibitions</a> are currently showing</p>
                           </div>
                     </div>
                     <div class="carousel-item">
                         <img class="d-block w-100" src="{{ MEDIA_URL }}carousel_image_3.jpg" alt="Third slide">
-                        <div class="carousel-caption d-none d-md-block">
+                        <div class="carousel-caption d-block">
                             <h5>about heiwa</h5>
                             <p>find out exactly <a href="{% url 'about' %}" class="green-link">who heiwa are</a> & what we value most</p>
                           </div>
                     </div>
                     <div class="carousel-item">
                         <img class="d-block w-100" src="{{ MEDIA_URL }}carousel_image_2.jpg" alt="Second slide">
-                        <div class="carousel-caption d-none d-md-block">
+                        <div class="carousel-caption d-block">
                             <h5>shop</h5>
                             <p>take home your very own piece of 'heiwa' <br>with prints available <a href="#" class="green-link">here</a></p>
                           </div>

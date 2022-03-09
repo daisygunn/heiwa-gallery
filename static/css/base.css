@@ -9,12 +9,15 @@ body {
     
 }
 
+.hidden {
+  display: none;
+}
 .bg-brand-blue {
     background-color: #0d5c63;
 }
 
 .container-clip {
-    width: 960px;
+    /* width: 960px; */
     margin: 0 auto;
     background: #fff;
 /*     border: 2px solid #cdcdcd; */
@@ -151,6 +154,8 @@ body {
 {
   margin:0
 }
+
+
 @media (max-width:991px)
 {
   .site-footer [class^=col-]
@@ -214,6 +219,8 @@ body {
   width:34px;
   font-size:14px
 }
+
+
 /* .social-icons a.facebook:hover
 {
   background-color:#3b5998
@@ -237,5 +244,9 @@ body {
     display:block;
     margin-right:0;
     font-weight:600
+  }
+
+  .footer-row>* {
+    width:50%;
   }
 }
