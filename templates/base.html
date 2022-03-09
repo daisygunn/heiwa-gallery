@@ -57,17 +57,16 @@
                     <a class="nav-link" href="">exhibitions</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{% url 'all_products' %}" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">shop
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" href="#" aria-expanded="false">shop
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="">all prints</a>
-                        </li>
-                        <li><a class="dropdown-item" href="">b&w</a>
-                        </li>
-                        <li><a class="dropdown-item" href="">graphic</a>
-                        </li>
-                    </ul>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'all_products' %}">all prints</a>
+                        {% for category in category_list %}
+                        <a class="dropdown-item" href="{% url 'all_products' %}?style={{ category.id }}">{{ category.name_to_display }}</a>
+                        {% endfor %}
+                        <!-- <a class="dropdown-item" href="{% url 'all_products' %}?style=1">black & white</a> -->
+                    </div>
                 </li>
             </ul>
             <ul class="navbar-nav">

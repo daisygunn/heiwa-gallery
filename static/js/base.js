@@ -1,3 +1,4 @@
+// show toasts
 $('.toast').toast('show');
 
 function screenClass() {
@@ -18,6 +19,11 @@ $(window).bind('resize',function(){
     screenClass();
 });
 
+// navbar drop down toggle 
+$(document).ready(function() {
+    $(".dropdown-toggle").dropdown();
+});
+
 
 // Footer toggle
 function showHours(){
@@ -35,4 +41,5 @@ $("#show-opening").on('click', function(event) {
 $("#show-location").on('click', function(event) {
     showLocation();
 })
+
 
