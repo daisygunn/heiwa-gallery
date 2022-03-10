@@ -31,11 +31,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="{% static 'js/base.js' %}"></script>  
+    <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
     </script>
     {% endblock %}
 
-    
+
     <title>heiwa</title>
 </head>
 
@@ -59,13 +59,14 @@
                     <a class="nav-link" href="">exhibitions</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" href="#" aria-expanded="false">shop
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-haspopup="true" href="#" aria-expanded="false">shop
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'all_products' %}">all prints</a>
                         {% for category in category_list %}
-                        <a class="dropdown-item" href="{% url 'all_products' %}?style={{ category.id }}">{{ category.name_to_display }}</a>
+                        <a class="dropdown-item"
+                            href="{% url 'all_products' %}?style={{ category.id }}">{{ category.name_to_display }}</a>
                         {% endfor %}
                         <!-- <a class="dropdown-item" href="{% url 'all_products' %}?style=1">black & white</a> -->
                     </div>
@@ -73,29 +74,34 @@
             </ul>
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
-                    <li class="nav-item ml-auto">
-                        <a class="nav-link" href=""></a>
-                    </li>
-                    <li class="nav-item ml-auto">
-                        <a class="nav-link" href="">my account</a>
-                    </li>
-                    <li class="nav-item ml-auto">
-                        <a class="nav-link" href="">logout</a>
-                    </li>
-                <!-- If user is not logged in display Register & Login -->
-                {% else %}
-                    <li class="nav-item ml-auto">
-                        <a class="nav-link" href="">register</a>
-                    </li>
-                    <li class="nav-item ml-auto">
-                        <a class="nav-link" href="">login</a>
-                    </li>
+                {% if user.is_superuser %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-haspopup="true" href="#" aria-expanded="false">product admin
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'add_product' %}">add product</a>
+                        <a class="dropdown-item" href="">stock management</a>
+                    </div>
+                </li>
                 {% endif %}
                 <li class="nav-item ml-auto">
-                    <a class="nav-link" href="">basket</a>
+                    <a class="nav-link" href="">my account</a>
                 </li>
                 <li class="nav-item ml-auto">
-                    <a class="nav-link" href="">checkout</a>
+                    <a class="nav-link" href="">logout</a>
+                </li>
+                <!-- If user is not logged in display Register & Login -->
+                {% else %}
+                <li class="nav-item ml-auto">
+                    <a class="nav-link" href="">register</a>
+                </li>
+                <li class="nav-item ml-auto">
+                    <a class="nav-link" href="">login</a>
+                </li>
+                {% endif %}
+                <li class="nav-item ml-auto">
+                    <a class="nav-link" href=""><i class="fas fa-shopping-basket fa-lg"></i></a>
                 </li>
             </ul>
         </div>
@@ -111,21 +117,21 @@
         </div>
     </header>
     {% if messages %}
-        <div class="messages-container">
-            {% for message in messages %}
-                {% with message.level as level %}
-                    {% if level == 40 %}
-                        {% include 'includes/toasts/error.html' %}
-                    {% elif level == 25 %}
-                        {% include 'includes/toasts/success.html' %}
-                    {% elif level == 30 %}
-                        {% include 'includes/toasts/warning.html' %}
-                    {% else %}
-                        {% include 'includes/toasts/info.html' %}
-                    {% endif %}
-                {% endwith %}
-            {% endfor %}
-        </div>
+    <div class="messages-container">
+        {% for message in messages %}
+        {% with message.level as level %}
+        {% if level == 40 %}
+        {% include 'includes/toasts/error.html' %}
+        {% elif level == 25 %}
+        {% include 'includes/toasts/success.html' %}
+        {% elif level == 30 %}
+        {% include 'includes/toasts/warning.html' %}
+        {% else %}
+        {% include 'includes/toasts/info.html' %}
+        {% endif %}
+        {% endwith %}
+        {% endfor %}
+    </div>
     {% endif %}
 
     {% block content %}
@@ -137,11 +143,13 @@
             <div class="row footer-row">
                 <div class="col-xs-6 col-md-3">
                     <h6>heiwa gallery</h6>
-                    <p class="text-justify">located in the <em>heart</em> of shoreditch, we are an art gallery & an institute of <strong>heiwa</strong> (peace).</p>
+                    <p class="text-justify">located in the <em>heart</em> of shoreditch, we are an art gallery & an
+                        institute of <strong>heiwa</strong> (peace).</p>
                 </div>
 
                 <div class="col-xs-6 col-md-3">
-                    <h6>opening hours <span class="hidden read-more" id="show-opening"><i class="fas fa-arrow-down"></i></span></h6>
+                    <h6>opening hours <span class="hidden read-more" id="show-opening"><i
+                                class="fas fa-arrow-down"></i></span></h6>
                     <ul class="footer-links read-less" id="opening-hours">
                         <li>Monday: closed</li>
                         <li>Tuesday - Friday: 10am - 7pm</li>
@@ -150,7 +158,8 @@
                 </div>
 
                 <div class="col-xs-6 col-md-3">
-                    <h6>location <span class="hidden read-more" id="show-location"><i class="fas fa-arrow-down"></i></span></h6>
+                    <h6>location <span class="hidden read-more" id="show-location"><i
+                                class="fas fa-arrow-down"></i></span></h6>
                     <ul class="footer-links read-less" id="location">
                         <li>32a redchurch street</li>
                         <li>shoreditch</li>
