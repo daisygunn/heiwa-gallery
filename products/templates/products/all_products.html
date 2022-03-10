@@ -19,7 +19,7 @@
 <div class="row">
     <!-- display each product as a card -->
     {% for product in page_obj %}
-    <div class="col-sm-6 col-md-4 col-xl-2 my-2">
+    <div class="col-sm-6 col-md-4 col-xl-2 my-2 d-flex justify-content-center">
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" style="height: 25rem" src="{{ MEDIA_URL}}{{ product.image }}"
                 alt="{{ product.name }} image">
