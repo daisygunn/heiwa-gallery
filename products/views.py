@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse, redirect
 from django.core.paginator import Paginator
 from django.views import View
+from django.http import HttpResponseRedirect
+from django.contrib import messages
+from django.contrib.auth.models import User
 from .models import Product
+from .forms import AddProductForm
 
 
 class AllProducts(View):
@@ -23,3 +27,33 @@ class AllProducts(View):
         return render(request, 'products/all_products.html',
                       {'products': products,
                        'page_obj': page_obj})
+
+
+
+
+class AddProduct(View):
+    """ A view to return the all_products page """
+    def get(self, request):
+        """ get request """
+        if not request.user.is_superuser:
+            messages.error(request,
+                            "You are not authorised to view that page.")
+            return redirect(reverse('home'))
+        else:
+            add_product_form = AddProductForm()
+            return render(request, 'products/add_product.html',
+                        {'add_product_form': add_product_form,
+                        })
+
+
+class StockManagement(View):
+    """ A view to return the all_products page """
+    def get(self, request):
+        """ get request """
+        if not request.user.is_superuser:
+            messages.error(request,
+                            "You are not authorised to view that page.")
+            return redirect(reverse('home'))
+        else:
+            return render(request, 'products/stock.html')
+
