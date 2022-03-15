@@ -29,8 +29,6 @@ class AllProducts(View):
                        'page_obj': page_obj})
 
 
-
-
 class AddProduct(View):
     """ A view to return the all_products page """
     def get(self, request):
@@ -44,6 +42,18 @@ class AddProduct(View):
             return render(request, 'products/add_product.html',
                         {'add_product_form': add_product_form,
                         })
+    def post(self, request, *args, **kwargs):
+        """ post view """
+        form = AddProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.change_stock_label()
+            product.save()
+            messages.success(request, f"success, {product.name} has been added.")
+            return redirect(reverse('all_products'))
+        else:
+            messages.success(request, "something went wrong...")
+            return redirect(reverse('add_product'))
 
 
 class StockManagement(View):
@@ -56,4 +66,3 @@ class StockManagement(View):
             return redirect(reverse('home'))
         else:
             return render(request, 'products/stock.html')
-

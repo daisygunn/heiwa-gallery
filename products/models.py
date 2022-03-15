@@ -69,11 +69,13 @@ class Product(models.Model):
             """ get number in stock """
             return self.quantity_in_stock
 
-    def change_to_out_of_stock(self):
+    def change_stock_label(self):
             """ automatically change stock label """
             if self.quantity_in_stock < 1:
                 self.in_stock = False
-                self.save()
+            else:
+                self.in_stock = True
+            self.save()
 
     def save(self, *args, **kwargs):
         if self.quantity_in_stock < 1:

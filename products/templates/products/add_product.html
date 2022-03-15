@@ -9,9 +9,10 @@
 
 <div class="row d-flex justify-content-center">
     <div class="col-12 col-md-4">
-        <form action="" method="POST" class="my-2 w-100">
+        <form action="{% url 'add_product' %}" method="POST" class="my-2 w-100" enctype="multipart/form-data">
             {% csrf_token %}
             {{ add_product_form | crispy }}
+            <button type="submit">add product</button>
         </form>        
     </div>
 </div>
@@ -19,6 +20,8 @@
 </div>
 {% endblock %}
 
+
 {% block extrajs %}
+{{ block.super }}
 <script src="{% static 'products/js/products.js' %}"></script>
 {% endblock %}
