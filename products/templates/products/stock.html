@@ -7,16 +7,24 @@
 
 {% block content %}
 
-<div class="row d-flex justify-content-center">
+<div class="row d-flex justify-content-center"> 
     <div class="col-12 col-md-4">
-        <form action="" method="POST" class="my-2 w-100">
-            <!-- {% csrf_token %}
-            {{ add_product_form | crispy }} -->
-        </form>        
+        <h3>please add the new stock level below</h3>
+        <form action="{% url 'stock' product.pk %}" method="POST" class="my-2 w-100">
+            {{ form_errors }}
+            {% csrf_token %}
+            {{ form | crispy }}
+            <button type="submit">update quantity in stock</button>
+        </form>     
     </div>
 </div>
-
+<div class="row d-flex justify-content-center">
+<div class="col-md-4 mb-3">
+    <a href="{% url 'all_products' %}" class="btn green-link bg-brand-blue">back to all products</a>
+    <a href="{% url 'update_products' %}" class="btn green-link bg-brand-blue">back to update products</a>
 </div>
+</div>
+
 {% endblock %}
 
 {% block extrajs %}

@@ -39,3 +39,9 @@ class StockForm(forms.ModelForm):
         """ product form """
         model = Product
         fields = ('name', 'quantity_in_stock',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs['readonly'] = True
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'w-100'    

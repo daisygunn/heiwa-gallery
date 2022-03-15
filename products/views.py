@@ -5,7 +5,7 @@ from django.views import View
 from django.contrib import messages
 # from django.contrib.auth.models import User
 from .models import Product
-from .forms import ProductForm, EditProductForm
+from .forms import ProductForm, EditProductForm, StockForm
 
 
 class AllProducts(View):
@@ -132,11 +132,42 @@ class DeleteProduct(View):
 
 class StockManagement(View):
     """ A view to return the all_products page """
-    def get(self, request):
+    def get(self, request, pk):
         """ get request """
         if not request.user.is_superuser:
             messages.error(
                 request, "You are not authorised to view that page.")
             return redirect(reverse('home'))
         else:
-            return render(request, 'products/stock.html')
+            product = get_object_or_404(Product, pk=pk)
+            form = StockForm(instance=product)
+            return render(request, 'products/stock.html',
+                          {'product': product,
+                           'form': form})
+
+    def post(self, request, pk, *args, **kwargs):
+        """ post view """
+        product = get_object_or_404(Product, pk=pk)
+        form = StockForm(request.POST, instance=product)
+        if form.is_valid():
+            print('form is valid')
+            if form.has_changed():
+                updated_quantity_in_stock = request.POST.get('quantity_in_stock')
+                form.save(commit=False)
+                product.quantity_in_stock = updated_quantity_in_stock
+                form.save()
+                messages.success(
+                    request, f"success, {product.name} has been updated,\
+                    there are now {product.quantity_in_stock} available.")
+                return redirect(reverse('update_products'))
+            else:
+                messages.warning(
+                    request, f"No updates to {product.name} have been made.")
+                return redirect(reverse('update_products'))
+        else:
+            form = StockForm(instance=product)
+            print("error")
+            messages.error(request, "something went wrong...")
+            
+        return redirect(reverse('stock', args=[product.pk]))
+
