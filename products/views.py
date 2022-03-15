@@ -104,6 +104,32 @@ class EditProduct(View):
             messages.success(request, "something went wrong...")
             return redirect(reverse('edit_product'))
 
+class DeleteProduct(View):
+    """ A view to return the edit_product page """
+    def get(self, request, pk):
+        """ get request """
+        if not request.user.is_superuser:
+            messages.error(request,
+                           "You are not authorised to view that page.")
+            return redirect(reverse('home'))
+        else:
+            product = get_object_or_404(Product, pk=pk)
+            return render(request, 'products/delete_product.html',
+                          {'product': product})
+
+    def post(self, request, pk, *args, **kwargs):
+        """ post view """
+        product = get_object_or_404(Product, pk=pk)
+        product.delete()
+        messages.success(
+            request, f"success, {product.name} has been deleted.")
+        return redirect(reverse('update_products'))
+        # else:
+        #     form = EditProductForm(instance=product)
+        #     messages.success(request, "something went wrong...")
+        #     return redirect(reverse('edit_product'))
+
+
 class StockManagement(View):
     """ A view to return the all_products page """
     def get(self, request):

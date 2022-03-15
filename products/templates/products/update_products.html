@@ -45,7 +45,7 @@
                         <td>
                             <a class="btn btn-success btn-sm mb-1 w-100" href="{% url 'edit_product' product.pk %}">edit details</a>
                             <a class="btn btn-warning btn-sm mb-1 w-100" href="#">update stock</a>
-                            <a class="btn btn-danger btn-sm mb-1 w-100" href="#">delete</a>
+                            <a class="btn btn-danger btn-sm mb-1 w-100" href="{% url 'delete_product' product.pk %}">delete</a>
                         </td>
                     </tr>
                     {% endfor %}

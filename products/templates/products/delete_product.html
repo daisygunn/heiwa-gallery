@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block subtitle %}
+<h2 class="mt-0 mb-3" id="subtitle">[ delete product ]</h2>
+{% endblock %}
+
+{% block content %}
+
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-md-4">
+        <form action="{% url 'delete_product' product.pk %}" method="POST" class="my-2 w-100"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ product.name }}</p>
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                delete product
+            </button>
+
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">are you sure?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            if you delete this product you will no longer be able to see in admin panel and you will
+                            need to readd.
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger">Yes, delete product</a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+{% block extrajs %}
+{{ block.super }}
+<script src="{% static 'products/js/products.js' %}"></script>
+{% endblock %}
