@@ -11,7 +11,7 @@
             <table class="table table-responsive table-hover text-center">
                 <thead>
                     <tr>
-                        <th scope="col">product_id</th>
+                        <th scope="col">product id</th>
                         <th scope="col">name</th>
                         <th scope="col">artist</th>
                         <th scope="col">size</th>
@@ -19,6 +19,7 @@
                         <th scope="col">stock level</th>
                         <th scope="col">image</th>
                         <th scope="col">style</th>
+                        <th scope="col">date added</th>
                         <th scope="col">update</th>
                     </tr>
                 </thead>
@@ -40,6 +41,7 @@
                                 alt="{{ product.name }} image">
                         </td>
                         <td>{{ product.style.name_to_display }}</td>
+                        <td>{{ product.date_added }}</td>
                         <td>
                             <a class="btn btn-success btn-sm mb-1 w-100" href="{% url 'edit_product' product.pk %}">edit details</a>
                             <a class="btn btn-warning btn-sm mb-1 w-100" href="#">update stock</a>

@@ -5,7 +5,7 @@ from django.views import View
 from django.contrib import messages
 # from django.contrib.auth.models import User
 from .models import Product
-from .forms import AddProductForm
+from .forms import ProductForm, EditProductForm
 
 
 class AllProducts(View):
@@ -38,13 +38,13 @@ class AddProduct(View):
                            "You are not authorised to view that page.")
             return redirect(reverse('home'))
         else:
-            add_product_form = AddProductForm()
+            add_product_form = ProductForm()
             return render(request, 'products/add_product.html',
                           {'add_product_form': add_product_form, })
 
     def post(self, request, *args, **kwargs):
         """ post view """
-        form = AddProductForm(request.POST, request.FILES)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save(commit=False)
             product.change_stock_label()
@@ -86,23 +86,23 @@ class EditProduct(View):
             return redirect(reverse('home'))
         else:
             product = get_object_or_404(Product, pk=pk)
-            edit_product_form = AddProductForm(instance=product)
+            edit_product_form = EditProductForm(instance=product)
             return render(request, 'products/edit_product.html',
-                          {'edit_product_form': edit_product_form, })
+                          {'edit_product_form': edit_product_form, 'product': product })
 
-    # def post(self, request, *args, **kwargs):
-    #     """ post view """
-    #     form = AddProductForm(request.POST, request.FILES)
-    #     if form.is_valid():
-    #         product = form.save(commit=False)
-    #         product.change_stock_label()
-    #         product.save()
-    #         messages.success(
-    #             request, f"success, {product.name} has been added.")
-    #         return redirect(reverse('all_products'))
-    #     else:
-    #         messages.success(request, "something went wrong...")
-    #         return redirect(reverse('add_product'))
+    def post(self, request, pk, *args, **kwargs):
+        """ post view """
+        product = get_object_or_404(Product, pk=pk)
+        form = EditProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, f"success, {product.name} has been updated.")
+            return redirect(reverse('update_products'))
+        else:
+            form = EditProductForm(instance=product)
+            messages.success(request, "something went wrong...")
+            return redirect(reverse('edit_product'))
 
 class StockManagement(View):
     """ A view to return the all_products page """
