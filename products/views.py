@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse, redirect
+from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from django.views import View
 # from django.http import HttpResponseRedirect
@@ -75,6 +75,34 @@ class UpdateProduct(View):
                           {'products': products,
                            'page_obj': page_obj})
 
+
+class EditProduct(View):
+    """ A view to return the edit_product page """
+    def get(self, request, pk):
+        """ get request """
+        if not request.user.is_superuser:
+            messages.error(request,
+                           "You are not authorised to view that page.")
+            return redirect(reverse('home'))
+        else:
+            product = get_object_or_404(Product, pk=pk)
+            edit_product_form = AddProductForm(instance=product)
+            return render(request, 'products/edit_product.html',
+                          {'edit_product_form': edit_product_form, })
+
+    # def post(self, request, *args, **kwargs):
+    #     """ post view """
+    #     form = AddProductForm(request.POST, request.FILES)
+    #     if form.is_valid():
+    #         product = form.save(commit=False)
+    #         product.change_stock_label()
+    #         product.save()
+    #         messages.success(
+    #             request, f"success, {product.name} has been added.")
+    #         return redirect(reverse('all_products'))
+    #     else:
+    #         messages.success(request, "something went wrong...")
+    #         return redirect(reverse('add_product'))
 
 class StockManagement(View):
     """ A view to return the all_products page """
