@@ -66,18 +66,18 @@ class Product(models.Model):
         return self.pk
 
     def get_stock_level(self):
-            """ get number in stock """
-            return self.quantity_in_stock
+        """ get number in stock """
+        return self.quantity_in_stock
 
     def change_stock_label(self):
-            """ automatically change stock label """
-            if self.quantity_in_stock < 1:
-                self.in_stock = False
-            else:
-                self.in_stock = True
-            self.save()
+        """ automatically change stock label """
+        if self.quantity_in_stock < 1:
+            self.in_stock = False
+        else:
+            self.in_stock = True
+        self.save()
 
     def save(self, *args, **kwargs):
         if self.quantity_in_stock < 1:
-                self.in_stock = False
+            self.in_stock = False
         super(Product, self).save(*args, **kwargs)

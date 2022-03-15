@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block subtitle %}
+<h2 class="mt-0 mb-3" id="subtitle">[ update products ]</h2>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-8 col-xl-10 my-2 d-flex justify-content-center">
+            <table class="table table-responsive table-hover text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">product_id</th>
+                        <th scope="col">name</th>
+                        <th scope="col">artist</th>
+                        <th scope="col">size</th>
+                        <th scope="col">price</th>
+                        <th scope="col">stock level</th>
+                        <th scope="col">image</th>
+                        <th scope="col">style</th>
+                        <th scope="col">update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in page_obj %}
+                    <tr>
+                        <th scope="row">{{ product.pk }}</th>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.photographer_artist }}</td>
+                        <td>{{ product.size }}</td>
+                        <td>£{{ product.price }}</td>
+                        <td>{% if product.in_stock %}
+                            {{ product.quantity_in_stock }}
+                            {% else %}
+                            <strong class="text-danger">out of stock</strong>
+                            {% endif %}</td>
+                        <td>
+                            <img class="card-img-top" style="height: 50%; width: 50%" src="{{ MEDIA_URL}}{{ product.image }}"
+                                alt="{{ product.name }} image">
+                        </td>
+                        <td>{{ product.style.name_to_display }}</td>
+                        <td>
+                            <a class="btn btn-success btn-sm mb-1 w-100" href="#">edit details</a>
+                            <a class="btn btn-warning btn-sm mb-1 w-100" href="#">update stock</a>
+                            <a class="btn btn-danger btn-sm mb-1 w-100" href="#">delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row justify-content-end">
+            <!-- pagination -->
+            <div class="col-sm-4 col-md-2 my-2">
+                <div class="pagination text-center my-2">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+
+                        <span class="current">
+                            page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                        </span>
+
+                        {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+<script src="{% static 'products/js/products.js' %}"></script>
+{% endblock %}
