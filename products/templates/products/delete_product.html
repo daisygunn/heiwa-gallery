@@ -8,34 +8,34 @@
 {% block content %}
 
 <div class="row d-flex justify-content-center">
-    <div class="col-12 col-md-4">
-        <form action="{% url 'delete_product' product.pk %}" method="POST" class="my-2 w-100"
+    <div class="col-12 col-md-4 ">
+        <form action="{% url 'delete_product' product.pk %}" method="POST" class="my-2 w-100 text-center"
             enctype="multipart/form-data">
             {% csrf_token %}
-            <p>{{ product.name }}</p>
+            <h4>Product: {{ product.name }}</h4>
+            <img class="card-img-top" style="height: 50%; width: 50%"
+                                src="{{ MEDIA_URL}}{{ product.image }}" alt="{{ product.name }} image">
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            <button type="button" class="btn btn-danger d-block text-center" data-toggle="modal" data-target="#exampleModalCenter">
                 delete product
             </button>
-
+            <!-- hidden modal to confirm deletion -->
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLongTitle">are you sure?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                            <button type="button" class="close-button" data-dismiss="modal" aria-label="Close">
+                                <i class="fas fa-window-close"></i>
                             </button>
                         </div>
                         <div class="modal-body">
                             if you delete this product you will no longer be able to see in admin panel and you will
-                            need to readd.
-
-                        </div>
+                            need to re-add. only delete if you are sure.</div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-danger">Yes, delete product</a>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger">Yes, delete product</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
                 </div>
