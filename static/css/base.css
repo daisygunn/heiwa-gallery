@@ -71,6 +71,13 @@ body {
     transition: all 2s cubic-bezier(0.42,0,0.58,1);
 }
 
+.navbar {
+  color: #fff;
+}
+ul.navbar-nav {
+  margin-left: 1rem;
+}
+
 .green-link {
   color:#85c280;
   cursor: pointer;

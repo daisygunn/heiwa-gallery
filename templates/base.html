@@ -41,7 +41,7 @@
 
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-brand-blue" id="main-nav">
-        <a class="navbar-brand brand-text" href="{% url 'home' %}" id="nav-heading">heiwa</a>
+        <a class="navbar-brand brand-text ml-2" href="{% url 'home' %}" id="nav-heading">heiwa</a>
         <!-- Collapsible icon for smaller screens -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,10 +59,10 @@
                     <a class="nav-link" href="">exhibitions</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle dropdown-toggle1" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                         aria-haspopup="true" href="#" aria-expanded="false">shop
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-menu1" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'all_products' %}">all prints</a>
                         {% for category in category_list %}
                         <a class="dropdown-item"
@@ -76,10 +76,10 @@
                 {% if user.is_authenticated %}
                 {% if user.is_superuser %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle dropdown-toggle2" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                         aria-haspopup="true" href="#" aria-expanded="false">product admin
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'add_product' %}">add product</a>
                         <a class="dropdown-item" href="{% url 'update_products' %}">update products</a>
                     </div>
@@ -194,6 +194,7 @@
         </div>
     </footer>
     {% block extrajs %}
+    {{ block.super }}
     <script type="text/javascript">$('.toast').toast('show');</script>
     {% endblock %}
 </body>

@@ -322,6 +322,7 @@ Throughout the process of building this website, I have used various sources onl
 
 [Unsplash for images](https://unsplash.com/@daisygunn94/likes)
 
+[DataTables](https://datatables.net/)
 ---
 ## Acknowledgements
 

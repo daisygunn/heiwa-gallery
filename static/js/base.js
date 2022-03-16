@@ -19,10 +19,6 @@ $(window).bind('resize',function(){
     screenClass();
 });
 
-// navbar drop down toggle 
-$(document).ready(function() {
-    $(".dropdown-toggle").dropdown();
-});
 
 
 // Footer toggle
@@ -34,12 +30,32 @@ function showLocation(){
     $("#location").toggleClass("hidden");
 }
 
-$("#show-opening").on('click', function(event) {
-    showHours();
-})
 
-$("#show-location").on('click', function(event) {
-    showLocation();
-})
+// navbar drop down toggle 
+$(document).ready(function() {
+    screenClass();
+
+    $(".dropdown-toggle1").on('click', function(event) {
+        $(".dropdown-menu1").toggleClass("show")
+    });
+    $(".dropdown-toggle2").on('click', function(event) {
+        $(".dropdown-menu2").toggleClass("show")
+    });
+
+    $(".navbar-toggler").on('click', function(event) {
+        $(".navbar-collapse").toggleClass("show")
+    });
+
+    $("#show-opening").on('click', function(event) {
+        showHours();
+    })
+    
+    $("#show-location").on('click', function(event) {
+        showLocation();
+    })
+});
+
+
+
 
 
