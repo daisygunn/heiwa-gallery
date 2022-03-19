@@ -29,8 +29,8 @@
                     <li class="list-group-item"><small>style: {{ product.style.name_to_display|lower }}</small></li>
                 </ul>
                 <div class="card-body">
-                    {% if product.in_stock %}
-                    <form action="{% url 'add_product_to_bag' product.pk %}" method="POST">
+
+                    <form action="{% url 'add_product_to_basket' product.pk %}" method="POST">
                         {% csrf_token %}
                         <select name="quantity" id="{{ product.pk }}_quantity">
                             <option value="1">1</option>
@@ -42,9 +42,7 @@
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         <button type="submit" class="btn card-link green-link bg-brand-blue">add to basket</a>
                     </form>
-                    {% else %}
-                    <h7 class="text-danger"><em><strong>sorry, currently out of stock.</strong></em></h7>
-                    {% endif %}
+
                 </div>
             </div>
         </div>
