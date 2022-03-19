@@ -48,6 +48,7 @@
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                             <button type="submit" class="btn green-link bg-brand-blue d-block my-1 mx-auto">update qty</button>
                         </form>
+                        <a href="{% url 'remove_product' pk.pk %}" class="btn btn-warning">remove</a>
                         </td>
                         <td>£{{ pk.product.price }}</td>
                         <td></td>

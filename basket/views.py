@@ -59,3 +59,21 @@ def change_quantity(request, pk):
     # import pdb; pdb.set_trace()
     # print(request.session['basket'])
     return redirect(redirect_url)
+
+
+def remove_product(request, pk):
+    """ add product to bag """
+    product = get_object_or_404(Product, pk=pk)
+    
+    basket = request.session.get('basket', {})
+
+    if pk in list(basket.keys()):
+        basket.pop(pk)
+        messages.success(request, f"{product} has been removed basket.")
+    else:
+        messages.error(request, f"{product} is not in your basket.")
+    
+    request.session['basket'] = basket
+    # import pdb; pdb.set_trace()
+    # print(request.session['basket'])
+    return redirect('basket_overview')
