@@ -13,18 +13,49 @@
 
 {% block content %}
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-sm-12 col-md-8 col-xl-10 my-2 d-flex justify-content-center">
-                    {% for product in items_in_basket %}
-                    <li>name: {{ product.name }}</li>
-                        <li>artist: {{ product.photographer_artist }}</li>
-                        <li>size: {{ product.size }}</li>
-                        <li>quantity: </li>
-                        <li>price: £{{ product.price }}</li>
-                        <li><img class="card-img-top" style="height: 50%; width: 50%"
-                            src="{{ MEDIA_URL}}{{ product.image }}" alt="{{ product.name }} image"></li>
-                        <li>style</li>
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-xl-3 my-2 d-flex justify-content-center">
+            <table id="dtBasicExample" cellspacing="0" width="100%"
+                class="table table-responsive table-hover text-center">
+                {% if items_in_basket %}
+                <thead>
+                    <tr>
+                        <th scope="col">product</th>
+                        <th scope="col">image</th>
+                        <th scope="col">quantity</th>
+                        <th scope="col">price</th>
+                        <th scope="col">subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pk in items_in_basket %}
+                    <tr>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li>{{ pk.product.name }}</li>
+                                <li>size {{ pk.product.size }}</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <img class="img-thumbnail" style="height: 50px; width: 50px"
+                                src="{{ MEDIA_URL}}{{ pk.product.image }}" alt="{{ pk.product.name }} image">
+                        </td>
+                        <td>{{ pk.quantity }}</td>
+                        <td>£{{ pk.product.price }}</td>
+                        <td></td>
+                    </tr>
                     {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>total: </td>
+                        <td>£{{ total_cost }}</td>
+                    </tr>
+            </table>
+            {% else %}
+            <p>currently your basket is empty.</p>
+            {% endif %}
         </div>
 
     </div>
