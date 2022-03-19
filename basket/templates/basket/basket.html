@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="css/mdb.min.css">
 <!-- Plugin file -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="{% static 'basket/css/basket.css' %}">
 {% endblock %}
 
 {% block subtitle %}
@@ -14,9 +14,9 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-sm-8 col-xl-6 my-2 d-flex justify-content-center">
-            <table id="dtBasicExample" cellspacing="0" width="100%"
-                class="table table-responsive table-hover text-center">
+        <div class="col-sm-10 col-md-8 col-xl-6 my-2 d-flex justify-content-center">
+            <table cellspacing="0" width="100%"
+                class="table table-responsive text-center">
                 {% if items_in_basket %}
                 <thead>
                     <tr>
@@ -27,7 +27,7 @@
                         <th scope="col">subtotal</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     {% for pk in items_in_basket %}
                     <tr>
                         <td>
@@ -40,7 +40,13 @@
                             <img class="img-thumbnail" style="height: 50px; width: 50px"
                                 src="{{ MEDIA_URL}}{{ pk.product.image }}" alt="{{ pk.product.name }} image">
                         </td>
-                        <td>{{ pk.quantity }}</td>
+                        <td><form class="quantity-form">
+                            <div class="value-button decrease" data-id="{{ pk.pk }}_decrease" value="Decrease Value">-</div>
+                            <input type="number" id="{{ pk.pk }}" class="number" data-value="{{ pk }}_number" value="{{ pk.quantity }}" />
+                            <div class="value-button increase" data-id="{{ pk.pk }}_increase" value="Increase Value">+</div>
+                            <button type="submit" class="btn green-link bg-brand-blue d-block my-1 mx-auto">update qty</button>
+                        </form>
+                        </td>
                         <td>£{{ pk.product.price }}</td>
                         <td></td>
                     </tr>
@@ -64,5 +70,5 @@
 
 {% block extrajs %}
 {{ block.super }}
-<script src="{% static 'products/js/products.js' %}"></script>
+<script src="{% static 'basket/js/basket.js' %}"></script>
 {% endblock %}
