@@ -76,6 +76,8 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 # category list for navbar
                 'products.context_processors.get_category_list',
+                # basket context
+                'basket.context_processors.basket_contents',
             ],
         },
     },

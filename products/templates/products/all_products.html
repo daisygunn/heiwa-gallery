@@ -7,9 +7,14 @@
 {% block content %}
 <div class="container">
     <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <p>*free shipping to UK mainland</p>
+        </div>
+    </div>
+    <div class="row">
         <!-- display each product as a card -->
         {% for product in page_obj %}
-        <div class="col-sm-6 col-md-4 col-xl-2 my-2 d-flex justify-content-center">
+        <div class="col-sm-6 col-md-4 col-xl-3 my-2 d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" style="height: 20rem" src="{{ MEDIA_URL}}{{ product.image }}"
                     alt="{{ product.name }} image">
@@ -21,13 +26,24 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">size: {{ product.size }}</li>
                     <li class="list-group-item">price: £{{ product.price }}</li>
-                    <li class="list-group-item"><small>tags: {{ product.style.name_to_display }}</small></li>
+                    <li class="list-group-item"><small>style: {{ product.style.name_to_display|lower }}</small></li>
                 </ul>
                 <div class="card-body">
                     {% if product.in_stock %}
-                    <a href="#" class="card-link green-link">add to basket</a>
+                    <form action="{% url 'add_product_to_bag' product.pk %}" method="POST">
+                        {% csrf_token %}
+                        <select name="quantity" id="{{ product.pk }}_quantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        <button type="submit" class="btn card-link green-link bg-brand-blue">add to basket</a>
+                    </form>
                     {% else %}
-                    <h7>sorry, currently out of stock.</h7>
+                    <h7 class="text-danger"><em><strong>sorry, currently out of stock.</strong></em></h7>
                     {% endif %}
                 </div>
             </div>
