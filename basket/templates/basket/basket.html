@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load basket_tools %}
 
 {% block extra_css %}
-<!-- Plugin file -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="{% static 'basket/css/basket.css' %}">
 {% endblock %}
 
@@ -14,7 +13,7 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-sm-10 col-md-8 col-xl-6 my-2 d-flex justify-content-center">
+        <div class="col-10 my-2 d-flex justify-content-center">
             <table cellspacing="0" width="100%"
                 class="table table-responsive text-center">
                 {% if items_in_basket %}
@@ -37,7 +36,7 @@
                             </ul>
                         </td>
                         <td>
-                            <img class="img-thumbnail" style="height: 50px; width: 50px"
+                            <img class="img-thumbnail" style="height: 70px; width: 70px"
                                 src="{{ MEDIA_URL}}{{ pk.product.image }}" alt="{{ pk.product.name }} image">
                         </td>
                         <td><form class="quantity-form" method="POST" action="{% url 'change_quantity' pk.pk %}">
@@ -46,24 +45,27 @@
                             <input type="number" id="{{ pk.pk }}" class="number" name="quantity" value="{{ pk.quantity }}" max="5"/>
                             <div class="value-button increase" data-id="{{ pk.pk }}_increase" value="Increase Value">+</div>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                            <button type="submit" class="btn green-link bg-brand-blue d-block my-1 mx-auto">update qty</button>
+                            <button type="submit" class="btn green-link bg-brand-blue d-block my-1 mx-auto">update</button>
                         </form>
-                        <a href="{% url 'remove_product' pk.pk %}" class="btn btn-warning">remove</a>
+                        
                         </td>
                         <td>£{{ pk.product.price }}</td>
-                        <td></td>
+                        <td>£{{ pk.product.price | calculate_subtotal:pk.quantity }}</td>
+                        <td><a href="{% url 'remove_product' pk.pk %}" class="btn btn-danger">remove</a></td>
                     </tr>
                     {% endfor %}
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>total: </td>
-                        <td>£{{ total_cost }}</td>
+                        <td><strong>total: </strong></td>
+                        <td><strong>£{{ total_cost }}</strong></td>
+                        <td></td>
                     </tr>
             </table>
             {% else %}
             <p>currently your basket is empty.</p>
+            <a href="{% url 'all_products' %}">keep shopping</a>
             {% endif %}
         </div>
 
