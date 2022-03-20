@@ -26,7 +26,7 @@ class Order(models.Model):
     order_date = models.DateTimeField(auto_now_add=True)
     order_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0)
-    order_sucess = models.BooleanField()
+    order_sucess = models.BooleanField(default=False)
 
     def _generate_order_number(self):
         """ generate a random, unique order number """
