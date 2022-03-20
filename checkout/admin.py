@@ -14,11 +14,11 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderItemAdminInline,)
 
     readonly_fields = ('order_number', 'order_date', 'order_total',)
-    
+
     fields = ('order_number', 'full_name', 'email', 'phone_number', 
               'flat_house', 'street_address', 'town_city', 'county',
               'country', 'postcode', 'order_date', 'order_total')
-    
+  
     list_display = ('order_number', 'order_date', 'full_name',
                     'order_total',)
     # displays most recent orders on the top
