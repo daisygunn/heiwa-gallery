@@ -1,4 +1,7 @@
+import uuid
+
 from django.db import models
+from django.db.models import Sum
 from products.models import Product
 
 country_choices = (
@@ -25,16 +28,46 @@ class Order(models.Model):
         max_digits=10, decimal_places=2, null=False, default=0)
     order_sucess = models.BooleanField()
 
+    def _generate_order_number(self):
+        """ generate a random, unique order number """
+        return uuid.uuid4().hex.upper()
+
+    def update_total(self):
+        """ Updates total cost each time an order item is added """
+        self.order_total = self.orderitems.aggregate(
+            Sum('orderitem_total'))['orderitem_total__sum'] or 0
+        self.save()
+
+    def save(self, *args, **kwargs):
+        """ if the order doesn't have an order number, create one """
+        if not self.order_number:
+            self.order_number = self._generate_order_number()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.order_number
+
 
 class OrderItem(models.Model):
     """ individual items in order """
-    order = models.ForeignKey(
-        Order, null=False, blank=False, on_delete=models.CASCADE,
-        related_name='orderitems')
-    product = models.ForeignKey(
-        Product, null=False, blank=False, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, null=False, blank=False,
+                              on_delete=models.CASCADE,
+                              related_name='orderitems')
+    product = models.ForeignKey(Product, null=False, blank=False,
+                                on_delete=models.CASCADE)
     quantity = models.IntegerField(
         null=False, blank=False, default=0)
     orderitem_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False,
         blank=False, editable=False)
+
+    def save(self, *args, **kwargs):
+        """
+        Override the original save method to set the item total
+        and update the order total.
+        """
+        self.orderitem_total = self.product.price * self.quantity
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.product.name} in {self.product.size} on order {self.order.order_number}'
