@@ -17,14 +17,13 @@ def basket_contents(request):
             'pk': pk,
             'quantity': quantity,
             'product': product,
-        })
+                    })
 
     context = {
         'items_in_basket': items_in_basket,
         'total_cost': total,
         'product_count': count,
         'basket': basket,
-        'product': product,
     }
 
     return context

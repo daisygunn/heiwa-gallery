@@ -46,8 +46,14 @@ def change_quantity(request, pk):
     basket = request.session.get('basket', {})
     if product.in_stock:
         if pk in list(basket.keys()):
-            basket[pk] = quantity
-            messages.success(request, f"{product} has been updated in your basket.")
+            if quantity > 0:
+                basket[pk] = quantity
+                messages.success(
+                    request, f"{product} has been updated in your basket.")
+            else:
+                basket.pop(pk)
+                messages.success(
+                    request, f"{product} has been removed from your basket.")
         else:
             messages.error(request, f"{product} is not in your basket.")
     else:
