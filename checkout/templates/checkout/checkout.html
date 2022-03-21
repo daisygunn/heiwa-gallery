@@ -20,16 +20,16 @@
             <h5 class="brand-blue"><strong>delivery details</strong></h5>
             {{ form|crispy }}
             <hr>
-            <form>
-                <h5 class="brand-blue mb-3"><strong>card details</strong></h5>
+            <h5 class="brand-blue mb-3"><strong>card details</strong></h5>
+            <form id="stripe-payment-form">
                 <div id="payment-element">
                     <!--Stripe.js injects the Payment Element-->
                 </div>
+                <div id="payment-message" class="hidden text-danger mb-2"></div>
                 <button id="submit" class="btn bg-brand-blue green-link w-100">
                     <div class="spinner hidden" id="spinner"></div>
                     <span id="button-text">pay now</span>
                 </button>
-                <div id="payment-message" class="hidden"></div>
             </form>
         </div>
         <div class="col-sm-6 col-md-4 payment-form order-sm-0 order-lg-1">
