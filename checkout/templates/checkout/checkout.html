@@ -3,7 +3,7 @@
 {% load basket_tools %}
 {% load crispy_forms_tags %}
 {% block extra_css %}
-
+    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
 {% endblock %}
 
 {% block subtitle %}
@@ -13,24 +13,41 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-10 my-2 d-flex">
+        <!-- <div class="col-10 my-2 d-flex"> -->
             {% if items_in_basket %}
             <!-- customer info form -->
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-4 payment-form">
                 <h5 class="brand-blue"><strong>delivery details</strong></h5>
                 {{ form|crispy }}
             </div>
-            
+            <div class="col-sm-6 col-md-4">
+                <div class="row">
+                    <div class="col-12">
+                        
+                    </div>
+                </div>
             <!-- stripe payment form -->
+            <div class="row">
+                <div class="col-12">
+            <form class="payment-form">
+                <h5 class="brand-blue mb-3"><strong>card details</strong></h5>
+                <div id="payment-element">
+                  <!--Stripe.js injects the Payment Element-->
+                </div>
+                <button id="submit" class="btn bg-brand-blue green-link w-100">
+                  <div class="spinner hidden" id="spinner"></div>
+                  <span id="button-text">Pay now</span>
+                </button>
+                <div id="payment-message" class="hidden"></div>
+              </form>
+            </div>
+        </div>
+            </div>
         </div>
     </div>
-    <div class="row justify-content-center mb-4">
-        <div class="col-2 d-flex justify-content-center">
+    <div class="row mb-4">
+        <div class="col-2">
             <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link w-100">keep shopping</a>
-
-        </div>
-        <div class="col-2 d-flex justify-content-center">
-            <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link w-100">checkout</a>
         </div>
     </div>
     {% else %}
@@ -51,5 +68,7 @@
 
 {% block extrajs %}
 {{ block.super }}
-
+{{ stripe_public_key|json_script:"id_stripe_public_key" }}
+{{ client_secret|json_script:"id_client_secret" }}   
+<script type="text/javascript" src="{% static 'checkout/checkout.js' %}"></script>
 {% endblock %}
