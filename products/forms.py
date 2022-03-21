@@ -13,9 +13,22 @@ class ProductForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'w-100'
+        placeholders = {
+            'name': 'product name',
+            'style': 'style',
+            'photographer_artist': 'photographer/artist',
+            'size': 'size',
+            'quantity_in_stock': 'quantity in stock',
+            'price': 'price',
+            'image': 'product image',
+        }
+        
+        for field in self.fields:
+            placeholder = placeholders[field]
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields['quantity_in_stock'].widget.attrs['readonly'] = True
+            self.fields[field].label = False
+            self.fields[field].widget.attrs['class'] = 'w-100 mb-2'
 
 
 class EditProductForm(forms.ModelForm):
@@ -28,9 +41,22 @@ class EditProductForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['quantity_in_stock'].widget.attrs['readonly'] = True
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'w-100'
+        placeholders = {
+            'name': 'product name',
+            'style': 'style',
+            'photographer_artist': 'photographer/artist',
+            'size': 'size',
+            'quantity_in_stock': 'quantity in stock',
+            'price': 'price',
+            'image': 'product image',
+        }
+        
+        for field in self.fields:
+            placeholder = placeholders[field]
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields['quantity_in_stock'].widget.attrs['readonly'] = True
+            self.fields[field].label = False
+            self.fields[field].widget.attrs['class'] = 'w-100 mb-2'
 
 
 class StockForm(forms.ModelForm):
@@ -42,6 +68,13 @@ class StockForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['name'].widget.attrs['readonly'] = True
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'w-100'    
+        for field in self.fields:
+            labels = {
+                'name': 'Product name',
+                'quantity_in_stock': 'Updated quantity in stock',
+            }
+            # placeholder = placeholders[field]
+            # self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields[field].label = labels[field]
+            self.fields['name'].widget.attrs['readonly'] = True
+            self.fields[field].widget.attrs['class'] = 'w-100 mb-2'
