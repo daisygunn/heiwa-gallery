@@ -3,7 +3,7 @@
 {% load basket_tools %}
 {% load crispy_forms_tags %}
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
 {% endblock %}
 
 {% block subtitle %}
@@ -12,54 +12,48 @@
 
 {% block content %}
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center d-flex mb-3">
         <!-- <div class="col-10 my-2 d-flex"> -->
-            {% if items_in_basket %}
-            <!-- customer info form -->
-            <div class="col-sm-6 col-md-4 payment-form">
-                <h5 class="brand-blue"><strong>delivery details</strong></h5>
-                {{ form|crispy }}
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="row">
-                    <div class="col-12">
-                        
-                    </div>
-                </div>
-            <!-- stripe payment form -->
-            <div class="row">
-                <div class="col-12">
-            <form class="payment-form">
+        {% if items_in_basket %}
+        <!-- customer info form -->
+        <div class="col-sm-6 col-md-4 payment-form order-sm-1 order-lg-0">
+            <h5 class="brand-blue"><strong>delivery details</strong></h5>
+            {{ form|crispy }}
+            <hr>
+            <form>
                 <h5 class="brand-blue mb-3"><strong>card details</strong></h5>
                 <div id="payment-element">
-                  <!--Stripe.js injects the Payment Element-->
+                    <!--Stripe.js injects the Payment Element-->
                 </div>
                 <button id="submit" class="btn bg-brand-blue green-link w-100">
-                  <div class="spinner hidden" id="spinner"></div>
-                  <span id="button-text">Pay now</span>
+                    <div class="spinner hidden" id="spinner"></div>
+                    <span id="button-text">pay now</span>
                 </button>
                 <div id="payment-message" class="hidden"></div>
-              </form>
-            </div>
+            </form>
         </div>
-            </div>
-        </div>
-    </div>
-    <div class="row mb-4">
-        <div class="col-2">
+        <div class="col-sm-6 col-md-4 payment-form order-sm-0 order-lg-1">
+            <h5 class="brand-blue mb-3"><strong>basket</strong></h5>
+            {% for pk in items_in_basket %}
+            <p><img class="img-thumbnail" style="height: 70px; width: 70px" src="{{ MEDIA_URL}}{{ pk.product.image }}"
+                    alt="{{ pk.product.name }} image"> {{ pk.product.name }} in {{ pk.product.size }} -
+                £{{ pk.product.price }}</p>
+            {% endfor %}
+            <p class="float-end">total: £{{ total_cost }}</p>
+
             <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link w-100">keep shopping</a>
         </div>
-    </div>
-    {% else %}
-</div>
-<div class="row">
-    <div class="col-6">
-        <h4>your basket is currently empty.</h4>
-        <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link">keep shopping</a>
-    </div>
 
-</div>
-{% endif %}
+        {% else %}
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4>your basket is currently empty.</h4>
+            <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link">keep shopping</a>
+        </div>
+
+    </div>
+    {% endif %}
 </div>
 
 </div>
@@ -69,6 +63,6 @@
 {% block extrajs %}
 {{ block.super }}
 {{ stripe_public_key|json_script:"id_stripe_public_key" }}
-{{ client_secret|json_script:"id_client_secret" }}   
+{{ client_secret|json_script:"id_client_secret" }}
 <script type="text/javascript" src="{% static 'checkout/checkout.js' %}"></script>
 {% endblock %}

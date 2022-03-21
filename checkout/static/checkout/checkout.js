@@ -2,16 +2,15 @@
 
 const stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 let clientSecret = $('#id_client_secret').text().slice(1, -1);
-let stripe = Stripe(stripePublicKey);
+let stripe = Stripe(stripePublicKey, {locale: 'en-GB',});
 let elements = stripe.elements();
+
 const appearance = {
     theme: 'stripe',
     variables: {
-        colorPrimary: '#0d5c63',
-        colorText: '#080808',
+        fontFamily: 'Josefin Sans, sans-serif',
         colorBackground: '#ffffff',
         colorDanger: '#df1b41',
-        fontFamily: 'Ideal Sans, system-ui, sans-serif',
         spacingUnit: '2px',
         borderRadius: '4px',
         
