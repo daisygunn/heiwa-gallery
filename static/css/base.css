@@ -16,6 +16,9 @@ body {
     background-color: #0d5c63;
 }
 
+.brand-blue {
+  color: #0d5c63;
+}
 .container-clip {
     /* width: 960px; */
     margin: 0 auto;
