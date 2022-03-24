@@ -44,7 +44,6 @@ let card = elements.create('card', {
 });
 card.mount('#payment-element');
 
-
 card.addEventListener('change', function (event) {
     if (event.error) {
         showMessage(`${event.error.message}`)
@@ -54,29 +53,27 @@ card.addEventListener('change', function (event) {
 var form = document.getElementById('stripe-payment-form');
 
 form.addEventListener('submit', function (e) {
-e.preventDefault();
-setLoading(true);
+    e.preventDefault();
+    setLoading(true);
 
-stripe.confirmCardPayment(clientSecret, {
-    payment_method: {
-        card: card,
-    }
-}).then(function (result) {
-    if (result.error) {
-        showMessage(`${result.error.message}`)
-    } else {
-        if (result.paymentIntent.status == 'succeeded') {
-            setLoading(false);
-            showMessage("Payment succeeded!");
-            form.submit();
-
+    stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+            card: card,
         }
-    }
-    setLoading(false);
-})
-})
+    }).then(function (result) {
+        if (result.error) {
+            showMessage(`${result.error.message}`)
+        } else {
+            if (result.paymentIntent.status == 'succeeded') {
+                showMessage("Payment succeeded!");
+                setLoading(false);
+                form.submit();
 
-
+            }
+        }
+        setLoading(false);
+    })
+})
 
 // ------- UI helpers -------
 

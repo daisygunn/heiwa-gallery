@@ -12,11 +12,39 @@
 
 {% block content %}
 <div class="container">
-    <div class="row justify-content-center d-flex mb-3">
-        <h4>thank you!</h4>
+    <div class="row d-flex mb-3">
+        <div class="col-12">
+            <h4>thank you for your order!</h4>
+        </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-sm-8">
+            <table class="table"style="width:100%">
+                <tr class="align-middle mb-2">
+                    <th>order number:</th>
+                    <td>{{ order.order_number }}</td>
+                </tr>
+                <tr class="mb-2">
+                    <th>items</th>
+                    <td>
 
+                        {% for product in order.orderitems.all %}
+                        <div class="text-right ">{{ product }}</div>
+                        {% endfor %}
+
+                    </td>
+                </tr>
+                <tr class="mb-2">
+                    <th>delivery details</th>
+                    <td>{{ order.full_address }}</td>
+                </tr>
+                <tr class="mb-2">
+                    <th>total cost</th>
+                    <td><strong>£{{ order.order_total }}</strong></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

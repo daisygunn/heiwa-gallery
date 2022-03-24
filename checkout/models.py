@@ -40,6 +40,10 @@ class Order(models.Model):
         self.order_total = self.orderitems.aggregate(
             Sum('orderitem_total'))['orderitem_total__sum'] or 0
         self.save()
+    
+    def full_address(self):
+        """ return address """
+        return f"{self.flat_house}, {self.street_address}, {self.town_city}, {self.county}, {self.postcode}"
 
     def save(self, *args, **kwargs):
         """ if the order doesn't have an order number, create one """
@@ -72,5 +76,8 @@ class OrderItem(models.Model):
         self.orderitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
 
+    # def __str__(self):
+    #     return f'{self.product.name} in {self.product.size} on order {self.order.order_number}'
+    
     def __str__(self):
-        return f'{self.product.name} in {self.product.size} on order {self.order.order_number}'
+        return f'{self.product.name} in {self.product.size}'
