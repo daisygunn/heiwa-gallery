@@ -41,6 +41,9 @@ def checkout(request):
                         product=product,
                         quantity=quantity,
                     )
+                    stock = product.get_stock_level()
+                    product.quantity_in_stock = stock - quantity
+                    product.save()
                     order_item.save()
                 except Product.DoesNotExist:
                     messages.error(
