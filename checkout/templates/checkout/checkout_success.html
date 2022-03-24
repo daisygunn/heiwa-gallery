@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load basket_tools %}
+{% load crispy_forms_tags %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+{% endblock %}
+
+{% block subtitle %}
+<h2 class="mt-0 mb-3" id="subtitle">[ checkout ]</h2>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center d-flex mb-3">
+        <h4>thank you!</h4>
+    </div>
+</div>
+
+</div>
+
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+{% endblock %}
