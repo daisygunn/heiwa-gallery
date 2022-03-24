@@ -13,25 +13,29 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center d-flex mb-3">
-        <!-- <div class="col-10 my-2 d-flex"> -->
         {% if items_in_basket %}
         <!-- customer info form -->
         <div class="col-sm-6 col-md-4 payment-form order-sm-1 order-lg-0">
-            <h5 class="brand-blue"><strong>delivery details</strong></h5>
-            {{ form|crispy }}
+            <form id="stripe-payment-form" method="POST" action="{% url 'checkout' %}">
+                {% csrf_token %}
+                <h5 class="brand-blue"><strong>delivery details</strong></h5>
+                {{ form_errors }}
+                {{ form|crispy }}
+            
             <hr>
             <h5 class="brand-blue mb-3"><strong>card details</strong></h5>
-            <form id="stripe-payment-form">
                 <div id="payment-element">
                     <!--Stripe.js injects the Payment Element-->
                 </div>
+                <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 <div id="payment-message" class="hidden text-danger mb-2"></div>
-                <button id="submit" class="btn bg-brand-blue green-link w-100">
+                <button id="payment-submit-button" type="submit" class="btn bg-brand-blue green-link w-100">
                     <div class="spinner hidden" id="spinner"></div>
                     <span id="button-text">pay now</span>
                 </button>
             </form>
         </div>
+        
         <div class="col-sm-6 col-md-4 payment-form order-sm-0 order-lg-1">
             <h5 class="brand-blue mb-3"><strong>basket</strong></h5>
             {% for pk in items_in_basket %}
@@ -64,5 +68,6 @@
 {{ block.super }}
 {{ stripe_public_key|json_script:"id_stripe_public_key" }}
 {{ client_secret|json_script:"id_client_secret" }}
+<!-- <script type="text/javascript" src="{% static 'checkout/checkout-version-two.js' %}"></script> -->
 <script type="text/javascript" src="{% static 'checkout/checkout.js' %}"></script>
 {% endblock %}
