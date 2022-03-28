@@ -14,7 +14,7 @@
 <div class="container">
     <div class="row d-flex mb-3">
         <div class="col-12">
-            <h4>thank you for your order!</h4>
+            <h4>thank you for your order <strong>{{ order.full_name }}</strong>!</h4>
         </div>
     </div>
     <div class="row">
@@ -27,11 +27,9 @@
                 <tr class="mb-2">
                     <th>items</th>
                     <td>
-
                         {% for product in order.orderitems.all %}
                         <div class="text-right ">{{ product }}</div>
                         {% endfor %}
-
                     </td>
                 </tr>
                 <tr class="mb-2">
@@ -44,6 +42,15 @@
                 </tr>
             </table>
         </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <a href="{% url 'home' %}" class="btn bg-brand-blue green-link w-100">view exhibitions</a>     
+        </div>
+        <div class="col-4">
+            <a href="{% url 'home' %}" class="btn bg-brand-blue green-link w-100">home</a>
+        </div>
+
     </div>
 </div>
 

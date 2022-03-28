@@ -16,11 +16,21 @@
         <div class=>{{ pk.product.name }} x {{ pk.quantity }}</div>
       </div>
       <div class="col">
-      <img class="img-thumbnail" style="height: 50px; width: 50px" src="{{ MEDIA_URL}}{{ pk.product.image }}"
-            alt="{{ pk.product.name }} image">
+        <img class="img-thumbnail" style="height: 50px; width: 50px" src="{{ MEDIA_URL}}{{ pk.product.image }}"
+          alt="{{ pk.product.name }} image">
       </div>
     </div>
     {% endfor %}
+    <div class="row my-2">
+      <div class="col-4">
+        <a href="{% url 'checkout' %}" class="btn bg-brand-blue green-link w-100">checkout</a>
+      </div>
+    </div>
   </div>
   {% endif %}
+  <div class="row my-2">
+    <div class="col-4">
+      <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link w-100">keep shopping</a>
+    </div>
+  </div>
 </div>
