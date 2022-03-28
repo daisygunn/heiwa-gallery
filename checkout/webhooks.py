@@ -2,9 +2,8 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
-from .webhook_handler import StripeWhHandler    
-
 import stripe
+from .webhook_handler import StripeWhHandler
 
 
 # https://stripe.com/docs/payments/handling-payment-events
@@ -26,7 +25,6 @@ def webhook(request):
     except stripe.error.SignatureVerificationError as error:
         return HttpResponse(content=error, status=400)
     except Exception as error:
-        print('broad exception')
         return HttpResponse(content=error, status=400)
 
     # set up to use webhook handler
