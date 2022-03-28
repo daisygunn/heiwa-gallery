@@ -29,5 +29,21 @@ def webhook(request):
         print('broad exception')
         return HttpResponse(content=error, status=400)
 
-    print(f'Success {event}!')
-    return HttpResponse(status=200)
+    # set up to use webhook handler
+    handler = StripeWhHandler(request)
+
+    # map webhooks to relevant handle function
+    event_map = {
+        'payment_intent.succeeded': handler.handle_payment_intent_succeeded,
+        'payment_intent.payment_failed':
+        handler.handle_payment_intent_payment_failed,
+    }
+
+    # get the webhook type from Stripe
+    event_type = event['type']
+
+    event_handler = event_map.get(event_type, handler.handle_event)
+
+    # call the event handler with the event
+    response = event_handler(event)
+    return response
