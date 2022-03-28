@@ -45,6 +45,7 @@ def checkout(request):
                     product.quantity_in_stock = stock - quantity
                     product.save()
                     order_item.save()
+                    
                 except Product.DoesNotExist:
                     messages.error(
                         request, "Unfortunately one of"
@@ -52,6 +53,7 @@ def checkout(request):
                         " being sold.")
                     order.delete()
                     return redirect(reverse('basket_overview'))            
+            order.order_success = True
             return redirect(
                 reverse('checkout_success', args=[order.order_number]))
         else:

@@ -29,7 +29,7 @@ class Order(models.Model):
     original_basket = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False,
                                   blank=False, default='')
-    order_sucess = models.BooleanField(default=False)
+    order_success = models.BooleanField(default=False)
 
     def _generate_order_number(self):
         """ generate a random, unique order number """
