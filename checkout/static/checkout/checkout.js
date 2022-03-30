@@ -1,3 +1,7 @@
+$('#save-address').click(function() {
+    $(this).attr('checked') ? $(this).removeAttr('checked') : $(this).attr('checked', 'checked')
+});
+
 const stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 let clientSecret = $('#id_client_secret').text().slice(1, -1);
 let stripe = Stripe(stripePublicKey, {
@@ -13,7 +17,6 @@ const appearance = {
         colorDanger: '#df1b41',
         spacingUnit: '2px',
         borderRadius: '4px',
-
     },
     rules: {
         '.Tab': {
@@ -55,25 +58,60 @@ var form = document.getElementById('stripe-payment-form');
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     setLoading(true);
+    var saveAddress = Boolean($('#save-address').attr('checked'));
+    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    var postData = {
+        'csrfmiddlewaretoken': csrfToken,
+        'client_secret': clientSecret,
+        'save_address': saveAddress,
+    };
+    var url = '/checkout/cache_checkout_data';
 
-    stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-            card: card,
-        }
-    }).then(function (result) {
-        if (result.error) {
-            showMessage(`${result.error.message}`)
-        } else {
-            if (result.paymentIntent.status == 'succeeded') {
-                showMessage("Payment succeeded!");
-                setLoading(false);
-                form.submit();
-
+    $.post(url, postData).done(function () {
+        stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    name: $.trim(form.full_name.value),
+                    phone: $.trim(form.phone_number.value),
+                    email: $.trim(form.email.value),
+                    address: {
+                        line1: $.trim(form.flat_house.value),
+                        line2: $.trim(form.street_address.value),
+                        city: $.trim(form.town_city.value),
+                        state: $.trim(form.county.value),
+                        country: $.trim(form.country.value),
+                    }
+                }
+            },
+            shipping: {
+                name: $.trim(form.full_name.value),
+                phone: $.trim(form.phone_number.value),
+                address: {
+                    line1: $.trim(form.flat_house.value),
+                    line2: $.trim(form.street_address.value),
+                    city: $.trim(form.town_city.value),
+                    state: $.trim(form.county.value),
+                    postal_code: $.trim(form.postcode.value),
+                    country: $.trim(form.country.value),
+                }
+            },
+        }).then(function (result) {
+            if (result.error) {
+                showMessage(`${result.error.message}`)
+                setLoading(false); 
+            } else {
+                if (result.paymentIntent.status == 'succeeded') {
+                    showMessage("Payment succeeded!");
+                    form.submit();
+                }
             }
-        }
-        setLoading(false);
+            setLoading(false);
+        });
+    }).fail(function() {
+        location.reload();
     })
-})
+});
 
 // ------- UI helpers -------
 
@@ -86,7 +124,7 @@ function showMessage(messageText) {
     setTimeout(function () {
         messageContainer.classList.add("hidden");
         messageText.textContent = "";
-    }, 4000);
+    }, 6000);
 }
 
 // Show a spinner on payment submission

@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.views.decorators.http import require_POST
 from django.views import View
 from django.contrib import messages
 from django.conf import settings
 
-import stripe 
+import stripe
+import json
 
 from basket.context_processors import basket_contents
 from .forms import OrderForm
@@ -11,12 +13,28 @@ from products.models import Product
 from .models import Order, OrderItem
 
 
+@require_POST
+def cache_checkout_data(request):
+    """ to store save address info """
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'basket': json.dumps(request.session.get('basket', {})),
+            'save_address': request.POST.get('save_address'),
+            'username': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as error:
+        messages.error(request, "Something isn't quite right.")
+        return HttpResponse(content=error, status=400)
+
+
 def checkout(request):
     """ checkout """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     if request.method == 'POST':
-        print('post working')
         basket = request.session.get('basket', {})
         form_data = {
             'full_name': request.POST.get('full_name'),
@@ -29,7 +47,7 @@ def checkout(request):
             'postcode': request.POST.get('postcode'),
             'country': request.POST.get('country'),
         }
-        order_form = OrderForm(data=request.POST)
+        order_form = OrderForm(form_data)
        
         if order_form.is_valid():
             order = order_form.save()
@@ -52,8 +70,10 @@ def checkout(request):
                         " the items in your basket is not currently"
                         " being sold.")
                     order.delete()
-                    return redirect(reverse('basket_overview'))            
+                    return redirect(reverse('basket_overview'))
+   
             order.order_success = True
+            request.session['save_address'] = 'save-address' in request.POST
             return redirect(
                 reverse('checkout_success', args=[order.order_number]))
         else:
@@ -89,6 +109,7 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     """ handle success """
+    save_address = request.session.get('save_address')
     order = get_object_or_404(Order, order_number=order_number)
     messages.success(request, "Order processed - your order number is"
                      f'{order_number}.')
