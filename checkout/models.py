@@ -5,7 +5,7 @@ from django.db.models import Sum
 from products.models import Product
 
 country_choices = (
-    ('United Kingdom', 'United Kingdom'),
+    ('GB', 'United Kingdom'),
 )
 
 

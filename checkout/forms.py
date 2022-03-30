@@ -7,7 +7,7 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ('full_name', 'email', 'phone_number', 
-                  'flat_house', 'town_city', 'street_address', 
+                  'flat_house', 'street_address', 'town_city', 
                   'county', 'postcode', 'country')
 
     def __init__(self, *args, **kwargs):
@@ -17,8 +17,8 @@ class OrderForm(forms.ModelForm):
             'email': 'Email',
             'phone_number': 'Phone number',
             'flat_house': 'Flat/House number',
-            'town_city': 'Town or City',
             'street_address': 'Street Address',
+            'town_city': 'Town or City',
             'county': 'County',
             'postcode': 'Post code',
             'country': 'Country (delivery only possible in UK)',
@@ -28,4 +28,4 @@ class OrderForm(forms.ModelForm):
             placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].label = False
-            self.fields[field].widget.attrs['class'] = 'w-100 mb-2'
+            self.fields[field].widget.attrs['class'] = 'w-100 p-1 mb-2'
