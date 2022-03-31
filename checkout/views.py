@@ -50,7 +50,11 @@ def checkout(request):
         order_form = OrderForm(form_data)
        
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            order.stripe_pid = request.POST.get(
+                'client_secret').split('_secret')[0]
+            order.original_basket = json.dumps(basket)
+            order.save()
             for pk, quantity in basket.items():
                 try:
                     product = Product.objects.get(pk=pk)
@@ -63,7 +67,6 @@ def checkout(request):
                     product.quantity_in_stock = stock - quantity
                     product.save()
                     order_item.save()
-                    
                 except Product.DoesNotExist:
                     messages.error(
                         request, "Unfortunately one of"
@@ -71,7 +74,6 @@ def checkout(request):
                         " being sold.")
                     order.delete()
                     return redirect(reverse('basket_overview'))
-   
             order.order_success = True
             request.session['save_address'] = 'save-address' in request.POST
             return redirect(
@@ -79,7 +81,7 @@ def checkout(request):
         else:
             messages.error(request, "something wrong with form")
             return render(request, 'checkout/checkout.html',
-                      {'form': order_form, })
+                          {'form': order_form, })
     else:
         order_form = OrderForm()
         basket = request.session.get('basket', {})

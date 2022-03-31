@@ -1,5 +1,10 @@
 from django.http import HttpResponse
+from products.models import Product
+from .models import Order, OrderItem
 
+
+import json
+import time
 
 class StripeWhHandler:
     """ handle all stripe webhooks """
@@ -16,9 +21,86 @@ class StripeWhHandler:
     def handle_payment_intent_succeeded(self, event):
         """ handle all successful events """
         intent = event.data.object
-        print(intent)
+        pid = intent.id
+        basket = intent.metadata.basket
+        save_address = intent.metadata.save_address
+
+        billing_details = intent.charges.data[0].billing_details
+        shipping_details = intent.shipping
+        order_total = round(intent.charges.data[0].amount / 100, 2)
+
+        # Clean data in the shipping details
+        for field, value in shipping_details.address.items():
+            if value == "":
+                shipping_details.address[field] = None
+
+        order_exists = False
+        # prevent the order being added twice
+        attempt = 1
+        while attempt <= 5:
+            try:
+                order = Order.objects.get(
+                    full_name__iexact=shipping_details.name,
+                    email__iexact=billing_details.email,
+                    phone_number__iexact=shipping_details.phone,
+                    flat_house__iexact=shipping_details.address.line1,
+                    street_address__iexact=shipping_details.address.line2,
+                    town_city__iexact=shipping_details.address.city,
+                    county__iexact=shipping_details.address.state,
+                    country__iexact=shipping_details.address.country,
+                    postcode__iexact=shipping_details.address.postal_code,
+                    order_total=order_total,
+                    original_basket=basket,
+                    stripe_pid=pid,
+                )
+                order_exists = True
+                break
+            except Order.DoesNotExist:
+                attempt += 1
+                time.sleep(1)
+        if order_exists:
+            return HttpResponse(
+                content=f'Webhook received:\
+                {event["type"]} | SUCCESS: Verified order already in database',
+                status=200)
+        else:
+            order = None
+            try:
+                for pk, quantity in json.loads(basket).items():
+                    order = Order.objects.create(
+                        full_name=shipping_details.name,
+                        email=billing_details.email,
+                        phone_number=shipping_details.phone,
+                        flat_house=shipping_details.address.line1,
+                        street_address=shipping_details.address.line2,
+                        town_city=shipping_details.address.city,
+                        county=shipping_details.address.state,
+                        country=shipping_details.address.country,
+                        postcode=shipping_details.address.postal_code,
+                        original_basket=basket,
+                        stripe_pid=pid,
+                    )
+                    product = Product.objects.get(pk=pk)
+                    order_item = OrderItem(
+                        order=order,
+                        product=product,
+                        quantity=quantity,
+                    )
+                    stock = product.get_stock_level()
+                    product.quantity_in_stock = stock - quantity
+                    product.save()
+                    order_item.save()
+                    order.order_success = True
+            except Exception as error:
+                if order:
+                    order.delete()
+                return HttpResponse(
+                    content=f"webhook received: {event['type']} |\
+                    Fail: error: {error}",
+                    status=500)
         return HttpResponse(
-            content=f"webhook received: {event['type']}",
+            content=f"webhook received: {event['type']} |\
+                SUCCESS: Order created by webhook",
             status=200)
 
     def handle_payment_intent_payment_failed(self, event):
