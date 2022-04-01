@@ -3,6 +3,7 @@ from django.views.decorators.http import require_POST
 from django.views import View
 from django.contrib import messages
 from django.conf import settings
+from django.core.mail import send_mail
 
 import stripe
 import json
@@ -28,6 +29,20 @@ def cache_checkout_data(request):
     except Exception as error:
         messages.error(request, "Something isn't quite right.")
         return HttpResponse(content=error, status=400)
+
+
+def send_confirmation_email(request, order):
+    """ Function to send email after order saved """
+    customer_name = str(order.full_name)
+    email_from = settings.EMAIL_HOST_USER
+    subject = f"Order confirmation from Heiwa - order number {order.order_number}"
+    message = f"Thank you for your order {customer_name}.\
+                Order number - {order.order_number}\
+                Order total - {order.order_total}\
+                Delivery address - {order.full_address}."
+
+    recipient_list = (str(order.email),)
+    send_mail(subject, message, email_from, recipient_list, fail_silently=False)
 
 
 def checkout(request):
@@ -75,6 +90,7 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('basket_overview'))
             order.order_success = True
+            send_confirmation_email(request, order)
             request.session['save_address'] = 'save-address' in request.POST
             return redirect(
                 reverse('checkout_success', args=[order.order_number]))
