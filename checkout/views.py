@@ -45,7 +45,7 @@ def cache_checkout_data(request):
 #     send_mail(subject, message, email_from, recipient_list, fail_silently=False)
 
 
-def send_confirmation_email(request, order_number):
+def send_confirmation_email(order_number):
     """ Function to send email after order saved """
     order = Order.objects.get(order_number=order_number)
     email_from = settings.EMAIL_HOST_USER
