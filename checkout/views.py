@@ -49,9 +49,8 @@ def send_confirmation_email(order_number):
     """ Function to send email after order saved """
     order = Order.objects.get(order_number=order_number)
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = (str(order.email),)
-    context = {'order': order}
-    send_mail('email/confirmation_email.tpl', context,
+    recipient_list = (str(order.email),) 
+    send_mail('email/confirmation_email.tpl', {'order': order},
               email_from, [recipient_list])
     # send_mail(subject, message, )
 
