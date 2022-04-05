@@ -7,10 +7,10 @@ class UserAdmin(admin.ModelAdmin):
     """ allows admin to view user profiles """
     model = UserProfile
     readonly_fields = ('user', 'registration_date',)
-    fields = ('full_name', 'email', 'phone_number', 
-              'flat_house', 'street_address', 'town_city', 'county',
-              'country', 'postcode',)
+    fields = ('user', 'full_name', 'email', 'phone_number',
+              'default_flat_house', 'default_street_address',
+              'default_town_city', 'default_county',
+              'default_postcode', 'default_country')
   
     list_display = ('full_name', 'email',)
-    # displays most recent orders on the top
     ordering = ('-registration_date',)
