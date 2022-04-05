@@ -30,6 +30,7 @@ def cache_checkout_data(request):
         messages.error(request, "Something isn't quite right.")
         return HttpResponse(content=error, status=400)
 
+
 @require_POST
 def send_confirmation_email(request, order):
     """ Function to send email after order saved """
