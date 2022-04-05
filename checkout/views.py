@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (render, redirect, reverse,
+                              get_object_or_404, HttpResponse)
 from django.views.decorators.http import require_POST
-from django.views import View
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
@@ -31,18 +31,29 @@ def cache_checkout_data(request):
         return HttpResponse(content=error, status=400)
 
 
+# def send_confirmation_email(request, order):
+#     """ Function to send email after order saved """
+#     customer_name = str(order.full_name)
+#     email_from = settings.EMAIL_HOST_USER
+#     subject = f"Order confirmation from Heiwa - order number {order.order_number}"
+#     message = f"Thank you for your order {customer_name}.\
+#                 Order number - {order.order_number}\
+#                 Order total - {order.order_total}\
+#                 Delivery address - {order.full_address}."
+
+#     recipient_list = (str(order.email),)
+#     send_mail(subject, message, email_from, recipient_list, fail_silently=False)
+
+
 def send_confirmation_email(request, order):
     """ Function to send email after order saved """
-    customer_name = str(order.full_name)
+    order = get_object_or_404(Order, order=order)
     email_from = settings.EMAIL_HOST_USER
-    subject = f"Order confirmation from Heiwa - order number {order.order_number}"
-    message = f"Thank you for your order {customer_name}.\
-                Order number - {order.order_number}\
-                Order total - {order.order_total}\
-                Delivery address - {order.full_address}."
-
     recipient_list = (str(order.email),)
-    send_mail(subject, message, email_from, recipient_list, fail_silently=False)
+    context = {'order': order}
+    send_mail('email/confirmation_email.tpl', context,
+              email_from, [recipient_list])
+    # send_mail(subject, message, )
 
 
 def checkout(request):
@@ -121,8 +132,7 @@ def checkout(request):
         return render(request, 'checkout/checkout.html',
                       {'form': order_form,
                        'stripe_public_key': stripe_public_key,
-                       'client_secret': intent.client_secret,
-                     })
+                       'client_secret': intent.client_secret, })
 
 
 def checkout_success(request, order_number):
@@ -136,4 +146,4 @@ def checkout_success(request, order_number):
         del request.session['basket']
     
     return render(request, 'checkout/checkout_success.html',
-                 {'order': order,})
+                  {'order': order, })
