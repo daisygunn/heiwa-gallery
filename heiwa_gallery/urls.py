@@ -25,6 +25,7 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('basket/', include('basket.urls')),
     path('checkout/', include('checkout.urls')),
+    # path('user_account/', include('user_account.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'home.views.error_404'
