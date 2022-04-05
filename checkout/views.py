@@ -101,7 +101,7 @@ def checkout(request):
                     return redirect(reverse('basket_overview'))
             order.order_success = True
             order_number = order.order_number
-            send_confirmation_email(request, order_number)
+            send_confirmation_email(order_number)
             request.session['save_address'] = 'save-address' in request.POST
             return redirect(
                 reverse('checkout_success', args=[order.order_number]))
