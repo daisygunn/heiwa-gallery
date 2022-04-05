@@ -9,8 +9,8 @@ import stripe
 import json
 
 from basket.context_processors import basket_contents
-from .forms import OrderForm
 from products.models import Product
+from .forms import OrderForm
 from .models import Order, OrderItem
 
 
@@ -30,29 +30,31 @@ def cache_checkout_data(request):
         messages.error(request, "Something isn't quite right.")
         return HttpResponse(content=error, status=400)
 
-
-# def send_confirmation_email(request, order):
-#     """ Function to send email after order saved """
-#     customer_name = str(order.full_name)
-#     email_from = settings.EMAIL_HOST_USER
-#     subject = f"Order confirmation from Heiwa - order number {order.order_number}"
-#     message = f"Thank you for your order {customer_name}.\
-#                 Order number - {order.order_number}\
-#                 Order total - {order.order_total}\
-#                 Delivery address - {order.full_address}."
-
-#     recipient_list = (str(order.email),)
-#     send_mail(subject, message, email_from, recipient_list, fail_silently=False)
-
-
-def send_confirmation_email(order_number):
+@require_POST
+def send_confirmation_email(request, order):
     """ Function to send email after order saved """
-    order = Order.objects.get(order_number=order_number)
+    customer_name = str(order.full_name)
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = (str(order.email),) 
-    send_mail('email/confirmation_email.tpl', {'order': order},
-              email_from, [recipient_list])
-    # send_mail(subject, message, )
+    subject = f"Order confirmation from Heiwa - order\
+             number {order.order_number}"
+    message = f"Thank you for your order {customer_name}.\n\
+                Order number - {order.order_number}\n\
+                Order total - {order.order_total}\n\
+                Delivery address - {order.full_address}."
+
+    recipient_list = (str(order.email),)
+    send_mail(
+        subject, message, email_from, recipient_list, fail_silently=False)
+
+
+# def send_confirmation_email(order_number):
+#     """ Function to send email after order saved """
+#     order = Order.objects.get(order_number=order_number)
+#     email_from = settings.EMAIL_HOST_USER
+#     recipient_list = (str(order.email),)
+#     send_mail('email/confirmation_email.tpl', {'order': order},
+#               email_from, [recipient_list])
+#     # send_mail(subject, message, )
 
 
 def checkout(request):
@@ -73,7 +75,7 @@ def checkout(request):
             'country': request.POST.get('country'),
         }
         order_form = OrderForm(form_data)
-       
+
         if order_form.is_valid():
             order = order_form.save(commit=False)
             order.stripe_pid = request.POST.get(
@@ -89,9 +91,18 @@ def checkout(request):
                         quantity=quantity,
                     )
                     stock = product.get_stock_level()
-                    product.quantity_in_stock = stock - quantity
-                    product.save()
-                    order_item.save()
+                    if stock >= quantity:
+                        product.quantity_in_stock = stock - quantity
+                        product.save()
+                        order_item.save()
+                    else:
+                        messages.error(
+                            request, "We do not have enough of "
+                                     f"{product.name} in stock for you"
+                                     " to purchase your desired amount."
+                                     " Please review your basket.")
+                        order.delete()
+                        return redirect(reverse('basket_overview'))
                 except Product.DoesNotExist:
                     messages.error(
                         request, "Unfortunately one of"
@@ -101,7 +112,7 @@ def checkout(request):
                     return redirect(reverse('basket_overview'))
             order.order_success = True
             order_number = order.order_number
-            send_confirmation_email(order_number)
+            send_confirmation_email(request, order_number)
             request.session['save_address'] = 'save-address' in request.POST
             return redirect(
                 reverse('checkout_success', args=[order.order_number]))
@@ -116,12 +127,12 @@ def checkout(request):
             messages.error(request, "There isn't currently anything"
                            " in your basket.")
             return(redirect('all_products'))
-        
+
         current_basket = basket_contents(request)
         payment_due = current_basket['total_cost']
         stripe_payment_amount = round(payment_due * 100)
         stripe.api_key = stripe_secret_key
-        
+
         intent = stripe.PaymentIntent.create(
             amount=stripe_payment_amount,
             currency='gbp',
@@ -144,6 +155,6 @@ def checkout_success(request, order_number):
 
     if 'basket' in request.session:
         del request.session['basket']
-    
+
     return render(request, 'checkout/checkout_success.html',
                   {'order': order, })

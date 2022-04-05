@@ -9,7 +9,6 @@ class BasketOverview(View):
     of customer basket is displayed """
     def get(self, request):
         """ get request """
-       
         return render(request, 'basket/basket.html')
 
 
@@ -21,16 +20,25 @@ def add_product_to_basket(request, pk):
 
     basket = request.session.get('basket', {})
     if product.in_stock:
-        if pk in list(basket.keys()):
-            basket[pk] += quantity
-        else:
-            basket[pk] = quantity
-        messages.success(request, f"{product} has been added to your basket.")
+        stock = product.get_stock_level()
+        if quantity > 0 and stock >= quantity:
+            if pk in list(basket.keys()):
+                if basket[pk] + quantity > stock:
+                    messages.error(
+                        request, f"We do not have enough in stock of {product}")
+                else:
+                    basket[pk] += quantity
+                    messages.success(
+                        request, f"{product} has been updated in your basket.")
+            else:
+                basket[pk] = quantity
+                messages.success(
+                    request, f"{product} has been added to your basket.")
     else:
         messages.error(
-            request, f"{product} is not in stock and" 
+            request, f"{product} is not in stock and"
             " therefore cannot be added.")
-    
+
     request.session['basket'] = basket
     # import pdb; pdb.set_trace()
     print(request.session['basket'])
@@ -42,14 +50,19 @@ def change_quantity(request, pk):
     product = get_object_or_404(Product, pk=pk)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
-    
     basket = request.session.get('basket', {})
+    stock = product.get_stock_level()
     if product.in_stock:
         if pk in list(basket.keys()):
-            if quantity > 0:
+            if quantity > 0 and stock >= quantity:
                 basket[pk] = quantity
                 messages.success(
                     request, f"{product} has been updated in your basket.")
+            elif quantity > 0 and stock < quantity:
+                messages.error(
+                    request, f"Sorry, we only have {stock} in stock of"
+                             f" {product} please reduce the number in"
+                             " your basket.")
             else:
                 basket.pop(pk)
                 messages.success(
@@ -58,9 +71,9 @@ def change_quantity(request, pk):
             messages.error(request, f"{product} is not in your basket.")
     else:
         messages.error(
-            request, f"{product} is not in stock and" 
+            request, f"{product} is not in stock and"
             " therefore cannot be added.")
-    
+
     request.session['basket'] = basket
     # import pdb; pdb.set_trace()
     # print(request.session['basket'])
@@ -70,7 +83,6 @@ def change_quantity(request, pk):
 def remove_product(request, pk):
     """ add product to bag """
     product = get_object_or_404(Product, pk=pk)
-    
     basket = request.session.get('basket', {})
 
     if pk in list(basket.keys()):
@@ -78,7 +90,7 @@ def remove_product(request, pk):
         messages.success(request, f"{product} has been removed basket.")
     else:
         messages.error(request, f"{product} is not in your basket.")
-    
+
     request.session['basket'] = basket
     # import pdb; pdb.set_trace()
     # print(request.session['basket'])

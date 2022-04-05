@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.files.storage import FileSystemStorage
+from django.core.validators import MinValueValidator
 
 
 class Category(models.Model):
@@ -50,7 +51,8 @@ class Product(models.Model):
     photographer_artist = models.CharField(max_length=254, blank=True)
     size = models.CharField(
         max_length=2, choices=product_size_choices, default="A4")
-    quantity_in_stock = models.IntegerField(blank=False)
+    quantity_in_stock = models.IntegerField(
+        blank=False, validators=[MinValueValidator(0)])
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(
         null=True, blank=True, storage=MediaFileSystemStorage())
