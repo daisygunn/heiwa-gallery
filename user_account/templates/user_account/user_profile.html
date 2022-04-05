@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load basket_tools %}
+{% load crispy_forms_tags %}
+{% block extra_css %}
+
+{% endblock %}
+
+{% block subtitle %}
+<h2 class="mt-0 mb-3" id="subtitle">[ user profile ]</h2>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row d-flex mb-3">
+        <div class="col-12">
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-4">
+            <a href="{% url 'home' %}" class="btn bg-brand-blue green-link w-100">view exhibitions</a>     
+        </div>
+        <div class="col-4">
+            <a href="{% url 'home' %}" class="btn bg-brand-blue green-link w-100">home</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+{% endblock %}
