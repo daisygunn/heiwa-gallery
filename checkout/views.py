@@ -45,9 +45,9 @@ def cache_checkout_data(request):
 #     send_mail(subject, message, email_from, recipient_list, fail_silently=False)
 
 
-def send_confirmation_email(request, order):
+def send_confirmation_email(request, order_number):
     """ Function to send email after order saved """
-    order = get_object_or_404(Order, order=order)
+    order = Order.objects.get(order_number=order_number)
     email_from = settings.EMAIL_HOST_USER
     recipient_list = (str(order.email),)
     context = {'order': order}
@@ -101,7 +101,8 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('basket_overview'))
             order.order_success = True
-            send_confirmation_email(request, order)
+            order_number = order.order_number
+            send_confirmation_email(request, order_number)
             request.session['save_address'] = 'save-address' in request.POST
             return redirect(
                 reverse('checkout_success', args=[order.order_number]))
