@@ -38,174 +38,177 @@
 
     <title>heiwa</title>
 </head>
-
-<body class="d-flex flex-column min-vh-100">
-    <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-brand-blue" id="main-nav">
-        <a class="navbar-brand brand-text ml-2" href="{% url 'home' %}" id="nav-heading">heiwa</a>
-        <!-- Collapsible icon for smaller screens -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
-                <li class="nav-item light-text">
-                    <a class="nav-link" href="{% url 'home' %}">home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'about' %}">about</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">exhibitions</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle dropdown-toggle1" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" href="#" aria-expanded="false">shop
-                    </a>
-                    <div class="dropdown-menu dropdown-menu1" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'all_products' %}">all prints</a>
-                        {% for category in category_list %}
-                        <a class="dropdown-item"
-                            href="{% url 'all_products' %}?style={{ category.id }}">{{ category.name_to_display|lower }}</a>
-                        {% endfor %}
-                        <!-- <a class="dropdown-item" href="{% url 'all_products' %}?style=1">black & white</a> -->
-                    </div>
-                </li>
-            </ul>
-            <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
-                {% if user.is_authenticated %}
-                {% if user.is_superuser %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle dropdown-toggle2" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" href="#" aria-expanded="false">product admin
-                    </a>
-                    <div class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'add_product' %}">add product</a>
-                        <a class="dropdown-item" href="{% url 'update_products' %}">update products</a>
-                    </div>
-                </li>
-                {% endif %}
-                <li class="nav-item ml-auto">
-                    <a class="nav-link" href="{% url 'user_profile' %}">my account</a>
-                </li>
-                <li class="nav-item ml-auto">
-                    <a class="nav-link" href="{% url 'account_logout' %}">logout</a>
-                </li>
-                <!-- If user is not logged in display Register & Login -->
-                {% else %}
-                <li class="nav-item ml-auto">
-                    <a class="nav-link" href="{% url 'account_signup' %}">register</a>
-                </li>
-                <li class="nav-item ml-auto">
-                    <a class="nav-link" href="{% url 'account_login' %}">login</a>
-                </li>
-                {% endif %}
-                <li class="nav-item ml-auto">
-                    <a class="nav-link text-center" href="{% url 'basket_overview' %}"><i class="fas fa-shopping-basket fa-lg"></i>
-                        <p class="my-0">{% if total_cost %}
-                            £{{ total_cost|floatformat:2 }}
-                            {% else %}
-                            £0.00
-                            {% endif %}
-                        </p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <header>
-        <div class="container container-clip mt-5">
-            <div id="main-title" class="text-center">
-                <h1 class="mb-0">heiwa</h1>
-                {% block subtitle %}
-
-                {% endblock %}
+<div class="page-container">
+    <body class="d-flex flex-column ">
+        <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-brand-blue" id="main-nav">
+            <a class="navbar-brand brand-text ml-2" href="{% url 'home' %}" id="nav-heading">heiwa</a>
+            <!-- Collapsible icon for smaller screens -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item light-text">
+                        <a class="nav-link" href="{% url 'home' %}">home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">about</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">exhibitions</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle dropdown-toggle1" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" href="#" aria-expanded="false">shop
+                        </a>
+                        <div class="dropdown-menu dropdown-menu1" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'all_products' %}">all prints</a>
+                            {% for category in category_list %}
+                            <a class="dropdown-item"
+                                href="{% url 'all_products' %}?style={{ category.id }}">{{ category.name_to_display|lower }}</a>
+                            {% endfor %}
+                            <!-- <a class="dropdown-item" href="{% url 'all_products' %}?style=1">black & white</a> -->
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
+                    {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle dropdown-toggle2" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" href="#" aria-expanded="false">product admin
+                        </a>
+                        <div class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'add_product' %}">add product</a>
+                            <a class="dropdown-item" href="{% url 'update_products' %}">update products</a>
+                        </div>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link" href="{% url 'user_profile' %}">my account</a>
+                    </li>
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link" href="{% url 'account_logout' %}">logout</a>
+                    </li>
+                    <!-- If user is not logged in display Register & Login -->
+                    {% else %}
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link" href="{% url 'account_signup' %}">register</a>
+                    </li>
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link" href="{% url 'account_login' %}">login</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link text-center" href="{% url 'basket_overview' %}"><i
+                                class="fas fa-shopping-basket fa-lg"></i>
+                            <p class="my-0">{% if total_cost %}
+                                £{{ total_cost|floatformat:2 }}
+                                {% else %}
+                                £0.00
+                                {% endif %}
+                            </p>
+                        </a>
+                    </li>
+                </ul>
             </div>
+        </nav>
+        <header>
+            <div class="container container-clip mt-5">
+                <div id="main-title" class="text-center">
+                    <h1 class="mb-0">heiwa</h1>
+                    {% block subtitle %}
+
+                    {% endblock %}
+                </div>
+            </div>
+        </header>
+        {% if messages %}
+        <div class="messages-container">
+            {% for message in messages %}
+            {% with message.level as level %}
+            {% if level == 40 %}
+            {% include 'includes/toasts/error.html' %}
+            {% elif level == 25 %}
+            {% include 'includes/toasts/success.html' %}
+            {% elif level == 30 %}
+            {% include 'includes/toasts/warning.html' %}
+            {% else %}
+            {% include 'includes/toasts/info.html' %}
+            {% endif %}
+            {% endwith %}
+            {% endfor %}
         </div>
-    </header>
-    {% if messages %}
-    <div class="messages-container">
-        {% for message in messages %}
-        {% with message.level as level %}
-        {% if level == 40 %}
-        {% include 'includes/toasts/error.html' %}
-        {% elif level == 25 %}
-        {% include 'includes/toasts/success.html' %}
-        {% elif level == 30 %}
-        {% include 'includes/toasts/warning.html' %}
-        {% else %}
-        {% include 'includes/toasts/info.html' %}
         {% endif %}
-        {% endwith %}
-        {% endfor %}
-    </div>
-    {% endif %}
 
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
 
-    <!-- Site footer https://codepen.io/scanfcode/pen/MEZPNd -->
-    <footer class="site-footer bg-brand-blue mt-4">
-        <div class="container">
-            <div class="row footer-row">
-                <div class="col-xs-6 col-md-3">
-                    <h6>heiwa gallery</h6>
-                    <p class="text-justify">located in the <em>heart</em> of shoreditch, we are an art gallery & an
-                        institute of <strong>heiwa</strong> (peace).</p>
+        <!-- Site footer https://codepen.io/scanfcode/pen/MEZPNd -->
+        <footer class="site-footer bg-brand-blue mt-4">
+            <div class="container">
+                <div class="row footer-row">
+                    <div class="col-xs-6 col-md-3">
+                        <h6>heiwa gallery</h6>
+                        <p class="text-justify">located in the <em>heart</em> of shoreditch, we are an art gallery & an
+                            institute of <strong>heiwa</strong> (peace).</p>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>opening hours <span class="hidden read-more" id="show-opening"><i
+                                    class="fas fa-arrow-down"></i></span></h6>
+                        <ul class="footer-links read-less" id="opening-hours">
+                            <li>Monday: closed</li>
+                            <li>Tuesday - Friday: 10am - 7pm</li>
+                            <li>Saturday - Sunday: 9am - 8pm</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>location <span class="hidden read-more" id="show-location"><i
+                                    class="fas fa-arrow-down"></i></span></h6>
+                        <ul class="footer-links read-less" id="location">
+                            <li>32a redchurch street</li>
+                            <li>shoreditch</li>
+                            <li>london</li>
+                            <li>E1 6JT</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>newsletter sign up!</h6>
+                        <input type="text" placeholder="email address">
+                    </div>
                 </div>
+                <hr>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <p class="copyright-text">Copyright &copy; 2022 All Rights Reserved by
+                            <a href="https://github.com/daisygunn" target="_blank">Daisy Lindsay-Gunn</a>.
+                        </p>
+                    </div>
 
-                <div class="col-xs-6 col-md-3">
-                    <h6>opening hours <span class="hidden read-more" id="show-opening"><i
-                                class="fas fa-arrow-down"></i></span></h6>
-                    <ul class="footer-links read-less" id="opening-hours">
-                        <li>Monday: closed</li>
-                        <li>Tuesday - Friday: 10am - 7pm</li>
-                        <li>Saturday - Sunday: 9am - 8pm</li>
-                    </ul>
-                </div>
-
-                <div class="col-xs-6 col-md-3">
-                    <h6>location <span class="hidden read-more" id="show-location"><i
-                                class="fas fa-arrow-down"></i></span></h6>
-                    <ul class="footer-links read-less" id="location">
-                        <li>32a redchurch street</li>
-                        <li>shoreditch</li>
-                        <li>london</li>
-                        <li>E1 6JT</li>
-                    </ul>
-                </div>
-
-                <div class="col-xs-6 col-md-3">
-                    <h6>newsletter sign up!</h6>
-                    <input type="text" placeholder="email address">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <ul class="social-icons">
+                            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <hr>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyright &copy; 2022 All Rights Reserved by
-                        <a href="https://github.com/daisygunn" target="_blank">Daisy Lindsay-Gunn</a>.
-                    </p>
-                </div>
-
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <ul class="social-icons">
-                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-    {% block extrajs %}
-    {{ block.super }}
-    <script type="text/javascript">
-        $('.toast').toast('show');
-    </script>
-    {% endblock %}
-</body>
+        </footer>
+        {% block extrajs %}
+        {{ block.super }}
+        <script type="text/javascript">
+            $('.toast').toast('show');
+        </script>
+        {% endblock %}
+    </body>
+</div>
 
 </html>

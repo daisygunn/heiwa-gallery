@@ -73,8 +73,6 @@ class StockForm(forms.ModelForm):
                 'name': 'Product name',
                 'quantity_in_stock': 'Updated quantity in stock',
             }
-            # placeholder = placeholders[field]
-            # self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].label = labels[field]
             self.fields['name'].widget.attrs['readonly'] = True
             self.fields[field].widget.attrs['class'] = 'w-100 mb-2'
