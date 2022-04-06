@@ -51,10 +51,10 @@ class AddProduct(View):
             product.save()
             messages.success(
                 request, f"success, {product.name} has been added.")
-            return redirect(reverse('all_products'))
+            return redirect(reverse('all_products'), kwargs={'not_shopping': True})
         else:
             messages.success(request, "something went wrong...")
-            return redirect(reverse('add_product'))
+            return redirect(reverse('add_product'), kwargs={'not_shopping': True})
 
 
 class UpdateProduct(View):
@@ -93,13 +93,14 @@ class EditProduct(View):
         form = EditProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
+            product.change_stock_label()
             messages.success(
                 request, f"success, {product.name} has been updated.")
-            return redirect(reverse('update_products'))
+            return redirect(reverse('update_products'), kwargs={'not_shopping': True})
         else:
             form = EditProductForm(instance=product)
             messages.success(request, "something went wrong...")
-            return redirect(reverse('edit_product'))
+            return redirect(reverse('edit_product'), kwargs={'not_shopping': True})
 
 
 class DeleteProduct(View):
@@ -121,7 +122,8 @@ class DeleteProduct(View):
         product.delete()
         messages.success(
             request, f"success, {product.name} has been deleted.")
-        return redirect(reverse('update_products'))
+        return redirect(
+            reverse('update_products'), kwargs={'not_shopping': True})
 
 
 class StockManagement(View):
@@ -154,14 +156,14 @@ class StockManagement(View):
                 messages.success(
                     request, f"success, {product.name} has been updated,\
                     there are now {product.quantity_in_stock} available.")
-                return redirect(reverse('update_products'))
+                return redirect(reverse('update_products'), kwargs={'not_shopping': True})
             else:
                 messages.warning(
                     request, f"You made no changes to {product.name}.")
-                return redirect(reverse('update_products'))
+                return redirect(reverse('update_products'), kwargs={'not_shopping': True})
         else:
             form = StockForm(instance=product)
             messages.error(request, "something went wrong, stock level"
                                     " has not been updated...")
 
-        return redirect(reverse('stock', args=[product.pk]))
+        return redirect(reverse('stock', args=[product.pk], kwargs={'not_shopping': True}))

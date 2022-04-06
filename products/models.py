@@ -74,7 +74,7 @@ class Product(models.Model):
 
     def change_stock_label(self):
         """ automatically change stock label """
-        if self.quantity_in_stock < 1:
+        if self.quantity_in_stock < 1 or 0:
             self.in_stock = False
         else:
             self.in_stock = True

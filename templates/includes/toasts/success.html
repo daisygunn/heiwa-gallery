@@ -8,7 +8,7 @@
   <div class="toast-body">
     {{ message }}
   </div>
-  {% if items_in_basket %}
+  {% if items_in_basket and not not_shopping %}
   <div class="container">
     {% for pk in items_in_basket %}
     <div class="row">
@@ -26,11 +26,9 @@
         <a href="{% url 'checkout' %}" class="btn bg-brand-blue green-link w-100">checkout</a>
       </div>
     </div>
-  </div>
-  {% endif %}
-  <div class="row my-2">
-    <div class="col-4">
+  
       <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link w-100">keep shopping</a>
     </div>
   </div>
 </div>
+{% endif %}
