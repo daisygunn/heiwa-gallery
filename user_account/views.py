@@ -8,7 +8,6 @@ from .forms import UserProfileForm
 def user_profile_display(request):
     """ view to display user profile """
     user = UserProfile.objects.get(user=request.user)
-    orders = user.orders.all()
     if request.method == 'POST':
         user_profile_form = UserProfileForm(data=request.POST, instance=user)
         if user_profile_form.is_valid():

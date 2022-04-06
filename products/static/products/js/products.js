@@ -1,3 +1,5 @@
+// https://datatables.net/examples/index
+
 $(document).ready(function () {
     $('#products_table').DataTable({
             responsive: true,
