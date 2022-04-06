@@ -5,20 +5,35 @@ from .models import UserProfile
 from .forms import UserProfileForm
 
 
-class UserProfiles(View):
+def user_profile_display(request):
     """ view to display user profile """
-    def get(self, request):
-        """ get request """
+    user = UserProfile.objects.get(user=request.user)
+    orders = user.orders.all()
+    if request.method == 'POST':
+        user_profile_form = UserProfileForm(data=request.POST, instance=user)
+        if user_profile_form.is_valid():
+            if user_profile_form.has_changed():
+                user_profile_form.save()
+                messages.success(
+                    request, f"Thank you {user.full_name}, "
+                    "your information has been updated.")
+            else:
+                messages.info(
+                    request, "No information has been changed.")
+        else:
+            messages.error(
+                    request, "Something is not right with your form, "
+                    " please check the information provided.")
+    else:
         if request.user.is_authenticated:
-            user = UserProfile.objects.get(user=request.user)
-            info_form = UserProfileForm(instance=user)
-            context = {
-                'form': info_form,
-                # 'user': user,
-            }
-            return render(
-                request, 'user_account/user_profile.html', context)
+            user_profile_form = UserProfileForm(instance=user)
         else:
             messages.warning(
                 request, "You must be logged in to view this page.")
             return redirect('home')
+    context = {
+                'form': user_profile_form,
+                'orders': orders,
+                'not_shopping': True,
+            }
+    return render(request, 'user_account/user_profile.html', context)
