@@ -33,7 +33,18 @@ def user_profile_display(request):
             return redirect('home')
     context = {
                 'form': user_profile_form,
-                'orders': orders,
                 'not_shopping': True,
             }
     return render(request, 'user_account/user_profile.html', context)
+
+
+def user_orders(request):
+    """ view to display orders to user """
+    user = UserProfile.objects.get(user=request.user)
+    print(user)
+    orders = user.orders.all()
+    context = {
+                'orders': orders,
+                'not_shopping': True,
+            }
+    return render(request, 'user_account/user_orders.html', context)
