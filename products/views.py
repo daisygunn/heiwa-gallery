@@ -14,7 +14,7 @@ class AllProducts(View):
         """ get request """
         style = None
         products = Product.objects.all().order_by('name')
-        # make sure the correct label is showing 
+        # make sure the correct label is showing
         # for stock level
         for product in products:
             product.change_stock_label()
@@ -71,6 +71,10 @@ class UpdateProduct(View):
             return redirect(reverse('home'))
         else:
             products = Product.objects.all()
+            # make sure the correct label is showing
+            # for stock level
+            for product in products:
+                product.change_stock_label()
             return render(request, 'products/update_products.html',
                           {'products': products, })
 
