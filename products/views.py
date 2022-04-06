@@ -13,13 +13,16 @@ class AllProducts(View):
     def get(self, request):
         """ get request """
         style = None
-        products = Product.objects.all()
-
+        products = Product.objects.all().order_by('name')
+        # make sure the correct label is showing 
+        # for stock level
+        for product in products:
+            product.change_stock_label()
         if 'style' in request.GET:
             # get the style id from url
             style = request.GET['style']
             # filter using this id
-            products = products.filter(style=style)
+            products = products.filter(style=style).order_by('name')
         # paginate by 12 products
         paginator = Paginator(products, 12)
         page_number = request.GET.get('page')
@@ -160,10 +163,12 @@ class StockManagement(View):
             else:
                 messages.warning(
                     request, f"You made no changes to {product.name}.")
-                return redirect(reverse('update_products'), kwargs={'not_shopping': True})
+                return redirect(
+                    reverse('update_products'), kwargs={'not_shopping': True})
         else:
             form = StockForm(instance=product)
             messages.error(request, "something went wrong, stock level"
                                     " has not been updated...")
 
-        return redirect(reverse('stock', args=[product.pk], kwargs={'not_shopping': True}))
+        return redirect(
+            reverse('stock', args=[product.pk], kwargs={'not_shopping': True}))
