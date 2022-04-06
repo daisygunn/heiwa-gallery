@@ -8,6 +8,14 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-6">
+            {% if exhibitions %}
+                {% for exhibition in exhibitions %}
+                {{ exhibition.name }}
+                {% endfor %}
+            {% else %}
+            <h5>sorry, nothing currently</h5>
+            {% endif %}
+            
         </div>
     </div>
 

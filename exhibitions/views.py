@@ -1,6 +1,11 @@
 from django.shortcuts import render
+from .models import Exhibitions
 
-# Create your views here.
-def exhibitions(request):
+
+def exhibitions_list(request):
     """ exhibitions display view """
-    return render(request, 'exhibitions/exhibitions.html')
+    exhibitions_info = Exhibitions.objects.all()
+    context = {
+        'exhibitions': exhibitions_info
+    }
+    return render(request, 'exhibitions/exhibitions.html', context)
