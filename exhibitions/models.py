@@ -13,6 +13,9 @@ areas = (('1', '1'),
          ('2', '2'),
          ('3', '3'),)
 
+status = (('past', 'past'),
+          ('now showing', 'now showing'),
+          ('coming soon', 'coming soon'))
 
 class Exhibitions(models.Model):
     """ exhibitions model """
@@ -27,6 +30,7 @@ class Exhibitions(models.Model):
     entrance_fee = models.DecimalField(max_digits=6, decimal_places=2)
     gallery_area = models.CharField(max_length=254, choices=areas, default=1)
     now_showing = models.BooleanField(default=False)
+    status = models.CharField(max_length=254, choices=status, default=1)
     date_starting = models.DateField()
     date_finishing = models.DateField()
     date_added = models.DateField(auto_now_add=True)
@@ -43,13 +47,16 @@ class Exhibitions(models.Model):
         date_format = "%d/%m/%Y %H:%M:%S"
 
         # create datetime objects from the strings
-        start = datetime.strptime(start_date, date_format)
-        end = datetime.strptime(end_date, date_format)
-        now = datetime.now()
+        start = start_date
+        end = end_date
+        now = datetime.now().date()
 
         if end < now:
             self.now_showing = False
+            self.status = 'past'
         elif start > now:
             self.now_showing = False
+            self.status = 'coming soon'
         else:
             self.now_showing = True
+            self.status = 'now showing'

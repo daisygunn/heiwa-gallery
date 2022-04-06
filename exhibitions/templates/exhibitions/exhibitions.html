@@ -6,16 +6,30 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-6">
-            {% if exhibitions %}
+            <div class="row">
+                {% if exhibitions %}
                 {% for exhibition in exhibitions %}
-                {{ exhibition.name }}
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-title bg-brand-blue text-white">
+                            <h5 class="mt-2 mx-2"><strong>{{ exhibition.name }} </strong>by {{ exhibition.photographer_artist }}</h5>
+                        </div>
+                        <div class="card-body brand-blue">
+                            <p class="read-more">read more <span><i class="fas fa-arrow-down" data-id="{{ exhibition.name }}-description"></i></span></p>
+                            <div class="read-less" id="{{ exhibition.name }}-description">
+                                <p class="card-text">{{ exhibition.description }}.</p>
+                            </div>
+                            <p class="card-text">ticket: £{{ exhibition.entrance_fee }}</p>
+                            <p></p>
+                            <p class="card-text">{{ exhibition.date_starting }} - {{ exhibition.date_finishing }} <span class="badge badge-pill bg-brand-blue text-white mx-2">{{ exhibition.status }}</span></p>
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
-            {% else %}
-            <h5>sorry, nothing currently</h5>
-            {% endif %}
-            
+                {% else %}
+                <h5>sorry, no exhibition information currently available.</h5>
+                {% endif %}
+            </div>
         </div>
     </div>
 
