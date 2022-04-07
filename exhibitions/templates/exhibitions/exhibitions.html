@@ -15,13 +15,15 @@
                             <h5 class="mt-2 mx-2"><strong>{{ exhibition.name }} </strong>by {{ exhibition.photographer_artist }}</h5>
                         </div>
                         <div class="card-body brand-blue">
-                            <p class="read-more">read more <span><i class="fas fa-arrow-down" data-id="{{ exhibition.name }}-description"></i></span></p>
-                            <div class="read-less" id="{{ exhibition.name }}-description">
-                                <p class="card-text">{{ exhibition.description }}.</p>
+                            <!-- <p class="read-more">read more <span><i class="fas fa-arrow-down" data-id="{{ exhibition.name }}-description"></i></span></p> -->
+                            <div class="" id="{{ exhibition.name }}-description">
+                                <p class="card-text fw-bolder">{{ exhibition.description }}</p>
                             </div>
-                            <p class="card-text">ticket: £{{ exhibition.entrance_fee }}</p>
-                            <p></p>
-                            <p class="card-text">{{ exhibition.date_starting }} - {{ exhibition.date_finishing }} <span class="badge badge-pill bg-brand-blue text-white mx-2">{{ exhibition.status }}</span></p>
+                            <hr>
+                            <div class="bg-brand-blue p-2">
+                                <p class="card-text green-text fw-bolder">ticket price: £{{ exhibition.entrance_fee }}</p>
+                                <p class="card-text green-text bg-brand-blue fw-bolder">{{ exhibition.date_starting }} - {{ exhibition.date_finishing }} <span class="badge badge-pill bg-white green-text mx-2">{{ exhibition.status }}</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>

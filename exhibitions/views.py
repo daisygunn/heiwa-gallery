@@ -7,6 +7,7 @@ def exhibitions_list(request):
     exhibitions_info = Exhibitions.objects.all()
     for exhibition in exhibitions_info:
         exhibition.now_showing_calc()
+        exhibition.save()
     context = {
         'exhibitions': exhibitions_info
     }

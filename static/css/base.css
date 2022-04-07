@@ -25,6 +25,10 @@ body {
   color: #0d5c63;
 }
 
+.green-text {
+  color: #85c280;
+}
+
 .container-clip {
   /* width: 960px; */
   margin: 0 auto;

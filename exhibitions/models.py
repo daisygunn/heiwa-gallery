@@ -43,8 +43,8 @@ class Exhibitions(models.Model):
         start_date = self.date_starting
         end_date = self.date_finishing
 
-        # format of date/time strings; assuming dd/mm/yyyy
-        date_format = "%d/%m/%Y %H:%M:%S"
+        # # format of date/time strings; assuming dd/mm/yyyy
+        # date_format = "%d/%m/%Y %H:%M:%S"
 
         # create datetime objects from the strings
         start = start_date
