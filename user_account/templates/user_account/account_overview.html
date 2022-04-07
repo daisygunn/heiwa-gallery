@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load basket_tools %}
+{% load crispy_forms_tags %}
+{% block extra_css %}
+
+{% endblock %}
+
+{% block subtitle %}
+<h2 class="mt-0 mb-3" id="subtitle">[ my account ]</h2>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-5 justify-content-center">
+        <div class="col-sm-6">
+            <a href="{% url 'user_profile' %}" class="btn green-link w-100 mb-1">
+                <div class="card">
+                    <div class="card-title bg-brand-blue text-white p-3">
+                        <h3>personal details <span><i class="fas fa-user-edit"></i></span></h3>
+                    </div>
+                    <div class="card-body brand-blue">
+                        <p>manage your contact information and default address.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6">
+            <a href="{% url 'user_orders' %}" class="btn green-link w-100 mb-1">
+                <div class="card">
+                    <div class="card-title bg-brand-blue text-white p-3">
+                        <h3>previous orders <span class="" id="show-order-history"><i class="fas fa-history"></i></span></h3>
+                    </div>
+                    <div class="card-body brand-blue">
+                        <p>view your order history.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+<script>
+$(window).resize(function() {
+  if ($(window).width() < 770) {
+    var heights = $(".card").map(function() {
+        return $(this).height();
+    }).get(),
+
+    maxHeight = Math.max.apply(null, heights);
+
+    $(".card").height(maxHeight);
+  }
+ else {
+    pass
+ }
+});
+</script>
+{% endblock %}

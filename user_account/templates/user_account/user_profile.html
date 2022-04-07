@@ -17,20 +17,22 @@
 
         </div>
     </div>
-    <div class="row mb-5 justify-content-between">
+    <div class="row mb-5 justify-content-center">
         <div class="col-sm-8 align-center">
-            <h3 class="brand-blue">your details <span><i class="fas fa-user-edit"></i></span></h3>
             <form action="{% url 'user_profile' %}" method="POST" id="user_profile_form">
                 {% csrf_token %}
                 {{ form|crispy }}
                 <button type="submit" class="btn bg-brand-blue green-link w-100">update details</button>
             </form>
         </div>
-        <div class="col-sm-2">
-            <a href="{% url 'user_orders' %}" class="btn bg-brand-blue green-link w-100 mb-1">view previous orders</a>
+    </div>
+    <div class="row d-flex mb-3 justify-content-center">
+        <div class="col-4">
+            <a href="{% url 'account_overview' %}" class="btn bg-brand-blue green-link w-100 mb-1">back to my  account</a>
+            <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link w-100 mb-1">shop again</a>
+            <a href="{% url 'home' %}" class="btn bg-brand-blue green-link w-100 mb-1">home</a>
         </div>
     </div>
-
 </div>
 
 {% endblock %}

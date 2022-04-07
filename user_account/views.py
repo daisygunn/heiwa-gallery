@@ -5,6 +5,19 @@ from .models import UserProfile
 from .forms import UserProfileForm
 
 
+def account_overview(request):
+    """ show account overview page """
+    user = UserProfile.objects.get(user=request.user)
+    if not request.user.is_authenticated:
+        messages.warning(
+            request, "You must be logged in to view this page.")
+        return redirect('home')
+    context = {
+                'not_shopping': True,
+            }
+    return render(request, 'user_account/account_overview.html', context)
+
+
 def user_profile_display(request):
     """ view to display user profile """
     user = UserProfile.objects.get(user=request.user)
