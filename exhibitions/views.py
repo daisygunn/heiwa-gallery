@@ -36,7 +36,7 @@ class AddExhibition(View):
         form = ExhibitionForm(request.POST)
         if form.is_valid():
             exhibition = form.save(commit=False)
-            # retrieve dates from post data 
+            # retrieve dates from post data
             exhibition_start_date = request.POST.get('date_starting')
             exhibition_end_date = request.POST.get('date_finishing')
             # convert dates to format required by django
@@ -72,3 +72,37 @@ class EditExhibition(View):
             return render(request, 'exhibitions/edit_exhibition.html',
                           {'edit_exhibition_form': edit_exhibition_form,
                            'exhibition': exhibition})
+    
+    def post(self, request, pk, *args, **kwargs):
+        """ post view """
+        exhibition = get_object_or_404(Exhibitions, pk=pk)
+        form = ExhibitionForm(request.POST, instance=exhibition)
+        print(form)
+        if form.has_changed():
+            if form.is_valid():
+                exhibition = form.save(commit=False)
+                # retrieve dates from post data
+                exhibition_start_date = request.POST.get('date_starting')
+                exhibition_end_date = request.POST.get('date_finishing')
+                # convert dates to format required by django
+                exhibition.date_starting = datetime.datetime.strptime(
+                    exhibition_start_date, "%d/%m/%Y").date()
+                exhibition.date_finishing = datetime.datetime.strptime(
+                    exhibition_end_date, "%d/%m/%Y").date()
+                # work out the status
+                exhibition.now_showing_calc()
+                print(exhibition)
+                # save exhibition
+                exhibition.save()
+                messages.success(
+                    request, f"success, {exhibition.name} has been updated.")
+                return redirect(reverse('exhibitions_list'), kwargs={'not_shopping': True})
+            else:
+                print(form.errors.as_data())
+                form = ExhibitionForm(instance=exhibition)
+                messages.warning(request, "something went wrong...")
+                return redirect(
+                    reverse('edit_exhibition', args=[exhibition.pk]), kwargs={'not_shopping': True})
+        else:
+            messages.info(request, "No information has changed.")
+            return redirect(reverse('exhibitions_list'), kwargs={'not_shopping': True})
