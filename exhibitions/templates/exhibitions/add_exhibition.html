@@ -12,7 +12,7 @@
 {% block content %}
 
 <div class="row d-flex justify-content-center">
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-6">
         <form action="{% url 'add_exhibition' %}" method="POST" class="my-2 w-100">
             {% csrf_token %}
             {{ form_errors }}

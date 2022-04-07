@@ -15,7 +15,10 @@ areas = (('main gallery', 'main gallery'),
 
 status = (('past', 'past'),
           ('now showing', 'now showing'),
-          ('coming soon', 'coming soon'))
+          ('coming soon', 'coming soon'),
+          ('pending', 'pending'),
+          ('cancelled', 'cancelled'))
+
 
 class Exhibitions(models.Model):
     """ exhibitions model """
@@ -23,16 +26,18 @@ class Exhibitions(models.Model):
         """ override plural name """
         verbose_name_plural = 'Exhibitions'
 
-    name = models.CharField(max_length=254)
+    name = models.CharField(max_length=254, null=False, blank=False)
     style = models.CharField(max_length=254, choices=exhibitions_type, default=1)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     photographer_artist = models.CharField(max_length=254, blank=True)
     entrance_fee = models.DecimalField(max_digits=6, decimal_places=2)
-    gallery_area = models.CharField(max_length=254, choices=areas, default=1)
+    gallery_area = models.CharField(
+        max_length=254, choices=areas, default='main gallery')
     now_showing = models.BooleanField(default=False)
-    status = models.CharField(max_length=254, choices=status, default=1)
-    date_starting = models.DateField()
-    date_finishing = models.DateField()
+    status = models.CharField(
+        max_length=254, choices=status, default='now showing')
+    date_starting = models.DateField(null=True, blank=True)
+    date_finishing = models.DateField(null=True, blank=True)
     date_added = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -43,15 +48,18 @@ class Exhibitions(models.Model):
         start_date = self.date_starting
         end_date = self.date_finishing
 
-        # # format of date/time strings; assuming dd/mm/yyyy
-        # date_format = "%d/%m/%Y %H:%M:%S"
-
         # create datetime objects from the strings
         start = start_date
         end = end_date
         now = datetime.now().date()
 
-        if end < now:
+        if start == "":
+            self.now_showing = False
+            self.status = 'pending'
+        elif end == "":
+            self.now_showing = False
+            self.status = 'pending'
+        elif end < now:
             self.now_showing = False
             self.status = 'past'
         elif start > now:
