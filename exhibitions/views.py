@@ -30,7 +30,7 @@ class AddExhibition(View):
             add_exhibition_form = ExhibitionForm()
             return render(request, 'exhibitions/add_exhibition.html',
                           {'add_exhibition_form': add_exhibition_form, })
-                          
+                      
     def post(self, request, *args, **kwargs):
         """ post view """
         form = ExhibitionForm(request.POST)
@@ -72,7 +72,7 @@ class EditExhibition(View):
             return render(request, 'exhibitions/edit_exhibition.html',
                           {'edit_exhibition_form': edit_exhibition_form,
                            'exhibition': exhibition})
-    
+
     def post(self, request, pk, *args, **kwargs):
         """ post view """
         exhibition = get_object_or_404(Exhibitions, pk=pk)

@@ -14,7 +14,7 @@ class ExhibitionForm(forms.ModelForm):
         model = Exhibitions
         fields = ('name', 'style', 'description', 'photographer_artist', 
                   'entrance_fee', 'gallery_area', 'date_starting', 
-                  'date_finishing')
+                  'date_finishing', 'display',)
 
 
     def __init__(self, *args, **kwargs):
@@ -28,12 +28,14 @@ class ExhibitionForm(forms.ModelForm):
             'gallery_area': 'gallery area exhibition will use',
             'date_starting': 'start date',
             'date_finishing': 'end date',
+            'display': 'show exhibition',
         }
 
         for field in self.fields:
             placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].label = False
+            self.fields['display'].label = placeholder
             self.fields[field].widget.attrs['class'] = 'w-100 p-2 mb-2'
             self.fields['date_starting'].widget.attrs['class'] = 'date-picker dateinput w-100 p-2 mb-2'
             self.fields['date_finishing'].widget.attrs['class'] = 'date-picker dateinput w-100 p-2 mb-2'

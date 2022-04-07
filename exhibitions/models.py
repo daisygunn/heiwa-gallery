@@ -33,7 +33,7 @@ class Exhibitions(models.Model):
     entrance_fee = models.DecimalField(max_digits=6, decimal_places=2)
     gallery_area = models.CharField(
         max_length=254, choices=areas, default='main gallery')
-    now_showing = models.BooleanField(default=False)
+    display = models.BooleanField(default=False)
     status = models.CharField(
         max_length=254, choices=status, default='now showing')
     date_starting = models.DateField(null=True, blank=True)
@@ -54,17 +54,12 @@ class Exhibitions(models.Model):
         now = datetime.now().date()
 
         if start == "":
-            self.now_showing = False
             self.status = 'pending'
         elif end == "":
-            self.now_showing = False
             self.status = 'pending'
         elif end < now:
-            self.now_showing = False
             self.status = 'past'
         elif start > now:
-            self.now_showing = False
             self.status = 'coming soon'
         else:
-            self.now_showing = True
             self.status = 'now showing'

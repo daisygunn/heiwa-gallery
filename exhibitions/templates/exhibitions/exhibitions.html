@@ -9,6 +9,7 @@
             <div class="row">
                 {% if exhibitions %}
                 {% for exhibition in exhibitions %}
+                {% if exhibition.display %}
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-title bg-brand-blue text-white">
@@ -34,6 +35,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
                 {% endfor %}
                 {% else %}
                 <h5>sorry, no exhibition information currently available.</h5>
