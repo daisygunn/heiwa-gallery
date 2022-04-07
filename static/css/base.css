@@ -56,6 +56,14 @@ body {
   float: right;
 }
 
+.controls > input {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.control-label {
+  display: none;
+}
 /* Main page titles */
 
 #main-title h1 {
