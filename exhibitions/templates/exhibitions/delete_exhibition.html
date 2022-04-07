@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block subtitle %}
+<h2 class="mt-0 mb-3" id="subtitle">[ delete product ]</h2>
+{% endblock %}
+
+{% block content %}
+
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-md-4 ">
+        <form action="{% url 'delete_exhibition' exhibition.pk %}" method="POST" class="my-2 w-100 text-center">
+            {% csrf_token %}
+            <h4>exhibition: {{ exhibition.name }}</h4>
+            <p>{{ exhibition.date_starting }} - {{ exhibition.date_finishing }}</p>
+            <button type="button" class="btn btn-danger d-block text-center" data-toggle="modal" data-target="#exampleModalCenter">
+                delete exhibition
+            </button>
+            <!-- hidden modal to confirm deletion -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">are you sure?</h5>
+                            <button type="button" class="close-button" data-dismiss="modal" aria-label="Close">
+                                <i class="fas fa-window-close"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            if you delete this exhibition you will no longer be able to see in admin panel and you will
+                            need to re-add. only delete if you are sure.</div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger">Yes, delete exhibition</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+{% block extrajs %}
+{{ block.super }}
+<script src="{% static 'exhibitions/js/products.js' %}"></script>
+{% endblock %}

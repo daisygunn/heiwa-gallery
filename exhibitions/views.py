@@ -106,3 +106,25 @@ class EditExhibition(View):
         else:
             messages.info(request, "No information has changed.")
             return redirect(reverse('exhibitions_list'), kwargs={'not_shopping': True})
+
+
+class DeleteExhibition(View):
+    """ deleting exhibition """
+    def get(self, request, pk):
+        """ get request """
+        if not request.user.is_superuser:
+            messages.error(request,
+                           "You are not authorised to view that page.")
+            return redirect(reverse('home'))
+        else:
+            exhibition = get_object_or_404(Exhibitions, pk=pk)
+            return render(request, 'exhibitions/delete_exhibition.html',
+                          {'exhibition': exhibition})
+    def post(self, request, pk, *args, **kwargs):
+        """ post view """
+        exhibition = get_object_or_404(Exhibitions, pk=pk)
+        exhibition.delete()
+        messages.success(
+            request, f"success, {exhibition.name} has been deleted.")
+        return redirect(
+            reverse('exhibitions_list'), kwargs={'not_shopping': True})
