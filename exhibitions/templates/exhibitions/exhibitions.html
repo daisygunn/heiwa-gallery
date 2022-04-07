@@ -20,14 +20,14 @@
                                 <p class="card-text fw-bolder">{{ exhibition.description }}</p>
                             </div>
                             <hr>
-                            <div class="bg-brand-blue p-2">
+                            <div class="p-2">
                                 <p class="card-text green-text fw-bolder">ticket price: £{{ exhibition.entrance_fee }}</p>
-                                <p class="card-text green-text bg-brand-blue fw-bolder">{{ exhibition.date_starting }} - {{ exhibition.date_finishing }} <span class="badge badge-pill bg-white green-text mx-2">{{ exhibition.status }}</span></p>
+                                <p class="card-text green-text fw-bolder">{{ exhibition.date_starting }} - {{ exhibition.date_finishing }} <span class="badge badge-pill bg-white green-text mx-2">{{ exhibition.status }}</span></p>
                             </div>
                             {% if user.is_superuser %}
                             <hr>
                             <p class="fw-bolder">showing in: {{ exhibition.gallery_area }}</p>
-                            <a class="btn btn-success btn-sm mb-1 w-100" href="">edit</a>
+                            <a class="btn btn-success btn-sm mb-1 w-100" href="{% url 'edit_exhibition' exhibition.pk %}">edit</a>
                             <a class="btn btn-danger btn-sm mb-1 w-100"
                                 href="">delete</a>
                             {% endif %}

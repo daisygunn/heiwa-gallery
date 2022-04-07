@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views import View
 from django.contrib import messages
 from .models import Exhibitions
@@ -57,3 +57,18 @@ class AddExhibition(View):
             return redirect(
                 reverse('add_exhibition'), kwargs={'not_shopping': True})
 
+
+class EditExhibition(View):
+    """ A view to return the edit_product page """
+    def get(self, request, pk):
+        """ get request """
+        if not request.user.is_superuser:
+            messages.error(request,
+                           "You are not authorised to view that page.")
+            return redirect(reverse('home'))
+        else:
+            exhibition = get_object_or_404(Exhibitions, pk=pk)
+            edit_exhibition_form = ExhibitionForm(instance=exhibition)
+            return render(request, 'exhibitions/edit_exhibition.html',
+                          {'edit_exhibition_form': edit_exhibition_form,
+                           'exhibition': exhibition})
