@@ -1,9 +1,7 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from django.views import View
-# from django.http import HttpResponseRedirect
 from django.contrib import messages
-# from django.contrib.auth.models import User
 from .models import Product
 from .forms import ProductForm, EditProductForm, StockForm
 

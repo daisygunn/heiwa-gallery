@@ -9,9 +9,9 @@ exhibitions_type = (('photography', 'photography'),
                     ('video', 'video'),
                     )
 
-areas = (('1', '1'),
-         ('2', '2'),
-         ('3', '3'),)
+areas = (('main gallery', 'main gallery'),
+         ('studio', 'studio'),
+         ('basement', 'basement'),)
 
 status = (('past', 'past'),
           ('now showing', 'now showing'),

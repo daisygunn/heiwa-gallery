@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/exhibitions.css' %}">
+{% endblock %}
+{% block subtitle %}
+<h2 class="mt-0 mb-3" id="subtitle">[ add exhibition information ]</h2>
+{% endblock %}
+
+{% block content %}
+
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-md-4">
+        <form action="{% url 'add_exhibition' %}" method="POST" class="my-2 w-100">
+            {% csrf_token %}
+            {{ form_errors }}
+            {{ add_exhibition_form | crispy }}
+            <div class="text-center">
+                <button type="submit" class="btn bg-brand-blue green-link mx-auto">add exhibition</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</div>
+{% endblock %}
+
+
+{% block extrajs %}
+{{ block.super }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+function datePicker() {
+    $(".date-picker").datepicker({
+        dateFormat: 'dd/mm/yy'
+    });
+};
+
+$(document).ready(function () {
+    datePicker();
+    });
+</script>
+<!-- <script src="{% static 'products/js/products.js' %}"></script> -->
+{% endblock %}
