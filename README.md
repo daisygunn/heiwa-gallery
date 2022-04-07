@@ -322,6 +322,8 @@ Throughout the process of building this website, I have used various sources onl
 
 [Unsplash for images](https://unsplash.com/@daisygunn94/likes)
 
+https://stackoverflow.com/questions/3642892/calculating-if-date-is-in-start-future-or-present-in-python
+
 [DataTables](https://datatables.net/)
 ---
 ## Acknowledgements

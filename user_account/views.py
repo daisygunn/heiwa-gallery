@@ -7,11 +7,11 @@ from .forms import UserProfileForm
 
 def account_overview(request):
     """ show account overview page """
-    user = UserProfile.objects.get(user=request.user)
     if not request.user.is_authenticated:
         messages.warning(
             request, "You must be logged in to view this page.")
         return redirect('home')
+    user = UserProfile.objects.get(user=request.user)
     context = {
                 'not_shopping': True,
             }
