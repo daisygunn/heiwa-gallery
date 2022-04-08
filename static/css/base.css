@@ -261,7 +261,15 @@ ul.navbar-nav,
   width: 34px;
   font-size: 14px
 }
+/* hide mailchimp label */
 
+#mc_embed_signup form {
+  padding: 0;
+}
+#mc_embed_signup .mc-field-group label {
+  display: none;
+  /* margin-bottom: 3px; */
+}
 
 @media (max-width:767px) {
   .site-footer {
