@@ -4,9 +4,7 @@ from django.db.models import Sum
 from products.models import Product
 from user_account.models import UserProfile
 
-country_choices = (
-    ('GB', 'United Kingdom'),
-)
+from django_countries.fields import CountryField
 
 
 class Order(models.Model):
@@ -23,9 +21,7 @@ class Order(models.Model):
     street_address = models.CharField(max_length=80, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=True)
     postcode = models.CharField(max_length=20, null=True, blank=True)
-    country = models.CharField(
-        choices=country_choices, default="United Kingdom", null=False,
-        blank=False, max_length=20)
+    country = CountryField(blank_label='Country', null=True, blank=True)
     order_date = models.DateTimeField(auto_now_add=True)
     order_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0)
