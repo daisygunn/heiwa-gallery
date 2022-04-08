@@ -19,4 +19,5 @@ $(document).ready(function() {
         value++;
         document.getElementById(pk).value = value;
     })}
-)
+);
+

@@ -15,66 +15,69 @@
     <div class="row justify-content-center">
         <div class="col-10 my-2 d-flex justify-content-center">
             {% if items_in_basket %}
-            <table cellspacing="0" width="100%" class="table table-responsive text-center">
-                <thead>
-                    <tr>
-                        <th scope="col">product</th>
-                        <th scope="col"></th>
-                        <th scope="col">quantity</th>
-                        <th scope="col">price</th>
-                        <th scope="col">subtotal</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center">
-                    {% for pk in items_in_basket %}
-                    <tr>
-                        <td>
-                            <ul class="list-unstyled">
-                                <li>{{ pk.product.name }}</li>
-                                <li>size {{ pk.product.size }}</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <img class="img-thumbnail" style="height: 70px; width: 70px"
-                                src="{{ MEDIA_URL}}{{ pk.product.image }}" alt="{{ pk.product.name }} image">
-                        </td>
-                        <td>
-                            <form class="quantity-form" method="POST" action="{% url 'change_quantity' pk.pk %}">
-                                {% csrf_token %}
-                                <div class="value-button decrease" data-id="{{ pk.pk }}_decrease"
-                                    value="Decrease Value">-</div>
-                                <input type="number" id="{{ pk.pk }}" class="number" name="quantity"
-                                    value="{{ pk.quantity }}" max="5" />
-                                <div class="value-button increase" data-id="{{ pk.pk }}_increase"
-                                    value="Increase Value">+</div>
-                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                                <button type="submit"
-                                    class="btn green-link bg-brand-blue d-block my-1 mx-auto">update</button>
-                            </form>
+            <div class="table-responsive ">
+                <table cellspacing="0" width="100%" class="table text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">product</th>
+                            <!-- <th scope="col"></th> -->
+                            <th scope="col">quantity</th>
+                            <th scope="col">price</th>
+                            <th scope="col">subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        {% for pk in items_in_basket %}
+                        <tr>
+                            <td>
+                                <ul class="list-unstyled">
+                                    <li>{{ pk.product.name }}</li>
+                                    <li>size {{ pk.product.size }}</li>
+                                    <li> <img class="img-thumbnail" src="{{ MEDIA_URL}}{{ pk.product.image }}"
+                                            alt="{{ pk.product.name }} image"></li>
+                                </ul>
+                            </td>
+                            <!-- <td>
+                           
+                        </td> -->
+                            <td>
+                                <form class="quantity-form" method="POST" action="{% url 'change_quantity' pk.pk %}">
+                                    {% csrf_token %}
+                                    <div class="value-button decrease" data-id="{{ pk.pk }}_decrease"
+                                        value="Decrease Value">-</div>
+                                    <input type="number" id="{{ pk.pk }}" class="number" name="quantity"
+                                        value="{{ pk.quantity }}" max="5" />
+                                    <div class="value-button increase" data-id="{{ pk.pk }}_increase"
+                                        value="Increase Value">+</div>
+                                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                    <button type="submit"
+                                        class="btn green-link bg-brand-blue d-block my-1 mx-auto">update</button>
+                                </form>
 
-                        </td>
-                        <td>£{{ pk.product.price }}</td>
-                        <td>£{{ pk.product.price | calculate_subtotal:pk.quantity }}</td>
-                        <td><a href="{% url 'remove_product' pk.pk %}" class="btn btn-danger">remove</a></td>
-                    </tr>
-                    {% endfor %}
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><strong>total: </strong></td>
-                        <td><strong>£{{ total_cost }}</strong></td>
-                        <td></td>
-                    </tr>
-            </table>
+                            </td>
+                            <td>£{{ pk.product.price }}</td>
+                            <td>£{{ pk.product.price | calculate_subtotal:pk.quantity }}</td>
+                            <td><a href="{% url 'remove_product' pk.pk %}" class="btn btn-danger">remove</a></td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>total: </strong></td>
+                            <td><strong>£{{ total_cost }}</strong></td>
+                            <td></td>
+                        </tr>
+                </table>
+            </div>
         </div>
     </div>
     <div class="row justify-content-center mb-4">
-        <div class="col-2 d-flex justify-content-center">
+        <div class="col-sm-4 col-md-3 d-flex justify-content-center">
             <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link w-100">keep shopping</a>
 
         </div>
-        <div class="col-2 d-flex justify-content-center">
+        <div class="col-sm-4 col-md-3d-flex justify-content-center">
             <a href="{% url 'checkout' %}" class="btn bg-brand-blue green-link w-100">checkout</a>
         </div>
     </div>
