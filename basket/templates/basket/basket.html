@@ -72,12 +72,12 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center mb-4">
-        <div class="col-sm-4 col-md-3 d-flex justify-content-center">
+    <div class="row justify-content-center mb-2">
+        <div class="col-sm-4 col-md-3 mb-2 d-flex justify-content-center">
             <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link w-100">keep shopping</a>
 
         </div>
-        <div class="col-sm-4 col-md-3d-flex justify-content-center">
+        <div class="col-sm-4 col-md-3 mb-2 d-flex justify-content-center">
             <a href="{% url 'checkout' %}" class="btn bg-brand-blue green-link w-100">checkout</a>
         </div>
     </div>
@@ -88,7 +88,6 @@
         <h4>your basket is currently empty.</h4>
         <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link">keep shopping</a>
     </div>
-
 </div>
 {% endif %}
 </div>

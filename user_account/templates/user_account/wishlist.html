@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load basket_tools %}
+{% load crispy_forms_tags %}
+{% block extra_css %}
+
+{% endblock %}
+
+{% block subtitle %}
+<h2 class="mt-0 mb-3" id="subtitle">[ wishlist ]</h2>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row d-flex mb-3">
+        <div class="col-12">
+
+        </div>
+    </div>
+    <div class="row mb-5 justify-content-center">
+        <div class="col-sm-8 align-center">
+            {% if wishlist_items %}
+            <div class="table-responsive ">
+                <table cellspacing="0" width="100%" class="table text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">product</th>
+                            <!-- <th scope="col"></th> -->
+                            <th scope="col">price</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        {% for product in wishlist_items %}
+                        <tr>
+                            <td>
+                                <ul class="list-unstyled">
+                                    <li>{{ product.name }}</li>
+                                    <li>size {{ product.size }}</li>
+                                    <li> <img class="img-thumbnail" src="{{ MEDIA_URL}}{{ product.image }}"
+                                            alt="{{ product.name }} image"></li>
+                                </ul>
+                            </td>
+                            <td>£{{ product.price }}</td>
+                            <td>
+                                <a href="" class="btn bg-brand-blue green-link">add to basket</a>
+                                <a href="" class="btn btn-danger">remove</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                </table>
+            </div>
+            {% else %}
+            <h5>currently no items in your wishlist.</h5>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row d-flex mb-3 justify-content-center">
+        <div class="col-4">
+            <a href="{% url 'account_overview' %}" class="btn bg-brand-blue green-link w-100 mb-1">back to my
+                account</a>
+            <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link w-100 mb-1">shop again</a>
+            <a href="{% url 'home' %}" class="btn bg-brand-blue green-link w-100 mb-1">home</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+{% endblock %}

@@ -131,6 +131,10 @@ ul.navbar-nav,
   color: #fff;
 }
 
+.img-thumbnail {
+  height: 70px; width: 70px
+}
+
 /* Footer */
 .site-footer {
   padding: 45px 0 20px;

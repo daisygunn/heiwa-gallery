@@ -69,9 +69,33 @@ def add_to_wishlist(request, pk):
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user=request.user)
         product = get_object_or_404(Product, pk=pk)
-        wishlist_item = UserWishlist.objects.create(user=user, product=product)
-        messages.success(request, f"{wishlist_item} added to wishlist")
-        return redirect(reverse('all_products'), kwargs={'not_shopping': True})
+        if UserWishlist.objects.filter(user=user, product=product).exists():
+            wishlist_item = UserWishlist.objects.get(user=user, product=product)
+            wishlist_item.delete()
+            messages.info(request, "removed from wishlist")
+            return redirect(reverse('all_products'), kwargs={'not_shopping': True})
+        else:
+            wishlist_item = UserWishlist.objects.create(user=user, product=product)
+            messages.success(request, f"{wishlist_item} added to wishlist")
+            return redirect(reverse('all_products'), kwargs={'not_shopping': True})
     else:
         messages.error(request, "You must be logged in to create a wishlist.")
         return redirect(reverse('all_products'), kwargs={'not_shopping': True})
+
+
+def user_wishlist(request):
+    """ display wishlist """
+    if request.user.is_authenticated:
+        user = UserProfile.objects.get(user=request.user)
+        list_to_display = []
+        for item in UserWishlist.objects.filter(user=user):
+            list_to_display.append(item.product)
+        print(list_to_display)
+        # products = Product.objects.filter(product_wishlist=request.user)
+        context = {
+            'wishlist_items': list_to_display,
+        }
+        return render(request, 'user_account/wishlist.html', context)
+    else:
+        messages.error(request, "You must be logged in to view a wishlist.")
+        return redirect('home')
