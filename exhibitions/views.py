@@ -17,6 +17,10 @@ def exhibitions_list(request):
     }
     return render(request, 'exhibitions/exhibitions.html', context)
 
+def convert_date(date):
+    date_converted = datetime.datetime.strptime(
+                date, "%d/%m/%Y").date()
+    return date_converted
 
 class AddExhibition(View):
     """ A view to return the all_products page """
@@ -40,10 +44,14 @@ class AddExhibition(View):
             exhibition_start_date = request.POST.get('date_starting')
             exhibition_end_date = request.POST.get('date_finishing')
             # convert dates to format required by django
-            exhibition.date_starting = datetime.datetime.strptime(
-                exhibition_start_date, "%d/%m/%Y").date()
-            exhibition.date_finishing = datetime.datetime.strptime(
-                exhibition_end_date, "%d/%m/%Y").date()
+            exhibition.date_starting = convert_date(exhibition_start_date)
+            exhibition.date_finishing = convert_date(exhibition_end_date)
+            # validate start date is after end date 
+            valid = exhibition.start_end_validation()
+            if not valid:
+                messages.error(request, "Start date must be before end date.")
+                return render(request, 'exhibitions/add_exhibition.html',
+                          {'add_exhibition_form': form, })
             # work out the status
             exhibition.now_showing_calc()
             # save exhibition
@@ -68,6 +76,13 @@ class EditExhibition(View):
             return redirect(reverse('home'))
         else:
             exhibition = get_object_or_404(Exhibitions, pk=pk)
+            # convert the dates to display in dd/mm/yyyy format in the form
+            start_date_to_string = exhibition.date_starting.strftime(
+                    "%d/%m/%Y")
+            end_date_to_string = exhibition.date_starting.strftime(
+                    "%d/%m/%Y")
+            exhibition.date_starting = start_date_to_string
+            exhibition.date_finishing = end_date_to_string
             edit_exhibition_form = ExhibitionForm(instance=exhibition)
             return render(request, 'exhibitions/edit_exhibition.html',
                           {'edit_exhibition_form': edit_exhibition_form,
@@ -85,10 +100,8 @@ class EditExhibition(View):
                 exhibition_start_date = request.POST.get('date_starting')
                 exhibition_end_date = request.POST.get('date_finishing')
                 # convert dates to format required by django
-                exhibition.date_starting = datetime.datetime.strptime(
-                    exhibition_start_date, "%d/%m/%Y").date()
-                exhibition.date_finishing = datetime.datetime.strptime(
-                    exhibition_end_date, "%d/%m/%Y").date()
+                exhibition.date_starting = convert_date(exhibition_start_date)
+                exhibition.date_finishing = convert_date(exhibition_end_date)
                 # work out the status
                 exhibition.now_showing_calc()
                 print(exhibition)

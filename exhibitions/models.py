@@ -63,3 +63,14 @@ class Exhibitions(models.Model):
             self.status = 'coming soon'
         else:
             self.status = 'now showing'
+
+    
+    def start_end_validation(self):
+        """ set now showing """
+        start_date = self.date_starting
+        end_date = self.date_finishing
+
+        if start_date > end_date:
+            return False
+        else:
+            return True
