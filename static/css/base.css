@@ -6,6 +6,7 @@ html {
 
 body {
   font-family: 'Josefin Sans', sans-serif;
+
 }
 
 .page-container {
@@ -97,7 +98,11 @@ body {
   transition: all 2s cubic-bezier(0.42, 0, 0.58, 1);
 }
 
-/*  */
+.card {
+  font-weight: 600;
+}
+
+/* navbar */
 
 .navbar {
   color: #fff;
@@ -261,7 +266,7 @@ ul.navbar-nav,
   width: 34px;
   font-size: 14px
 }
-/* hide mailchimp label */
+/* mailchimp */
 
 #mc_embed_signup form {
   padding: 0;
