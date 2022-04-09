@@ -31,6 +31,7 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
+                        
                         {% for product in wishlist_items %}
                         <tr>
                             <td>
@@ -43,8 +44,7 @@
                             </td>
                             <td>£{{ product.price }}</td>
                             <td>
-                                <a href="" class="btn bg-brand-blue green-link">add to basket</a>
-                                <a href="" class="btn btn-danger">remove</a>
+                                <a href="{% url 'remove_from_wishlist' product.pk %}" class="btn btn-danger">remove</a>
                             </td>
                         </tr>
                         {% endfor %}
@@ -60,7 +60,7 @@
         <div class="col-4">
             <a href="{% url 'account_overview' %}" class="btn bg-brand-blue green-link w-100 mb-1">back to my
                 account</a>
-            <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link w-100 mb-1">shop again</a>
+            <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link w-100 mb-1">shop</a>
             <a href="{% url 'home' %}" class="btn bg-brand-blue green-link w-100 mb-1">home</a>
         </div>
     </div>

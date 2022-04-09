@@ -98,16 +98,7 @@ def remove_from_wishlist(request, pk):
 def user_wishlist(request):
     """ display wishlist """
     if request.user.is_authenticated:
-        user = UserProfile.objects.get(user=request.user)
-        list_to_display = []
-        for item in UserWishlist.objects.filter(user=user):
-            list_to_display.append(item.product)
-        print(list_to_display)
-        # products = Product.objects.filter(product_wishlist=request.user)
-        context = {
-            'wishlist_items': list_to_display,
-        }
-        return render(request, 'user_account/wishlist.html', context)
+        return render(request, 'user_account/wishlist.html')
     else:
         messages.error(request, "You must be logged in to view a wishlist.")
         return redirect('home')

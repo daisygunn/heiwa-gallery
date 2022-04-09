@@ -82,6 +82,8 @@ TEMPLATES = [
                 'products.context_processors.get_category_list',
                 # basket context
                 'basket.context_processors.basket_contents',
+                # wishlist context
+                'user_account.context_processors.get_wish_list',
             ],
         },
     },

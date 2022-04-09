@@ -6,8 +6,8 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-6">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-12 col-md-6 ">
             <h6 class="bg-brand-blue p-2 text-center green-text fw-bolder">free shipping worldwide</h6>
         </div>
     </div>
@@ -26,9 +26,21 @@
                     <li class="list-group-item">size: {{ product.size }}</li>
                     <li class="list-group-item">price: £{{ product.price }}</li>
                     <li class="list-group-item"><small>style: {{ product.style.name_to_display|lower }}</small></li>
+                    {% if request.user.is_authenticated %}
                     <li class="list-group-item">
-                        <a href="{% url 'add_to_wishlist' product.pk %}" class="btn card-link green-link"><i class="fas fa-heart"></i> add to wishlist</a>
+                        <a href="{% url 'add_to_wishlist' product.pk %}" id="{{ product.pk }}-wishlist-btn" class="btn card-link green-link">
+                            {% if wishlist_items|length == 0 %}
+                                <i class="far fa-heart" title="add to wishlist"></i>
+                            {% else %}
+                                {% if product in wishlist_items %}
+                                    <i class="fas fa-heart" title="remove from wishlist"></i>
+                                {% else %}
+                                    <i class="far fa-heart" title="add to wishlist"></i>
+                                {% endif %}
+                            {% endif %}
+                        </a>
                     </li>
+                    {% endif %}
                 </ul>
                 <div class="card-body">
                     {% if product.in_stock %}
@@ -62,7 +74,7 @@
                     <a href="?page={{ page_obj.previous_page_number }}" class="btn green-link bg-brand-blue">previous</a>
                     {% endif %}
 
-                    <span class="current mx-2">
+                    <span class="current mx-2 fw-bolder green-text">
                         page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
                     </span>
 
