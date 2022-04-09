@@ -82,6 +82,18 @@ def add_to_wishlist(request, pk):
         messages.error(request, "You must be logged in to create a wishlist.")
         return redirect(reverse('all_products'), kwargs={'not_shopping': True})
 
+def remove_from_wishlist(request, pk):
+    """ view to display orders to user """
+    if request.user.is_authenticated:
+        user = UserProfile.objects.get(user=request.user)
+        product = get_object_or_404(Product, pk=pk)
+        wishlist_item = UserWishlist.objects.get(user=user, product=product)
+        wishlist_item.delete()
+        messages.info(request, "removed from wishlist")
+        return redirect(reverse('wishlist'), kwargs={'not_shopping': True})
+    else:
+        messages.error(request, "You must be logged in to edit a wishlist.")
+        return redirect(reverse('all_products'), kwargs={'not_shopping': True})
 
 def user_wishlist(request):
     """ display wishlist """
