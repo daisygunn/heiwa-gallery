@@ -47,7 +47,7 @@
 
     <title>heiwa</title>
 </head>
-<!-- <div class="page-container"> -->
+<div class="page-container">
 
 <body class="d-flex flex-column ">
     <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-brand-blue" id="main-nav">
@@ -224,10 +224,10 @@
                                 <div class="optionalParent">
                                     <div class="clear foot">
                                         <input type="submit" value="Subscribe" name="subscribe"
-                                            id="mc-embedded-subscribe" class="button">
+                                            id="mc-embedded-subscribe" class="button green-link">
                                         <p class="brandingLogo"><a href="http://eepurl.com/hZcfaX"
-                                                title="Mailchimp - email marketing made easy and fun"><img
-                                                    src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_dark_dtp.svg" class="w-100"></a>
+                                                title="Mailchimp - email marketing made easy and fun" ><img
+                                                    src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_dark_dtp.svg" class="mailchimp-logo"></a>
                                         </p>
                                     </div>
                                 </div>
@@ -260,9 +260,9 @@
     </footer>
     {% block extrajs %}
     {{ block.super }}
-                        <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'>
-                    </script>
-                    <script type='text/javascript'>
+        <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'>
+        </script>
+        <script type='text/javascript'>
                         (function ($) {
                             window.fnames = new Array();
                             window.ftypes = new Array();
@@ -280,8 +280,8 @@
                             ftypes[5] = 'birthday';
                         }(jQuery));
                         var $mcj = jQuery.noConflict(true);
-                    </script>
-    <script type="text/javascript">
+        </script>
+        <script type="text/javascript">
         $('.toast').toast('show');
 
         responseBlock = $("#mce-success-response")
@@ -294,6 +294,6 @@
         </script>
     {% endblock %}
 </body>
-<!-- </div> -->
+</div>
 
 </html>

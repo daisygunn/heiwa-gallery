@@ -10,8 +10,10 @@ body {
 }
 
 .page-container {
-  position: relative;
-  min-height: 100vh;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .hidden {
@@ -32,10 +34,8 @@ body {
 }
 
 .container-clip {
-  /* width: 960px; */
   margin: 0 auto;
   background: #fff;
-  /*     border: 2px solid #cdcdcd; */
 }
 
 /* Toasts/Messages */
@@ -103,6 +103,10 @@ body {
   font-weight: 600;
 }
 
+p {
+  font-size: 18px;
+}
+
 /* navbar */
 
 .navbar {
@@ -132,7 +136,7 @@ ul.navbar-nav,
   text-decoration: none;
 }
 
-.green-link:hover {
+.green-link:hover, #mc_embed_signup .button:hover {
   background-color: #85c280;
   color: #fff;
 }
@@ -277,6 +281,10 @@ ul.navbar-nav,
   /* margin-bottom: 3px; */
 }
 
+.mailchimp-logo {
+  width: 5rem;
+}
+
 @media (max-width:767px) {
   .site-footer {
     padding-bottom: 0
@@ -314,8 +322,15 @@ ul.navbar-nav,
   }
 }
 
-@media screen and (min-width:2500px) {
-  .site-footer {
-      position: absolute;
-  }
+@media screen and (min-width:1200px) {
+body, p {
+  font-size: 1.2rem;
+}
+.text-responsive {
+  font-size: 1.5rem;
+}
+
+.mailchimp-logo {
+  width: 10rem;
+}
 }
