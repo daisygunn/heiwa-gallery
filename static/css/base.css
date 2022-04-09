@@ -27,7 +27,8 @@ body {
 }
 
 .green-text {
-  color: #85c280;
+  color: #85c280!important;
+  font-weight: 600;
 }
 
 .container-clip {
