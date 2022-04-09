@@ -13,7 +13,7 @@ areas = (('main gallery', 'main gallery'),
          ('studio', 'studio'),
          ('basement', 'basement'),)
 
-status = (('past', 'past'),
+status = (('finished', 'finished'),
           ('now showing', 'now showing'),
           ('coming soon', 'coming soon'),
           ('pending', 'pending'),
@@ -58,13 +58,12 @@ class Exhibitions(models.Model):
         elif end == "":
             self.status = 'pending'
         elif end < now:
-            self.status = 'past'
+            self.status = 'finished'
         elif start > now:
             self.status = 'coming soon'
         else:
             self.status = 'now showing'
 
-    
     def start_end_validation(self):
         """ set now showing """
         start_date = self.date_starting
