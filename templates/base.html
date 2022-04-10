@@ -83,7 +83,6 @@
                         green-text {% endif %}"
                             href="{% url 'all_products' %}?style={{ category.id }}">{{ category.name_to_display|lower }}</a>
                         {% endfor %}
-                        <!-- <a class="dropdown-item" href="{% url 'all_products' %}?style=1">black & white</a> -->
                     </div>
                 </li>
             </ul>
@@ -179,7 +178,7 @@
                         institute of <strong>heiwa</strong> (peace).</p>
                 </div>
 
-                <div class="col-xs-6 col-md-3">
+                <div class="col-xs-6 col-md-3" id="hours-col">
                     <h6>opening hours <span class="hidden read-more" id="show-opening"><i
                                 class="fas fa-arrow-down"></i></span></h6>
                     <ul class="footer-links read-less" id="opening-hours">
@@ -189,7 +188,7 @@
                     </ul>
                 </div>
 
-                <div class="col-xs-6 col-md-3">
+                <div class="col-xs-6 col-md-3" id="location-col">
                     <h6>location <span class="hidden read-more" id="show-location"><i
                                 class="fas fa-arrow-down"></i></span></h6>
                     <ul class="footer-links read-less" id="location">
@@ -199,7 +198,6 @@
                         <li>E1 6JT</li>
                     </ul>
                 </div>
-
                 <div class="col-xs-6 col-md-3">
                     <h6>newsletter sign up!</h6>
                     <!-- Begin Mailchimp Signup Form -->
@@ -218,7 +216,7 @@
                                     <div class="response" id="mce-error-response" style="display:none"></div>
                                     <div class="response" id="mce-success-response" style="display:none"></div>
                                 </div>
-                                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                <!--  do not remove this or risk form bot signups-->
                                 <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
                                         name="b_ea91edf6940c130d5c85856bc_a9f944f3e8" tabindex="-1" value=""></div>
                                 <div class="optionalParent">

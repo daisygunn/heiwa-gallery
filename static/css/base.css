@@ -285,6 +285,7 @@ ul.navbar-nav,
   width: 5rem;
 }
 
+
 @media (max-width:767px) {
   .site-footer {
     padding-bottom: 0
@@ -293,6 +294,15 @@ ul.navbar-nav,
   .site-footer .copyright-text,
   .site-footer .social-icons {
     text-align: center
+  }
+
+  #location-col {
+    order: 1;
+  }
+
+  
+  #hours-col {
+    order: 2;
   }
 
   #main-title h1 {
