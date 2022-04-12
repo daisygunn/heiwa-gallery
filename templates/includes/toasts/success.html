@@ -10,21 +10,32 @@
   </div>
   {% if items_in_basket and not not_shopping %}
   <div class="container">
+    <div class="row">
+      <div class="col">
+        <h5>your basket:</h5>
+      </div>
+    </div>
     {% for pk in items_in_basket %}
     <div class="row">
       <div class="col">
-        <div class=>{{ pk.product.name }} x {{ pk.quantity }}</div>
+        <div class=>{{ pk.product.name }} x {{ pk.quantity }} @ {{ pk.product.price }}</div>
       </div>
       <div class="col">
-        <img class="img-thumbnail" style="height: 50px; width: 50px" src="{{ MEDIA_URL}}{{ pk.product.image }}"
-          alt="{{ pk.product.name }} image">
+        <img class="img-thumbnail float-end" style="height: 50px; width: 50px"
+          src="{{ MEDIA_URL}}{{ pk.product.image }}" alt="{{ pk.product.name }} image">
       </div>
     </div>
     {% endfor %}
-    <div class="row my-2">
-        <a href="{% url 'checkout' %}" class="btn bg-brand-blue green-link w-100">checkout</a>
+    <div class="row">
+      <div class="col">
+        <div class="float-end">subtotal: {{ total_cost }}</div>
+      </div>
     </div>
-      <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link w-100">keep shopping</a>
+    <div class="row mt-2">
+      <div class="col">
+        <a href="{% url 'checkout' %}" class="btn bg-brand-blue green-link w-100 mb-2">checkout</a>
+        <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link w-100 mb-2">keep shopping</a>
+      </div>
     </div>
   </div>
-{% endif %}
+  {% endif %}
