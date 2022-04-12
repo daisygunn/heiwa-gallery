@@ -137,8 +137,8 @@ ul.navbar-nav,
 }
 
 .green-link:hover, #mc_embed_signup .button:hover {
-  background-color: #85c280;
-  color: #fff;
+  background-color: #85c280!important;
+  color: #fff!important;
 }
 
 .img-thumbnail {

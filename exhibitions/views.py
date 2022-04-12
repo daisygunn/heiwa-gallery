@@ -12,15 +12,22 @@ def exhibitions_list(request):
     for exhibition in exhibitions_info:
         exhibition.now_showing_calc()
         exhibition.save()
+    if 'status' in request.GET:
+        # get the status from url
+        get_status = request.GET['status']
+        # filter using this status
+        exhibitions_info = Exhibitions.objects.filter(status=get_status).order_by('date_starting')
     context = {
         'exhibitions': exhibitions_info
     }
     return render(request, 'exhibitions/exhibitions.html', context)
 
+
 def convert_date(date):
     date_converted = datetime.datetime.strptime(
                 date, "%d/%m/%Y").date()
     return date_converted
+
 
 class AddExhibition(View):
     """ A view to return the all_products page """
