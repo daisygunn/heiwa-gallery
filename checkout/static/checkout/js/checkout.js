@@ -106,7 +106,6 @@ form.addEventListener('submit', function (e) {
                     form.submit();
                 }
             }
-            setLoading(false);
         });
     }).fail(function() {
         location.reload();
