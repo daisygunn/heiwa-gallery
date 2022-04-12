@@ -26,11 +26,11 @@ class Exhibitions(models.Model):
         """ override plural name """
         verbose_name_plural = 'Exhibitions'
 
-    name = models.CharField(max_length=254, null=False, blank=False)
-    style = models.CharField(max_length=254, choices=exhibitions_type, default=1)
-    description = models.TextField(null=True, blank=True)
-    photographer_artist = models.CharField(max_length=254, blank=True)
-    entrance_fee = models.DecimalField(max_digits=6, decimal_places=2)
+    name = models.CharField(max_length=50, null=False, blank=False)
+    style = models.CharField(max_length=15, choices=exhibitions_type, default=1)
+    description = models.TextField(max_length=350, null=True, blank=True)
+    photographer_artist = models.CharField(max_length=50, null=False, blank=False)
+    entrance_fee = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False)
     gallery_area = models.CharField(
         max_length=254, choices=areas, default='main gallery')
     display = models.BooleanField(default=False)
@@ -73,3 +73,5 @@ class Exhibitions(models.Model):
             return False
         else:
             return True
+
+    # def status_name_to_display(self):
