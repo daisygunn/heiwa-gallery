@@ -44,7 +44,7 @@ class Exhibitions(models.Model):
         return f"{self.name} by {self.photographer_artist}"
 
     def now_showing_calc(self):
-        """ set now showing """
+        """ set status """
         start_date = self.date_starting
         end_date = self.date_finishing
 
