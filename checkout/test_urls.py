@@ -1,7 +1,7 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
 from checkout.views import (checkout_success, cache_checkout_data,
-                          checkout)
+                            checkout)
 from .webhooks import webhook
 
 
