@@ -16,7 +16,8 @@ def exhibitions_list(request):
         # get the status from url
         get_status = request.GET['status']
         # filter using this status
-        exhibitions_info = Exhibitions.objects.filter(status=get_status).order_by('date_starting')
+        exhibitions_info = Exhibitions.objects.filter(
+            status=get_status).order_by('date_starting')
     context = {
         'exhibitions': exhibitions_info
     }
@@ -41,7 +42,7 @@ class AddExhibition(View):
             add_exhibition_form = ExhibitionForm()
             return render(request, 'exhibitions/add_exhibition.html',
                           {'add_exhibition_form': add_exhibition_form, })
-                      
+
     def post(self, request, *args, **kwargs):
         """ post view """
         form = ExhibitionForm(request.POST)
@@ -53,12 +54,12 @@ class AddExhibition(View):
             # convert dates to format required by django
             exhibition.date_starting = convert_date(exhibition_start_date)
             exhibition.date_finishing = convert_date(exhibition_end_date)
-            # validate start date is after end date 
+            # validate start date is after end date
             valid = exhibition.start_end_validation()
             if not valid:
                 messages.error(request, "Start date must be before end date.")
                 return render(request, 'exhibitions/add_exhibition.html',
-                          {'add_exhibition_form': form, })
+                              {'add_exhibition_form': form, })
             # work out the status
             exhibition.now_showing_calc()
             # save exhibition
@@ -116,16 +117,19 @@ class EditExhibition(View):
                 exhibition.save()
                 messages.success(
                     request, f"success, {exhibition.name} has been updated.")
-                return redirect(reverse('exhibitions_list'), kwargs={'not_shopping': True})
+                return redirect(reverse(
+                    'exhibitions_list'), kwargs={'not_shopping': True})
             else:
                 print(form.errors.as_data())
                 form = ExhibitionForm(instance=exhibition)
                 messages.warning(request, "something went wrong...")
                 return redirect(
-                    reverse('edit_exhibition', args=[exhibition.pk]), kwargs={'not_shopping': True})
+                    reverse('edit_exhibition', args=[exhibition.pk]),
+                    kwargs={'not_shopping': True})
         else:
             messages.info(request, "No information has changed.")
-            return redirect(reverse('exhibitions_list'), kwargs={'not_shopping': True})
+            return redirect(
+                reverse('exhibitions_list'), kwargs={'not_shopping': True})
 
 
 class DeleteExhibition(View):
@@ -140,6 +144,7 @@ class DeleteExhibition(View):
             exhibition = get_object_or_404(Exhibitions, pk=pk)
             return render(request, 'exhibitions/delete_exhibition.html',
                           {'exhibition': exhibition})
+
     def post(self, request, pk, *args, **kwargs):
         """ post view """
         exhibition = get_object_or_404(Exhibitions, pk=pk)
