@@ -4,11 +4,14 @@ from home.views import index, about
 
 
 # Create your tests here
-class TestUrls(SimpleTestCase):
+class TestHomeUrls(SimpleTestCase):
+    """ home app url tests """
     def test_home_url_is_resolved(self):
+        """ index page """
         url = reverse('home')
-        self.assertEquals(resolve(url).func, index)
+        self.assertEqual(resolve(url).func, index)
 
     def test_about_url_is_resolved(self):
+        """ about page """
         url = reverse('about')
-        self.assertEquals(resolve(url).func, about)
+        self.assertEqual(resolve(url).func, about)
