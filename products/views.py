@@ -52,10 +52,12 @@ class AddProduct(View):
             product.save()
             messages.success(
                 request, f"success, {product.name} has been added.")
-            return redirect(reverse('all_products'), kwargs={'not_shopping': True})
+            return redirect(
+                reverse('all_products'), kwargs={'not_shopping': True})
         else:
             messages.success(request, "something went wrong...")
-            return redirect(reverse('add_product'), kwargs={'not_shopping': True})
+            return redirect(
+                reverse('add_product'), kwargs={'not_shopping': True})
 
 
 class UpdateProduct(View):
@@ -101,11 +103,13 @@ class EditProduct(View):
             product.change_stock_label()
             messages.success(
                 request, f"success, {product.name} has been updated.")
-            return redirect(reverse('update_products'), kwargs={'not_shopping': True})
+            return redirect(
+                reverse('update_products'), kwargs={'not_shopping': True})
         else:
             form = EditProductForm(instance=product)
             messages.success(request, "something went wrong...")
-            return redirect(reverse('edit_product'), kwargs={'not_shopping': True})
+            return redirect(
+                reverse('edit_product'), kwargs={'not_shopping': True})
 
 
 class DeleteProduct(View):
@@ -161,7 +165,8 @@ class StockManagement(View):
                 messages.success(
                     request, f"success, {product.name} has been updated,\
                     there are now {product.quantity_in_stock} available.")
-                return redirect(reverse('update_products'), kwargs={'not_shopping': True})
+                return redirect(
+                    reverse('update_products'), kwargs={'not_shopping': True})
             else:
                 messages.warning(
                     request, f"You made no changes to {product.name}.")
