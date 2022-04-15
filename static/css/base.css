@@ -104,7 +104,7 @@ body {
 }
 
 p {
-  font-size: 18px;
+  font-size: 14px;
 }
 
 /* navbar */
@@ -333,9 +333,9 @@ ul.navbar-nav,
 }
 
 @media screen and (min-width:1200px) {
-body, p {
+/* body, p {
   font-size: 1.2rem;
-}
+} */
 .text-responsive {
   font-size: 1.5rem;
 }
@@ -343,4 +343,10 @@ body, p {
 .mailchimp-logo {
   width: 10rem;
 }
+}
+
+@media screen and (min-width:1700px) {
+  body, p {
+    font-size: 1.2rem;
+  }
 }
