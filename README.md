@@ -1,6 +1,6 @@
 # Heiwa Gallery
 
-[Live application can be found here]()
+[Live application can be found here](https://heiwa-gallery.herokuapp.com/)
 
 This is a full-stack e-commerce projecy built using Django, Python, HTML, CSS and JavaScript. I have created a website for 'Heiwa Gallery' that has been designed to display exhibition information and allows customers to purchase prints of the photography/art from previous exhibition.
 
@@ -91,7 +91,9 @@ In order to achieve the desired user & business goals, the following features wi
 
 ### Databases
 
-Entity Relationship Diagram below to see how the models relate to each other: 
+I opted to connect to the Heroku postgres database from the beginning which is provided by Heroku as an add-on.
+
+Almost all of the app's (aside from home) I have created models for, the Entity Relationship Diagram below shows how the database models relate to each other: 
 
 ![Database Schemas can be found here](assets/images/database_schemas.jpg)
 
@@ -108,13 +110,69 @@ I have chosen the name 'heiwa' for the name of the gallery, which is the Japanes
 
 ![Colour Palette](assets/images/heiwa_colours.jpg)
 
-For the font I have chosen 'josefin sans' as I felt it contiuned with the peaceful theme:
+For the font I have chosen 'josefin sans' as I felt it continued with the peaceful theme and I wanted to carry this feeling throughout the entire project; this is also why I have opted to use lowercases throughout.
 
 ![Fonts](assets/images/font.jpg)
 
 ---
 ## Features
 
+### Navbar
+
+I have implemented a fixed navbar that remains at the top of the screen at all times, allowing the user to easily navigate through the website. Furthermore, it is a responsive navbar that collapses on smaller screens. On a laptop it is split in to two sections, on the left the pages relating the gallery and on the right are links to the user profile, basket and for admin users, the admin section. The options displayed vary depending on the user and if they are in fact logged in.
+On mobiles the menu is one list displayed in the center.
+
+Active navlinks turn green and bold to clearly indicate to the user which page they are on, further enhancing the usability and ease of the website.
+
+### Footer
+
+The footer has the same colour theme as the navbar & features key information about the gallery. I wanted this information in the footer so the user can find it, should they need it, at any point in their customer journey.
+
+I have used JavaScript and JQuery to hide elements of the footer when displayed on a mobile as I felt it was too long otherwise. I have also taken advantage of bootstrpa column re-ordering to display the footer in a more clean way. 
+
+Also featured is a newsletter sign up form that uses Mailchimp and social media icons to take the user to facebook/twitter/instagram. 
+
+### Home page
+
+The home page, in keeping with the peaceful theme, is very simple. There is a `h1` title followed by a `h2` subtitle with the page name. Below is an animated bootstrap carousel, that provides information and links to the main sections of the website - 'About', 'Exhibitions' & 'Shop'. 
+
+The images used in the carousel are black and white so as not to cause any distraction or major clash with the blues & greens.
+
+### About
+
+The about page provides an insight in to the gallery, their ethos and an explanation of 'heiwa'; there is also a link to the exhibitions page.
+
+### All products
+
+This page displays all of the products sold by the gallery, displayed in a grid of bootstrap cards, each product has an image, product title, photographer or artist name, size & price. Below this there is a select box, with numbers 1-5 and a button to add the product to the basket. 
+
+If a user is logged in then an empty loveheart icon is displayed, once clicked this will add the product to the user's wishlist and the icon becomes solid. If clicked again the product is removed from the wishlist and the heart become empty again.
+
+The products can be filtered by their respective category, this can be done in the navbar and also from the all products page. This filter sends a query to the database and only returns the products that have a category matching the id passed in the url. 
+
+The cards and columns are all responsive so that on a mobile there is the same functionality and the images aren't warped.
+
+### Basket
+
+The basket page provides an overview to all of the items added by the user, the information is displayed in a table that has product name, image, quantity, price and subtotal. If there is nothing in the basket then no table is displayed, and instead a message that says 'your basket is currently empty.'
+
+The user is able to amend the quantity of each product and also remove it whilst on this page.
+
+Below there are buttons to proceed to the checkout or to keep shopping. 
+
+### Checkout
+
+This page is where the user is able to complete their purchase, split in to two columns, billing & card details on one side and their basket overview on the other.
+
+The forms are simple, with placeholders explaining what each input is for.
+
+The card payment feature has been built using Stripe, so upon submission of the payment form information is passed to stripe and then back, if successful the user is taken to the 'checkout success' page, that displays the order number and delivery details.
+
+If the payment is not successful for some reason, the form does not fully submit and user is able to recitfy the issues.
+
+### Exhibitions
+
+### User profile
 ---
 ## Technologies Used
 
