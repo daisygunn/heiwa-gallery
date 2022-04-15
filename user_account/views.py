@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.views.decorators.http import require_POST
-from django.views import View
+# from django.views.decorators.http import require_POST
+# from django.views import View
 from django.contrib import messages
 from .models import UserProfile, UserWishlist
 from .forms import UserProfileForm
@@ -16,6 +16,7 @@ def account_overview(request):
     user = UserProfile.objects.get(user=request.user)
     context = {
                 'not_shopping': True,
+                'user': user,
             }
     return render(request, 'user_account/account_overview.html', context)
 
@@ -70,17 +71,22 @@ def add_to_wishlist(request, pk):
         user = UserProfile.objects.get(user=request.user)
         product = get_object_or_404(Product, pk=pk)
         if UserWishlist.objects.filter(user=user, product=product).exists():
-            wishlist_item = UserWishlist.objects.get(user=user, product=product)
+            wishlist_item = UserWishlist.objects.get(
+                user=user, product=product)
             wishlist_item.delete()
             messages.info(request, "removed from wishlist")
-            return redirect(reverse('all_products'), kwargs={'not_shopping': True})
+            return redirect(reverse(
+                'all_products'), kwargs={'not_shopping': True})
         else:
-            wishlist_item = UserWishlist.objects.create(user=user, product=product)
+            wishlist_item = UserWishlist.objects.create(
+                user=user, product=product)
             messages.success(request, f"{wishlist_item} added to wishlist")
-            return redirect(reverse('all_products'), kwargs={'not_shopping': True})
+            return redirect(
+                reverse('all_products'), kwargs={'not_shopping': True})
     else:
         messages.error(request, "You must be logged in to create a wishlist.")
         return redirect(reverse('all_products'), kwargs={'not_shopping': True})
+
 
 def remove_from_wishlist(request, pk):
     """ view to display orders to user """
@@ -94,6 +100,7 @@ def remove_from_wishlist(request, pk):
     else:
         messages.error(request, "You must be logged in to edit a wishlist.")
         return redirect(reverse('all_products'), kwargs={'not_shopping': True})
+
 
 def user_wishlist(request):
     """ display wishlist """

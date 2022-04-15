@@ -27,10 +27,14 @@ class Exhibitions(models.Model):
         verbose_name_plural = 'Exhibitions'
 
     name = models.CharField(max_length=50, null=False, blank=False)
-    style = models.CharField(max_length=15, choices=exhibitions_type, default=1)
-    description = models.TextField(max_length=350, null=True, blank=True)
-    photographer_artist = models.CharField(max_length=50, null=False, blank=False)
-    entrance_fee = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False)
+    style = models.CharField(
+        max_length=15, choices=exhibitions_type, default=1)
+    description = models.TextField(
+        max_length=350, null=True, blank=True)
+    photographer_artist = models.CharField(
+        max_length=50, null=False, blank=False)
+    entrance_fee = models.DecimalField(
+        max_digits=6, decimal_places=2, null=False, blank=False)
     gallery_area = models.CharField(
         max_length=254, choices=areas, default='main gallery')
     display = models.BooleanField(default=False)

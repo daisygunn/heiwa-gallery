@@ -24,8 +24,8 @@ def add_product_to_basket(request, pk):
         if quantity > 0 and stock >= quantity:
             if pk in list(basket.keys()):
                 if basket[pk] + quantity > stock:
-                    messages.error(
-                        request, f"We do not have enough in stock of {product}")
+                    messages.error(request, "We do not have enough in "
+                                            f"stock of {product}")
                 else:
                     basket[pk] += quantity
                     messages.success(
@@ -40,7 +40,6 @@ def add_product_to_basket(request, pk):
             " therefore cannot be added.")
 
     request.session['basket'] = basket
-    # import pdb; pdb.set_trace()
     print(request.session['basket'])
     return redirect(redirect_url)
 
@@ -75,8 +74,6 @@ def change_quantity(request, pk):
             " therefore cannot be added.")
 
     request.session['basket'] = basket
-    # import pdb; pdb.set_trace()
-    # print(request.session['basket'])
     return redirect(redirect_url)
 
 
@@ -92,6 +89,4 @@ def remove_product(request, pk):
         messages.error(request, f"{product} is not in your basket.")
 
     request.session['basket'] = basket
-    # import pdb; pdb.set_trace()
-    # print(request.session['basket'])
     return redirect('basket_overview')
