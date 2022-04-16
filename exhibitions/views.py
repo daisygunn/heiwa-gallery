@@ -24,6 +24,24 @@ def exhibitions_list(request):
     return render(request, 'exhibitions/exhibitions.html', context)
 
 
+def exhibition_management(request):
+    """ exhibitions display view """
+    if not request.user.is_superuser:
+        messages.error(request,
+                       "You are not authorised to view that page.")
+        return redirect(reverse('home'))
+    else:
+        exhibitions_info = Exhibitions.objects.all().order_by('date_starting')
+        for exhibition in exhibitions_info:
+            exhibition.now_showing_calc()
+            exhibition.save()
+        context = {
+            'exhibitions': exhibitions_info
+        }
+        return render(
+            request, 'exhibitions/exhibition_management.html', context)
+
+
 def convert_date(date):
     date_converted = datetime.datetime.strptime(
                 date, "%d/%m/%Y").date()

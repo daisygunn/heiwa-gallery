@@ -56,14 +56,6 @@
                                         {{ exhibition.status }}</span>
                         </p>
                     </div>
-                    {% if user.is_superuser %}
-                    <hr>
-                    <p class="fw-bolder">showing in: {{ exhibition.gallery_area }}</p>
-                    <a class="btn btn-success btn-sm mb-1 w-100"
-                        href="{% url 'edit_exhibition' exhibition.pk %}">edit</a>
-                    <a class="btn btn-danger btn-sm mb-1 w-100"
-                        href="{% url 'delete_exhibition' exhibition.pk %}">delete</a>
-                    {% endif %}
                 </div>
             </div>
         </div>
