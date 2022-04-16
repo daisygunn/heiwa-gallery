@@ -1,7 +1,7 @@
 // https://datatables.net/examples/index
 
 $(document).ready(function () {
-    $('#products_table').DataTable({
+    $('.data_table').DataTable({
             responsive: true,
             scrollY: 800,
             "paging": false,
