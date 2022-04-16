@@ -58,7 +58,6 @@
     <title>heiwa | art gallery & shop </title>
 </head>
 <div class="page-container">
-
 <body class="d-flex flex-column ">
     <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-brand-blue" id="main-nav">
         <a class="navbar-brand brand-text ml-2" href="{% url 'home' %}" id="nav-heading">heiwa</a>
@@ -97,42 +96,42 @@
                 </li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
-                {% if user.is_authenticated %}
-                {% if user.is_superuser %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle dropdown-toggle2" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" href="#" aria-expanded="false">admin
-                    </a>
-                    <div class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item {% if request.resolver_match.url_name == 'add_product' %}
-                        green-text {% endif %}" href="{% url 'add_product' %}">add product</a>
-                        <a class="dropdown-item {% if request.resolver_match.url_name == 'update_products' %}
-                        green-text {% endif %}"  href="{% url 'update_products' %}">product management</a>
-                        <a class="dropdown-item {% if request.resolver_match.url_name == 'add_exhibition' %}
-                        green-text {% endif %}"  href="{% url 'add_exhibition' %}">add exhibition</a>
-                        <a class="dropdown-item {% if request.resolver_match.url_name == 'exhibition_management' %}
-                        green-text {% endif %}"  href="{% url 'exhibition_management' %}">exhibition management</a>
-                    </div>
-                </li>
-                {% endif %}
-                <li class="nav-item ml-auto">
-                    <a class="nav-link {% if request.resolver_match.url_name == 'account_overview' %}
-                    green-text {% endif %}" href="{% url 'account_overview' %}">my account</a>
-                </li>
-                <li class="nav-item ml-auto">
-                    <a class="nav-link {% if request.resolver_match.url_name == 'account_logout' %}
-                    green-text {% endif %}" href="{% url 'account_logout' %}">logout</a>
-                </li>
+                {% if request.user.is_authenticated %}
+                    {% if request.user.is_superuser %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle dropdown-toggle2" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" href="#" aria-expanded="false">admin
+                            </a>
+                            <div class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item {% if request.resolver_match.url_name == 'add_product' %}
+                                green-text {% endif %}" href="{% url 'add_product' %}">add product</a>
+                                <a class="dropdown-item {% if request.resolver_match.url_name == 'update_products' %}
+                                green-text {% endif %}"  href="{% url 'update_products' %}">product management</a>
+                                <a class="dropdown-item {% if request.resolver_match.url_name == 'add_exhibition' %}
+                                green-text {% endif %}"  href="{% url 'add_exhibition' %}">add exhibition</a>
+                                <a class="dropdown-item {% if request.resolver_match.url_name == 'exhibition_management' %}
+                                green-text {% endif %}"  href="{% url 'exhibition_management' %}">exhibition management</a>
+                            </div>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'account_overview' %}
+                        green-text {% endif %}" href="{% url 'account_overview' %}">my account</a>
+                    </li>
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'account_logout' %}
+                        green-text {% endif %}" href="{% url 'account_logout' %}">logout</a>
+                    </li>
                 <!-- If user is not logged in display Register & Login -->
                 {% else %}
-                <li class="nav-item ml-auto">
-                    <a class="nav-link {% if request.resolver_match.url_name == 'account_signup' %}
-                    green-text {% endif %}" href="{% url 'account_signup' %}">register</a>
-                </li>
-                <li class="nav-item ml-auto">
-                    <a class="nav-link {% if request.resolver_match.url_name == 'account_login' %}
-                    green-text {% endif %}" href="{% url 'account_login' %}">login</a>
-                </li>
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'account_signup' %}
+                        green-text {% endif %}" href="{% url 'account_signup' %}">register</a>
+                    </li>
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'account_login' %}
+                        green-text {% endif %}" href="{% url 'account_login' %}">login</a>
+                    </li>
                 {% endif %}
                 <li class="nav-item ml-auto">
                     <a class="nav-link text-center {% if request.resolver_match.url_name == 'basket_overview' %}
