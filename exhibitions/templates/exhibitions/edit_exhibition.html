@@ -19,6 +19,8 @@
             {{ edit_exhibition_form | crispy }}
             <div class="text-center">
                 <button type="submit" class="btn bg-brand-blue green-link mx-auto">edit exhibition</button>
+                <a class="btn btn-danger btn-m mx-auto"
+                            href="{% url 'exhibition_management' %}">cancel</a>
             </div>
         </form>
     </div>
