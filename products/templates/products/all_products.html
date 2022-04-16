@@ -12,6 +12,18 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-12 mb-3">
+            <h6>filter by category:</h6>
+            <a href="{% url 'all_products' %}?style=1"
+                class="btn bg-brand-blue green-link text-white fw-bolder">black and white</a>
+            <a href="{% url 'all_products' %}?style=2"
+                class="btn bg-warning green-link text-white fw-bolder">graphic art</a>
+            <a href="{% url 'all_products' %}?style=3"
+                class="btn bg-secondary green-link text-white fw-bolder">colour photography</a>
+            <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link fw-bolder">show all</a>
+        </div>
+    </div>
+    <div class="row">
         <!-- display each product as a card -->
         {% for product in page_obj %}
         <div class="col-sm-6 col-md-4 col-xl-3 my-2 d-flex justify-content-center">
@@ -28,15 +40,16 @@
                     <li class="list-group-item"><small>style: {{ product.style.name_to_display|lower }}</small></li>
                     {% if request.user.is_authenticated %}
                     <li class="list-group-item">
-                        <a href="{% url 'add_to_wishlist' product.pk %}" id="{{ product.pk }}-wishlist-btn" class="btn card-link green-link">
+                        <a href="{% url 'add_to_wishlist' product.pk %}" id="{{ product.pk }}-wishlist-btn"
+                            class="btn card-link green-link">
                             {% if wishlist_items|length == 0 %}
-                                <i class="far fa-heart" title="add to wishlist"></i>
+                            <i class="far fa-heart" title="add to wishlist"></i>
                             {% else %}
-                                {% if product in wishlist_items %}
-                                    <i class="fas fa-heart" title="remove from wishlist"></i>
-                                {% else %}
-                                    <i class="far fa-heart" title="add to wishlist"></i>
-                                {% endif %}
+                            {% if product in wishlist_items %}
+                            <i class="fas fa-heart" title="remove from wishlist"></i>
+                            {% else %}
+                            <i class="far fa-heart" title="add to wishlist"></i>
+                            {% endif %}
                             {% endif %}
                         </a>
                     </li>
@@ -71,7 +84,8 @@
                 <span class="step-links">
                     {% if page_obj.has_previous %}
                     <a href="?page=1" class="btn green-link bg-brand-blue">&laquo; first</a>
-                    <a href="?page={{ page_obj.previous_page_number }}" class="btn green-link bg-brand-blue">previous</a>
+                    <a href="?page={{ page_obj.previous_page_number }}"
+                        class="btn green-link bg-brand-blue">previous</a>
                     {% endif %}
 
                     <span class="current mx-2 fw-bolder green-text">
@@ -80,7 +94,8 @@
 
                     {% if page_obj.has_next %}
                     <a href="?page={{ page_obj.next_page_number }}" class="btn green-link bg-brand-blue">next</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn green-link bg-brand-blue">last &raquo;</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn green-link bg-brand-blue">last
+                        &raquo;</a>
                     {% endif %}
                 </span>
             </div>
