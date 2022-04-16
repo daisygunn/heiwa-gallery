@@ -4,6 +4,25 @@
 
 This is a full-stack e-commerce projecy built using Django, Python, HTML, CSS and JavaScript. I have created a website for 'Heiwa Gallery' that has been designed to display exhibition information and allows customers to purchase prints of the photography/art from previous exhibition.
 
+
+## Table of Contents
+1. [**UX**](#ux)
+    - [**Strategy**](#strategy)
+    - [**User stories**](#user-stories)
+    - [**Scope**](#scope)
+    - [**Structure**](#structure)
+
+2. [**Features**](#features)
+
+4. [**Technologies Used**](#technologies-used)
+
+5. [**Testing**](#testing)
+
+6. [**Deployment**](#deployment)
+
+7. [**Credits**](#credits)
+
+
 ---
 ## UX
 
@@ -144,9 +163,9 @@ The about page provides an insight in to the gallery, their ethos and an explana
 
 ### All products
 
-This page displays all of the products sold by the gallery, displayed in a grid of bootstrap cards, each product has an image, product title, photographer or artist name, size & price. Below this there is a select box, with numbers 1-5 and a button to add the product to the basket. 
+This page displays all of the products sold by the gallery, displayed in a grid of bootstrap cards, each product has an image, product title, photographer or artist name, size & price. Below this there is a select box, with choices of the numbers 1-5 and a button to add the product to the basket. 
 
-If a user is logged in then an empty loveheart icon is displayed, once clicked this will add the product to the user's wishlist and the icon becomes solid. If clicked again the product is removed from the wishlist and the heart become empty again.
+Additionally, if a user is logged in then an empty loveheart icon is displayed, once clicked this will add the product to the user's wishlist and the icon becomes solid. If clicked again the product is removed from the wishlist and the heart become empty again.
 
 The products can be filtered by their respective category, this can be done in the navbar and also from the all products page. This filter sends a query to the database and only returns the products that have a category matching the id passed in the url. 
 
@@ -156,9 +175,7 @@ The cards and columns are all responsive so that on a mobile there is the same f
 
 The basket page provides an overview to all of the items added by the user, the information is displayed in a table that has product name, image, quantity, price and subtotal. If there is nothing in the basket then no table is displayed, and instead a message that says 'your basket is currently empty.'
 
-The user is able to amend the quantity of each product and also remove it whilst on this page.
-
-Below there are buttons to proceed to the checkout or to keep shopping. 
+The user is able to amend the quantity of each product and also remove it whilst on this page and below there are buttons to proceed to the checkout or to keep shopping. 
 
 ### Checkout
 
@@ -168,11 +185,40 @@ The forms are simple, with placeholders explaining what each input is for.
 
 The card payment feature has been built using Stripe, so upon submission of the payment form information is passed to stripe and then back, if successful the user is taken to the 'checkout success' page, that displays the order number and delivery details.
 
-If the payment is not successful for some reason, the form does not fully submit and user is able to recitfy the issues.
+If the payment is not successful, the form does not submit, an error message is displayed and the user is able to recitfy the issues.
 
 ### Exhibitions
 
+The exhibitions page displays all exhibition information, they are displayed in a bootstrap card with a title, description, entrance fee and the dates the exhibition showing. There is also a status badge, so it's clear without looking at the dates if it is currently showing or finished.
+
+Similarly to the categories page you can filter by the status so the user is able to only see the exhibitions they want to.
+
 ### User profile
+
+A logged in user is able to access the `my account` link, this page displayed links to `personal details`, `previous orders` and `wishlist`. 
+
+- Personal details is where the user is able to update their default shipping/billing address and contact information.
+
+- Previous order displays a list of all the orders previously made by the user
+
+- Wishlist displays the list of items the user has saved to their wishlist.
+
+### Admin
+
+The admin section of this website allows a logged in superuser to update the exhibitions and product models from the front end, I have broken it down in to exhibtions and product management.
+
+#### Product management
+Products can be added using the `add product` dropdown, the superuser is taken to a form where upon submission the product is added to the model.
+
+Using the `update products` dropdown the admin user is to the update products page, this consists of a datatable that displays all of the product information, including the stock level. In the final column there are action buttons, to edit product info, update stock level or delete entirely. I created a seperate page for this as I felt it was important for product information to be viewed in a different way from the shopping page; the data-table allows the admin user to order the products by any of the column headers giving more control over how the information is viewed.
+
+I chose to keep the stock & product info updating seperate as I didn't want the stock to be able to be edited unintentionally as this could cause problems for the business if the stock level wasn't correct.
+
+#### Exhibition management
+Products can be added using the `add exhibition` dropdown, the superuser is taken to a form where upon submission the exhibition is added to the model.
+
+Using the `exhibition management` dropdown the admin user is to the exhibition management page, this consists of a datatable that displays all of the exhibitions information. In the final column there are action buttons, to edit exhibition info or delete entirely. I created a seperate page for this as I felt it was important for exhibitions information to be viewed in a different way from the exhibition page; the data-table allows the admin user to order the exhibitions by any of the column headers giving more control over how the information is viewed.
+
 ---
 ## Technologies Used
 
@@ -278,11 +324,13 @@ In addition to this I have also used online validators to test the accessibility
 
 I have tested this project manually myself and have also had it peer-reviewed & tested by friends and family on multiple devices and screen sizes.
 
-[TESTING.md](TESTING.md)
+[MANUAL_TESTING.md](MANUAL_TESTING.md)
 
 ### Automated Testing
 
-I have used the Coverage library throughout testing to keep track of how much of my Python code was covered by the tests I had written. From running the coverage report my website has 64% of my code tested. The remaining code is covered by manual testing.
+[UNITTEST_TESTING.md](UNITTEST_TESTING.md)
+
+I have used the Coverage library throughout testing to keep track of how much of my Python code was covered by the tests I had written. From running the coverage report my website has  of my code tested. The remaining code is covered by manual testing.
 
 To generate your own coverage report from the command line:
 
@@ -364,6 +412,7 @@ In the Deploy tab:
 ## Credits
 
 Throughout the process of building this website, I have used various sources online to help me fix bugs & tackle problems, in addition to various modules to build the functionality of this website:
+
 [Hewia](https://japaneseparticlesmaster.xyz/peace-in-japanese/)
 
 [Coverage](https://coverage.readthedocs.io/en/6.2/)
@@ -386,6 +435,6 @@ https://stackoverflow.com/questions/3642892/calculating-if-date-is-in-start-futu
 ---
 ## Acknowledgements
 
-I would like to thank my course mentor Guido Cecilio for his support and guidance throughout the course of the project and my peers Harry Dhillon, Emma Charles-Wislon, Jo Gorska and Jack Crosbie for their support & feedback.
+I would like to thank my course mentor Guido Cecilio for his support and guidance throughout the course of the project and my peers Harry Dhillon and Jack Crosbie for their support & feedback.
 
 ---
