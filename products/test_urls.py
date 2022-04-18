@@ -1,7 +1,7 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
 from products.views import (AllProducts, AddProduct,
-                            UpdateProduct, EditProduct,
+                            ProductManagement, EditProduct,
                             DeleteProduct, StockManagement)
 
 
@@ -18,10 +18,10 @@ class TestProductsUrls(SimpleTestCase):
         url = reverse('add_product')
         self.assertEqual(resolve(url).func.view_class, AddProduct)
 
-    def test_update_products_url_is_resolved(self):
+    def test_product_management_url_is_resolved(self):
         """ editing an product """
-        url = reverse('update_products')
-        self.assertEqual(resolve(url).func.view_class, UpdateProduct)
+        url = reverse('product_management')
+        self.assertEqual(resolve(url).func.view_class, ProductManagement)
 
     def test_edit_product_url_is_resolved(self):
         """ editing a product """

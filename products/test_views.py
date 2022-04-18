@@ -49,7 +49,7 @@ class TestProductsViews(TestCase):
 
         self.all_products_url = reverse('all_products')
         self.add_product_url = reverse('add_product')
-        self.update_products_url = reverse('update_products')
+        self.product_management_url = reverse('product_management')
         self.edit_product_url = reverse(
             'edit_product', args=[self.product1.pk])
         self.delete_product_url = reverse(
@@ -85,17 +85,17 @@ class TestProductsViews(TestCase):
 
         self.assertEqual(response.status_code, 302)
 
-    def test_update_products_superuser_GET(self):
-        """ get update_products view for superuser """
-        response = self.client.get(self.update_products_url)
+    def test_product_management_superuser_GET(self):
+        """ get product_management view for superuser """
+        response = self.client.get(self.product_management_url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'products/update_products.html')
+        self.assertTemplateUsed(response, 'products/product_management.html')
 
-    def test_update_products_not_superuser_GET(self):
-        """ get update_products view """
+    def test_product_management_not_superuser_GET(self):
+        """ get product_management view """
         self.client.logout()
-        response = self.client.get(self.update_products_url)
+        response = self.client.get(self.product_management_url)
 
         self.assertEqual(response.status_code, 302)
 
@@ -149,15 +149,18 @@ class TestProductsViews(TestCase):
 
     # def test_edit_product_superuser_POST(self):
     #     """ post edit_product view for superuser """
-    #     self.product1.price = 23
-    #     response = self.client.post(
-    #         self.edit_product_url, {self.product1: self.product1, },
-    #         follow=True)
-    #     self.assertEqual(response.status_code, 302)
+    #     product = self.product1
+    #     product.price = 23
+    #     product.save()
+    #     response = self.client.post(reverse(
+    #         'edit_product', kwargs={'pk': self.product1.pk, }),
+    #         {'price': product.price}, follow=True)
+    #     # self.assertEqual(response.status_code, 302)
     #     self.assertEqual(self.product1.price, 23)
-    #     self.asssertRedirects(
-    #         response, self.update_products_url, status_code=302,
-    #         target_status_code=200, fetch_redirect_response=True)
+    #     self.assertRedirects(response, reverse('product_management'))
+        # self.assertRedirects(
+        #     response, self.update_products_url, status_code=302,
+        #     target_status_code=200, fetch_redirect_response=True)
 
     # def test_delete_product_superuser_POST(self):
     #     """ post delete_product view for superuser """
