@@ -64,7 +64,6 @@ class TestCheckoutModels(TestCase):
     def test_order_item_save_updates_orderitem_total(self):
         order_item = self.order_item1
         order_item.save()
-       
         self.assertEqual(self.order_item1.orderitem_total, 45.00)
 
     def test_order_item_save_updates_order_total(self):

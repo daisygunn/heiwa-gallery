@@ -42,8 +42,8 @@ class Order(models.Model):
 
     def full_address(self):
         """ return address """
-        return f"{self.flat_house}, {self.street_address}, {self.town_city},\
-            {self.county}, {self.postcode}"
+        return (f"{self.flat_house}, {self.street_address}, {self.town_city}, "
+                f"{self.county}, {self.postcode}")
 
     def save(self, *args, **kwargs):
         """ if the order doesn't have an order number, create one """
