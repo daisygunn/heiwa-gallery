@@ -1,7 +1,8 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
 from exhibitions.views import (exhibitions_list, AddExhibition,
-                               EditExhibition, DeleteExhibition)
+                               EditExhibition, DeleteExhibition, 
+                               exhibition_management)
 
 
 # Create your tests here
@@ -26,3 +27,8 @@ class TestExhibitionsUrls(SimpleTestCase):
         """ deleting an exhibition """
         url = reverse('delete_exhibition', args=['pk'])
         self.assertEqual(resolve(url).func.view_class, DeleteExhibition)
+
+    def test_exhibition_management_url_is_resolved(self):
+        """ deleting an exhibition """
+        url = reverse('exhibition_management')
+        self.assertEqual(resolve(url).func, exhibition_management)

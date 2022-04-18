@@ -39,6 +39,7 @@ class TestExhibitionsViews(TestCase):
         )
 
         self.exhibitions_list_url = reverse('exhibitions_list')
+        self.exhibition_management_url = reverse('exhibition_management')
         self.add_exhibition_url = reverse('add_exhibition')
         self.edit_exhibition_url = reverse('edit_exhibition', args=[1])
         self.delete_exhibition_url = reverse('delete_exhibition', args=[1])
@@ -91,6 +92,21 @@ class TestExhibitionsViews(TestCase):
         """ get delete_exhibition view for logged out user """
         self.client.logout()
         response = self.client.get(self.delete_exhibition_url)
+
+        self.assertEqual(response.status_code, 302)
+
+    def test_exhibition_management_superuser_GET(self):
+        """ get exhibition_management view for superuser """
+        response = self.client.get(self.exhibition_management_url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(
+            response, 'exhibitions/exhibition_management.html')
+
+    def test_exhibition_management_not_superuser_GET(self):
+        """ get exhibition_management view for logged out user """
+        self.client.logout()
+        response = self.client.get(self.exhibition_management_url)
 
         self.assertEqual(response.status_code, 302)
 
