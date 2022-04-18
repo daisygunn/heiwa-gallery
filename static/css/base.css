@@ -64,6 +64,12 @@ body {
   margin-bottom: 1rem;
 }
 
+/* Remove 100% on the clear box */
+
+#image-clear_id {
+  width: auto!important;
+}
+
 .control-label {
   display: none;
 }
