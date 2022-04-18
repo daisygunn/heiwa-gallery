@@ -220,6 +220,10 @@ ul.navbar-nav,
   color: #0d5c63;
 }
 
+.footer-contact {
+  float: right;
+}
+
 .copyright-text {
   margin: 0
 }
@@ -286,9 +290,14 @@ ul.navbar-nav,
 }
 
 
-@media (max-width:767px) {
+@media (max-width:768px) {
   .site-footer {
     padding-bottom: 0
+  }
+
+  .footer-contact {
+    text-align: center;
+    float: none;
   }
 
   .site-footer .copyright-text,
