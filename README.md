@@ -110,6 +110,7 @@ In order to achieve the desired user & business goals, the following features wi
 
 ### Databases
 
+<!-- Need to explain each model and the relationship -->
 I opted to connect to the Heroku postgres database from the beginning which is provided by Heroku as an add-on.
 
 Almost all of the app's (aside from home) I have created models for, the Entity Relationship Diagram below shows how the database models relate to each other: 
@@ -125,7 +126,7 @@ The theme of simplicity follows through to the design, I've used bootstrap colum
 
 ### Surface
 
-I have chosen the name 'heiwa' for the name of the gallery, which is the Japanese word for 'peace', this choice of name heavily influences the design choices that I have made. I researched which colours in Japanese culture represent peace which is why I have chosen blues and greens to use as my accent colours and the colour for the main logo/header. The main bulk of the website will be black and white and feature flecks of blues and greens. As this is an art gallery the design and feel of the website is minimilastic to reflect the art displayed in the galleries and to continue the theme of peace.
+I have chosen the name 'heiwa' for the name of the gallery, which is the Japanese word for *'peace'*, this choice of name heavily influences the design choices that I have made. I started by researching which colours in Japanese culture represent peace, which is why I have chosen blues and greens to use as my accent colours and the colour for the main logo/header. The main bulk of the website will incorporate these two colours and feature flecks of black and white. As this is an art gallery the design and feel of the website is minimilastic to reflect the art displayed in the galleries and to continue the theme of peace.
 
 ![Colour Palette](assets/images/heiwa_colours.jpg)
 
@@ -138,16 +139,29 @@ For the font I have chosen 'josefin sans' as I felt it continued with the peacef
 
 ### Navbar
 
-I have implemented a fixed navbar that remains at the top of the screen at all times, allowing the user to easily navigate through the website. Furthermore, it is a responsive navbar that collapses on smaller screens. On a laptop it is split in to two sections, on the left the pages relating the gallery and on the right are links to the user profile, basket and for admin users, the admin section. The options displayed vary depending on the user and if they are in fact logged in.
+I have implemented a fixed navbar that remains at the top of the screen at all times, allowing the user to easily navigate through the website. Furthermore, it is responsive and so it collapses in to a burger menu on smaller screens. 
+
+On a laptop it is split in to two sections, on the left the pages relating the gallery and on the right are links to the user profile, basket and for admin users, the admin section. The options displayed vary depending on the user and if they are in fact logged in.
+
+![](assets/images/nav-bar-laptop.jpg)
+
 On mobiles the menu is one list displayed in the center.
+
+![](assets/images/mobile-menu.jpg)
 
 Active navlinks turn green and bold to clearly indicate to the user which page they are on, further enhancing the usability and ease of the website.
 
+There is also a basket icon with a subtotal displayed below it, to allow the user to keep track of the cost of the products in their basket.
+
 ### Footer
 
-The footer has the same colour theme as the navbar & features key information about the gallery. I wanted this information in the footer so the user can find it, should they need it, at any point in their customer journey.
+The footer has the same colour theme as the navbar & features key information about the gallery. I wanted this information displayed as part of the footer so the user can find it, should they need it, at any point in their customer journey.
 
-I have used JavaScript and JQuery to hide elements of the footer when displayed on a mobile as I felt it was too long otherwise. I have also taken advantage of bootstrpa column re-ordering to display the footer in a more clean way. 
+![](assets/images/laptop-footer.jpg)
+
+I have used JavaScript and JQuery to hide elements of the footer when displayed on a mobile as I felt it was too long and took up too much space. I have also taken advantage of bootstrap column re-ordering, allowing the footer to be as small as possible. 
+
+![](assets/images/mobile-footer.jpg)
 
 Also featured is a newsletter sign up form that uses Mailchimp and social media icons to take the user to facebook/twitter/instagram. 
 
@@ -155,35 +169,54 @@ Also featured is a newsletter sign up form that uses Mailchimp and social media 
 
 The home page, in keeping with the peaceful theme, is very simple. There is a `h1` title followed by a `h2` subtitle with the page name. Below is an animated bootstrap carousel, that provides information and links to the main sections of the website - 'About', 'Exhibitions' & 'Shop'. 
 
+![](assets/images/laptop-home-page.jpg)
+
 The images used in the carousel are black and white so as not to cause any distraction or major clash with the blues & greens.
 
 ### About
 
-The about page provides an insight in to the gallery, their ethos and an explanation of 'heiwa'; there is also a link to the exhibitions page.
+The about page provides an insight in to the gallery, their ethos and an explanation of 'heiwa'; there is also a link to the exhibitions page and shop to encourage the user to continue exploring the website and to increase the chance of sales.
+
+![](assets/images/about-page.jpg)
 
 ### All products
 
 This page displays all of the products sold by the gallery, displayed in a grid of bootstrap cards, each product has an image, product title, photographer or artist name, size & price. Below this there is a select box, with choices of the numbers 1-5 and a button to add the product to the basket. 
 
+![](assets/images/shop-laptop.jpg)
+
 Additionally, if a user is logged in then an empty loveheart icon is displayed, once clicked this will add the product to the user's wishlist and the icon becomes solid. If clicked again the product is removed from the wishlist and the heart become empty again.
+
+![](assets/images/hearts.jpg)
 
 The products can be filtered by their respective category, this can be done in the navbar and also from the all products page. This filter sends a query to the database and only returns the products that have a category matching the id passed in the url. 
 
+![](assets/images/category-filters.jpg)
+
 The cards and columns are all responsive so that on a mobile there is the same functionality and the images aren't warped.
+
+![](assets/images/all-product-mobile.jpg)
 
 ### Basket
 
-The basket page provides an overview to all of the items added by the user, the information is displayed in a table that has product name, image, quantity, price and subtotal. If there is nothing in the basket then no table is displayed, and instead a message that says 'your basket is currently empty.'
+The basket page provides an overview to all of the items added by the user, the information is displayed in a table that has product name, image, quantity, price and subtotal. The user is able to amend the quantity of each product and also remove it whilst on this page and below there are buttons to proceed to the checkout or to keep shopping.  
 
-The user is able to amend the quantity of each product and also remove it whilst on this page and below there are buttons to proceed to the checkout or to keep shopping. 
+![](assets/images/basket.jpg)
+
+If there is nothing in the basket then no table is displayed, and instead a message that says 'your basket is currently empty.'
+
+![](assets/images/empty-basket.jpg)
+
 
 ### Checkout
 
-This page is where the user is able to complete their purchase, split in to two columns, billing & card details on one side and their basket overview on the other.
+This page is where the user is able to complete their purchase, split in to two columns, billing & card details on one side and their basket overview on the other. The forms are simple, with placeholders explaining what each input is for.
 
-The forms are simple, with placeholders explaining what each input is for.
+![](assets/images/checkout.jpg)
 
-The card payment feature has been built using Stripe, so upon submission of the payment form information is passed to stripe and then back, if successful the user is taken to the 'checkout success' page, that displays the order number and delivery details.
+The card payment feature has been built using ![Stripe](https://stripe.com/gb), so upon submission of the payment form information is passed to stripe and then back, if successful the user is taken to the 'checkout success' page, that displays the order number and delivery details.
+
+![](assets/images/checkout-success.jpg)
 
 If the payment is not successful, the form does not submit, an error message is displayed and the user is able to recitfy the issues.
 
@@ -193,31 +226,55 @@ The exhibitions page displays all exhibition information, they are displayed in 
 
 Similarly to the categories page you can filter by the status so the user is able to only see the exhibitions they want to.
 
+![](assets/images/exhibitions.jpg)
+
+![](assets/images/exhibitions-mobile.jpg)
+
 ### User profile
 
-A logged in user is able to access the `my account` link, this page displayed links to `personal details`, `previous orders` and `wishlist`. 
+A logged in user is able to access the `my account` link, this page displayed links to `personal details`, ` previous orders` and `wishlist`. 
+
+![](assets/images/my-account.jpg)
 
 - Personal details is where the user is able to update their default shipping/billing address and contact information.
 
+![](assets/images/user-profile.jpg)
+
 - Previous order displays a list of all the orders previously made by the user
 
+![](assets/images/order-history.jpg)
+
 - Wishlist displays the list of items the user has saved to their wishlist.
+
+![](assets/images/wishlist.jpg)
 
 ### Admin
 
 The admin section of this website allows a logged in superuser to update the exhibitions and product models from the front end, I have broken it down in to exhibtions and product management.
 
-#### Product management
+#### **Product management**
+
 Products can be added using the `add product` dropdown, the superuser is taken to a form where upon submission the product is added to the model.
 
-Using the `update products` dropdown the admin user is to the update products page, this consists of a datatable that displays all of the product information, including the stock level. In the final column there are action buttons, to edit product info, update stock level or delete entirely. I created a seperate page for this as I felt it was important for product information to be viewed in a different way from the shopping page; the data-table allows the admin user to order the products by any of the column headers giving more control over how the information is viewed.
+![](assets/images/add-product.jpg)
+
+Using the `update products` dropdown the admin user is taken to the update products page, this consists of a datatable that displays all of the product information, including the stock level. In the final column there are action buttons, to edit product info, update stock level or delete entirely. I created a seperate page for this as I felt it was important for product information to be viewed in a different way from the shopping page; the data-table allows the admin user to order the products by any of the column headers giving more control over how the information is viewed.
+
+![](assets/images/product-management.jpg)
 
 I chose to keep the stock & product info updating seperate as I didn't want the stock to be able to be edited unintentionally as this could cause problems for the business if the stock level wasn't correct.
 
-#### Exhibition management
+![](assets/images/stock-management.jpg)
+
+#### **Exhibition management**
+
 Products can be added using the `add exhibition` dropdown, the superuser is taken to a form where upon submission the exhibition is added to the model.
 
-Using the `exhibition management` dropdown the admin user is to the exhibition management page, this consists of a datatable that displays all of the exhibitions information. In the final column there are action buttons, to edit exhibition info or delete entirely. I created a seperate page for this as I felt it was important for exhibitions information to be viewed in a different way from the exhibition page; the data-table allows the admin user to order the exhibitions by any of the column headers giving more control over how the information is viewed.
+![](assets/images/add-exhibition.jpg)
+
+Using the `exhibition management` dropdown the admin user is taken to the exhibition management page, this consists of a datatable that displays all of the exhibitions information. In the final column there are action buttons, to edit exhibition info or delete entirely. I created a seperate page for this as I felt it was important for exhibitions information to be viewed in a different way from the exhibition page; the data-table allows the admin user to order the exhibitions by any of the column headers giving more control over how the information is viewed.
+
+![](assets/images/exhibition-management.jpg)
 
 ---
 ## Technologies Used
