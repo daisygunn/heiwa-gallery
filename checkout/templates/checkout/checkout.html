@@ -15,7 +15,7 @@
     <div class="row justify-content-center d-flex mb-3">
         {% if items_in_basket %}
         <!-- customer info form -->
-        <div class="col-sm-6 col-md-4 payment-form order-sm-1 order-lg-0">
+        <div class="col-sm-6 col-md-4 payment-form order-sm-1 order-xl-0">
             <form id="stripe-payment-form" method="POST" action="{% url 'checkout' %}">
                 {% csrf_token %}
                 <h5 class="brand-blue"><strong>delivery details</strong></h5>
@@ -39,7 +39,7 @@
             </form>
         </div>
 
-        <div class="col-sm-6 col-md-4 payment-form order-sm-0 order-lg-1">
+        <div class="col-sm-6 col-md-4 payment-form order-sm-0 order-xl-1">
             <h5 class="brand-blue mb-3"><strong>basket</strong></h5>
             {% for pk in items_in_basket %}
             <p><img class="img-thumbnail" style="height: 70px; width: 70px" src="{{ MEDIA_URL}}{{ pk.product.image }}"
