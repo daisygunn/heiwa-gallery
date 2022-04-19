@@ -39,14 +39,15 @@ def send_confirmation_email(request, order_number):
     """ Function to send email after order saved """
     order = Order.objects.get(order_number=order_number)
     customer_name = order.full_name
-    email_from = settings.EMAIL_HOST_USER
+    # email_from = settings.EMAIL_HOST_USER
+    email_from = "orders@heiwa.com"
     address = order.full_address()
     subject = f"Order confirmation from Heiwa - order\
              number {order.order_number}"
-    message = f"Thank you for your order {customer_name}.\n\
-                Order number - {order.order_number}\n\
-                Order total - {order.order_total}\n\
-                Delivery address - {address}."
+    message = (f"Thank you for your order {customer_name}."
+               f"Order number - {order.order_number}"
+               f"Order total - {order.order_total}"
+               f"Delivery address - {address}.")
 
     recipient_list = (order.email,)
     send_mail(
