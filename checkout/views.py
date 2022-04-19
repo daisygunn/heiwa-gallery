@@ -44,24 +44,14 @@ def send_confirmation_email(request, order_number):
     address = order.full_address()
     subject = f"Order confirmation from Heiwa - order\
              number {order.order_number}"
-    message = (f"Thank you for your order {customer_name}."
-               f"Order number - {order.order_number}"
-               f"Order total - {order.order_total}"
+    message = (f"Thank you for your order {customer_name}.\n"
+               f"Order number - {order.order_number}\n"
+               f"Order total - {order.order_total}\n"
                f"Delivery address - {address}.")
 
     recipient_list = (order.email,)
     send_mail(
         subject, message, email_from, recipient_list, fail_silently=False)
-
-
-# def send_confirmation_email(order_number):
-#     """ Function to send email after order saved """
-#     order = Order.objects.get(order_number=order_number)
-#     email_from = settings.EMAIL_HOST_USER
-#     recipient_list = (str(order.email),)
-#     send_mail('email/confirmation_email.tpl', {'order': order},
-#               email_from, [recipient_list])
-#     # send_mail(subject, message, )
 
 
 def checkout(request):
