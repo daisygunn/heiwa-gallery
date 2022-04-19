@@ -39,7 +39,7 @@ def send_confirmation_email(request, order_number):
     """ Function to send email after order saved """
     order = Order.objects.get(order_number=order_number)
     customer_name = order.full_name
-    email_from = "orders@heiwa.com"
+    email_from = f"heiwa gallery <{settings.DEFAULT_FROM_EMAIL}>"
     address = order.full_address()
     subject = f"Order confirmation from Heiwa - order\
              number {order.order_number}"
@@ -50,7 +50,7 @@ def send_confirmation_email(request, order_number):
 
     recipient_list = (order.email,)
     send_mail(
-        subject, message, "orders@heiwa.com", recipient_list, fail_silently=False)
+        subject, message, email_from, recipient_list, fail_silently=False)
 
 
 def checkout(request):
