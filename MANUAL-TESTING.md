@@ -6,9 +6,40 @@
 
 1. As a **user** I can intuitively navigate through the site so that I can view desired content.
 2. As a **user** I can find a navigation bar and footer so that I can see what content there is on the website.
-2. As a **user** I can get key information about the gallery from the landing page so that I can spend less time having to search for information.
-3. As a **user** I am notified about any changes I have made so that I have a clear understanding of what has been completed/updated/failed.
-4. As a **user** I can access the website on both mobile and desktop so that I can view the information regardless of my location.
+
+3. As a **user** I can get key information about the gallery from the landing page so that I can spend less time having to search for information.
+
+
+- The navigation bar remains at the top constantly so it can always be seen by the user. Each page is clearly named and there are dropdowns for subsections of the website so that there isn't too much information in the navbar.
+
+![](assets/images/nav-bar-laptop.jpg)
+
+
+
+- The footer is at the bottom of the page but isn't fixed and contains key information about the gallery. Contact details, opening times, social media links & address are items that will be frequently searched for by a user, so placing them in the footer makes it easier to find.
+
+![](assets/images/laptop-footer.jpg)
+
+4. As a **user** I am notified about any changes I have made so that I have a clear understanding of what has been completed/updated/failed.
+
+- I have used bootstrap toasts to display messages to the user at various points, the success toast is used often and when adding a prodcut to the basket also displays a short basket overview
+
+![](assets/images/add-to-basket-toast.jpg)
+
+- I have also used info, warning and error toasts to display different messages:
+
+![](assets/images/info-toast.jpg)
+![](assets/images/not-authorised-toast.jpg)
+
+![](assets/images/add-to-basket-toast.jpg)
+
+5. As a **user** I can access the website on both mobile and desktop so that I can view the information regardless of my location.
+
+- 
+
+![](assets/images/mobile-menu.jpg)
+
+![](assets/images/mobile-footer.jpg)
 
 ### **Epic 2 - Products**:
 

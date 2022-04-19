@@ -20,7 +20,9 @@ This is a full-stack e-commerce projecy built using Django, Python, HTML, CSS an
 
 6. [**Deployment**](#deployment)
 
-7. [**Credits**](#credits)
+7. [**Marketing**](#marketing)
+
+8. [**Credits**](#credits)
 
 
 ---
@@ -381,11 +383,11 @@ In addition to this I have also used online validators to test the accessibility
 
 I have tested this project manually myself and have also had it peer-reviewed & tested by friends and family on multiple devices and screen sizes.
 
-[MANUAL_TESTING.md](MANUAL_TESTING.md)
+[MANUAL TESTING](MANUAL-TESTING.md)
 
 ### Automated Testing
 
-[UNITTEST_TESTING.md](UNITTEST_TESTING.md)
+[UNIT TESTS](UNIT-TESTING.md)
 
 I have used the Coverage library throughout testing to keep track of how much of my Python code was covered by the tests I had written. From running the coverage report my website has  of my code tested. The remaining code is covered by manual testing.
 
@@ -464,6 +466,10 @@ In the Deploy tab:
 3. Once you have chosen your deployment method and have clicked `Deploy Branch` your application will be built and you should see the below `View` button, click this to open your application:
 
 ![](assets/images/heroku_deployed_image.png)
+
+---
+
+## Marketing
 
 ---
 ## Credits
