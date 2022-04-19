@@ -10,5 +10,6 @@ $(document).ready(function () {
                 { responsivePriority: 2, targets: -1} 
     ]
 
-            }); $('.dataTables_length').addClass('bs-select');
+            }); 
+        $('.dataTables_length').addClass('bs-select');
     });

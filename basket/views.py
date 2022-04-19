@@ -24,8 +24,8 @@ def add_product_to_basket(request, pk):
         if quantity > 0 and stock >= quantity:
             if pk in list(basket.keys()):
                 if basket[pk] + quantity > stock:
-                    messages.error(request, "We do not have enough in "
-                                            f"stock of {product}")
+                    messages.error(request, "Sorry, we do not have enough in "
+                                            f"stock of {product}.")
                 else:
                     basket[pk] += quantity
                     messages.success(
@@ -34,10 +34,13 @@ def add_product_to_basket(request, pk):
                 basket[pk] = quantity
                 messages.success(
                     request, f"{product} has been added to your basket.")
+        elif quantity > 0 and stock < quantity:
+            messages.error(request, "Sorry, we do not have enough in "
+                                    f"stock of {product}.")
     else:
         messages.error(
-            request, f"{product} is not in stock and"
-            " therefore cannot be added.")
+                request, f"{product} is not in stock and"
+                " therefore cannot be added.")
 
     request.session['basket'] = basket
     print(request.session['basket'])
