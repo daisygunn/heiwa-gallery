@@ -206,7 +206,7 @@ def checkout_success(request, order_number):
                 # profile being updated
                 user_profile_form.save()
 
-    messages.success(request, "Order processed - your order number is"
+    messages.success(request, "Order processed - your order number is "
                      f'{order_number}.')
 
     if 'basket' in request.session:

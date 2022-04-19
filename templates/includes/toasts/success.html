@@ -9,6 +9,7 @@
     {{ message }}
   </div>
   {% if items_in_basket and not not_shopping %}
+  <hr>
   <div class="container">
     <div class="row">
       <div class="col">
@@ -18,7 +19,7 @@
     {% for pk in items_in_basket %}
     <div class="row">
       <div class="col">
-        <div class=>{{ pk.product.name }} x {{ pk.quantity }} @ {{ pk.product.price }}</div>
+        <div class=>{{ pk.product.name }} x {{ pk.quantity }} @ £{{ pk.product.price }}</div>
       </div>
       <div class="col">
         <img class="img-thumbnail float-end" style="height: 50px; width: 50px"
@@ -28,7 +29,7 @@
     {% endfor %}
     <div class="row">
       <div class="col">
-        <div class="float-end">subtotal: {{ total_cost }}</div>
+        <div class="fw-bolder">basket total: £{{ total_cost }}</div>
       </div>
     </div>
     <div class="row mt-2">
