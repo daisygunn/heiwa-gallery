@@ -15,9 +15,16 @@ class BasketOverview(View):
 def add_product_to_basket(request, pk):
     """ add product to bag """
     product = get_object_or_404(Product, pk=pk)
-    quantity = int(request.POST.get('quantity'))
-    redirect_url = request.POST.get('redirect_url')
-
+    if request.POST.get(
+        'quantity') is None and request.POST.get(
+            'redirect_url') is None:
+        messages.warning(
+                request, "You have tried to add a product without "
+                "a quantity which is not allowed.")
+        return redirect('all_products')
+    else:
+        quantity = int(request.POST.get('quantity'))
+        redirect_url = request.POST.get('redirect_url')
     basket = request.session.get('basket', {})
     if product.in_stock:
         stock = product.get_stock_level()
