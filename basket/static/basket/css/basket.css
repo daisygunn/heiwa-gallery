@@ -56,3 +56,9 @@
       -webkit-appearance: none;
       margin: 0;
   }
+
+
+.img-thumbnail {
+    max-width: 70px!important;
+}
+  
