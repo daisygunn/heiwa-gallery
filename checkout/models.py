@@ -61,7 +61,7 @@ class OrderItem(models.Model):
                               on_delete=models.CASCADE,
                               related_name='orderitems')
     product = models.ForeignKey(Product, null=False, blank=False,
-                                on_delete=models.CASCADE)
+                                on_delete=models.SET('product deleted.'))
     quantity = models.IntegerField(
         null=False, blank=False, default=0)
     orderitem_total = models.DecimalField(

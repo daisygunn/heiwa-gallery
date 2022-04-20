@@ -22,6 +22,6 @@ class OrderAdmin(admin.ModelAdmin):
               'original_basket',)
   
     list_display = ('order_number', 'order_date', 'full_name',
-                    'order_total',)
+                    'order_total', 'original_basket',)
     # displays most recent orders on the top
     ordering = ('-order_date',)
