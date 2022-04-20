@@ -31,8 +31,10 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            if you delete this product you will no longer be able to see in admin panel and you will
-                            need to re-add. only delete if you are sure.</div>
+                            <p>if you delete {{ product.name|lower }} you will no longer be able to see it in admin panel, and you will
+                                need to re-add it later should you need to sell it again.<br>
+                                <strong>only delete if you are sure.</strong></p>
+                            </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-danger">Yes, delete product</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
