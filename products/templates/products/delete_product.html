@@ -12,11 +12,11 @@
         <form action="{% url 'delete_product' product.pk %}" method="POST" class="my-2 w-100 text-center"
             enctype="multipart/form-data">
             {% csrf_token %}
-            <h4>Product: {{ product.name }}</h4>
+            <h4 class="brand-blue">product: {{ product.name|lower }}</h4>
             <img class="card-img-top" style="height: 50%; width: 50%"
                                 src="{{ MEDIA_URL}}{{ product.image }}" alt="{{ product.name }} image">
 
-            <button type="button" class="btn btn-danger d-block text-center" data-toggle="modal" data-target="#exampleModalCenter">
+            <button type="button" class="btn btn-danger d-block mx-auto mt-3" data-toggle="modal" data-target="#exampleModalCenter">
                 delete product
             </button>
             <!-- hidden modal to confirm deletion -->
