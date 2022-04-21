@@ -476,7 +476,7 @@ In the Deploy tab:
 
 Throughout the process of building this website, I have used various sources online to help me fix bugs & tackle problems, in addition to various modules to build the functionality of this website:
 
-[Hewia](https://japaneseparticlesmaster.xyz/peace-in-japanese/)
+[Heiwa research](https://japaneseparticlesmaster.xyz/peace-in-japanese/)
 
 [Coverage](https://coverage.readthedocs.io/en/6.2/)
 
@@ -486,15 +486,16 @@ Throughout the process of building this website, I have used various sources onl
 
 [Gmail SMTP](https://medium.com/@_christopher/how-to-send-emails-with-python-django-through-google-smtp-server-for-free-22ea6ea0fb8e)
 
-[Animate](https://animate.style/)
-
 [Testing](https://www.youtube.com/watch?v=0MrgsYswT1c)
 
 [Unsplash for images](https://unsplash.com/@daisygunn94/likes)
 
-https://stackoverflow.com/questions/3642892/calculating-if-date-is-in-start-future-or-present-in-python
+[Date calculations](https://stackoverflow.com/questions/3642892/calculating-if-date-is-in-start-future-or-present-in-python)
 
 [DataTables](https://datatables.net/)
+
+[XML sitemaps](https://www.xml-sitemaps.com/)
+
 ---
 ## Acknowledgements
 
