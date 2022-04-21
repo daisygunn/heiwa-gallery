@@ -26,7 +26,6 @@ class ProductForm(forms.ModelForm):
         for field in self.fields:
             placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields['quantity_in_stock'].widget.attrs['readonly'] = True
             self.fields[field].label = False
             self.fields[field].widget.attrs['class'] = 'w-100 mb-2'
 

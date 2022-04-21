@@ -1,0 +1,10 @@
+.image-container {
+    height: 20rem;
+}
+
+.card-img-top {
+    max-height: 20rem;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}

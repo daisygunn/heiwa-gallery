@@ -4,6 +4,10 @@
 <h2 class="mt-0 mb-3" id="subtitle">[ shop ]</h2>
 {% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <div class="row d-flex justify-content-center">
@@ -14,12 +18,12 @@
     <div class="row">
         <div class="col-12 mb-3">
             <h6>filter by category:</h6>
-            <a href="{% url 'all_products' %}?style=1"
-                class="btn bg-brand-blue green-link text-white fw-bolder">black and white</a>
-            <a href="{% url 'all_products' %}?style=2"
-                class="btn bg-warning green-link text-white fw-bolder">graphic art</a>
-            <a href="{% url 'all_products' %}?style=3"
-                class="btn bg-secondary green-link text-white fw-bolder">colour photography</a>
+            <a href="{% url 'all_products' %}?style=1" class="btn bg-brand-blue green-link text-white fw-bolder">black
+                and white</a>
+            <a href="{% url 'all_products' %}?style=2" class="btn bg-warning green-link text-white fw-bolder">graphic
+                art</a>
+            <a href="{% url 'all_products' %}?style=3" class="btn bg-secondary green-link text-white fw-bolder">colour
+                photography</a>
             <a href="{% url 'all_products' %}" class="btn bg-brand-blue green-link fw-bolder">show all</a>
         </div>
     </div>
@@ -28,8 +32,9 @@
         {% for product in page_obj %}
         <div class="col-sm-6 col-md-4 col-xl-3 my-2 d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" style="height: 20rem" src="{{ MEDIA_URL}}{{ product.image }}"
-                    alt="{{ product.name }} image">
+                <div class="image-container align-middle" style="height: 20rem">
+                    <img class="card-img-top" src="{{ MEDIA_URL}}{{ product.image }}" alt="{{ product.name }} image">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text">by {{ product.photographer_artist }}</p>
@@ -43,13 +48,13 @@
                         <a href="{% url 'add_to_wishlist' product.pk %}" id="{{ product.pk }}-wishlist-btn"
                             class="btn card-link green-link">
                             {% if wishlist_items|length == 0 %}
-                                <i class="far fa-heart" title="add to wishlist"></i>
-                                {% else %}
-                                    {% if product in wishlist_items %}
-                                        <i class="fas fa-heart" title="remove from wishlist"></i>
-                                    {% else %}
-                                        <i class="far fa-heart" title="add to wishlist"></i>
-                                {% endif %}
+                            <i class="far fa-heart" title="add to wishlist"></i>
+                            {% else %}
+                            {% if product in wishlist_items %}
+                            <i class="fas fa-heart" title="remove from wishlist"></i>
+                            {% else %}
+                            <i class="far fa-heart" title="add to wishlist"></i>
+                            {% endif %}
                             {% endif %}
                         </a>
                     </li>
