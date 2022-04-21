@@ -395,13 +395,15 @@ In addition to this I have also used online validators to test the accessibility
 
 I have tested this project manually myself and have also had it peer-reviewed & tested by friends and family on multiple devices and screen sizes.
 
+For all user story testing please view the manual testing document below:
+
 [MANUAL TESTING](MANUAL-TESTING.md)
 
 ### Automated Testing
 
 [UNIT TESTS](UNIT-TESTING.md)
 
-I have used the Coverage library throughout testing to keep track of how much of my Python code was covered by the tests I had written. From running the coverage report my website has  of my code tested. The remaining code is covered by manual testing.
+I have used the Coverage library throughout testing to keep track of how much of my Python code was covered by the tests I had written. From running the coverage report my website has 74% of my code tested. The remaining code is covered by manual testing.
 
 To generate your own coverage report from the command line:
 
