@@ -162,23 +162,77 @@
 
 18. As a **user** I can easily see if I'm logged in or not so that I can choose to log in or log out.
 
-- The navbar links on the right hand side change depending on the authentication state of the user, if logged in then `logout` shows and if the user is not authenticated then `register` and `login` are displayed. This differentiation makes is very clear and obvious to the user if they are currently logged in.
+- The navbar links on the right hand side change depending on the authentication state of the user, if logged in then `my account` & `logout` shows:
+
+![](assets/images/logged-in.jpg)
+
+- and if the user is not authenticated then `register` and `login` are displayed. This differentiation makes is very clear and obvious to the user if they are currently logged in:
+
+![](assets/images/logged-out.jpg)
 
 19. As a **user** I am prompted to register for an account so that I can create an account and receive the benefits from having a profile.
 
+- The register link in the navbar is the first prompt, if the user clicks to log in this page will prompted to register for an account if they don't already have one:
+
+![](assets/images/sign-in-prompt.jpg)
+
+- On the checkout page, if the user isn't logged in there is a paragraph that prompts the user to register or login to save their details for next time:
+
+![](assets/images/register-prompt-checkout.jpg)
 
 20. As a **user** I can log in so that I can auto-populate forms with my information on the site.
-
-
 21. As a **user** I can save my default billing/shipping details so that I can save time making my next purchase.
+
+- When a user first creates an account and log in none of their information will be saved to their profile yet; but after completing the user profile form or making their first order (with the save details box ticked) then both the user profile form and the order form will be pre-filled with their details:
+
+![](assets/images/pre-filled-form.jpg)
+
+![](assets/images/user-profile-form.jpg)
 
 ### **Epic 6 - Exhibition Information**:
 
 23. As an **admin user** I can add/edit/delete exhibition to be displayed on the website.
+
+- The exhibitions functionality works in the same way as products, there are `add exhibition` and `exhibition management` in the admin dropdown menu. `add exhibition` takes the admin user to the the add exhibition page, which is comprised of a form:
+
+![](assets/images/add-exhibition.jpg)
+
+- `exhibition management` takes the user to a page comprised of a data table that holds all of the exhibition information in the model:
+
+![](assets/images/exhibition-management.jpg) 
+
+- from here the admin user can edit an exhibition:
+
+![](assets/images/edit-exhibition.jpg)
+
+- Or delete the chosen exhibition:
+
+![](assets/images/delete-exhibition.jpg)
+
+- If the user clicks `delete` then a modal pops up to ensure the user is making the right decision: 
+
+![](assets/images/delete-modal-exhibition.jpg)
+
+- Once deleted a toast confirms that it has been successful:
+
+![](assets/images/delete-toast.jpg)
+ 
 24. As a **user** I can find the date, description and entry fee for each exhibition so that I can make informed decisions about attending.
+
+- The exhibitions are displayed as cards in columns, each card has the date, description and entry fee in it to provide the user with all the necessary information:
+
+![](assets/images/exhibitions.jpg)
 
 ### **Epic 7 - Marketing**:
 
 25. As a **user** I can sign up to a newsletter to up to date information regarding exhibitions and items for sale.
+
+- In the footer there is a mailchimp sign up form to allow the user to sign up:
+
+![](assets/images/laptop-footer.jpg)
+
+- I have added a link in the 4th slide on the main carousel to link to this section of the website & also from the about page.
+
 26. As an **admin user** I conducted research and implemented SEO keywords to increase traction to my website.
+
 27. As an **admin user** I have created a FB shop page to increase traction to my website.
