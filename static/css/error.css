@@ -2,15 +2,16 @@ $anims: float, floatReverse, float2, floatReverse2;
 $easeSmooth: cubic-bezier(0.39, 0.575, 0.28, 0.995);
 $color: #595959;
 
-body {
+/* body {
 	margin: 0;
 	font-size: 20px;
-}
+} */
+
 * {
 	box-sizing: border-box;
-}
+} 
 
-.container {
+.error-container {
 	position: relative;
 	display: flex;
 	align-items: center;
