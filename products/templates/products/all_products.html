@@ -31,8 +31,8 @@
         <!-- display each product as a card -->
         {% for product in page_obj %}
         <div class="col-sm-6 col-md-4 col-xl-3 my-2 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <div class="image-container align-middle" style="height: 20rem">
+            <div class="card">
+                <div class="image-container align-middle">
                     <img class="card-img-top" src="{{ MEDIA_URL}}{{ product.image }}" alt="{{ product.name }} image">
                 </div>
                 <div class="card-body">
