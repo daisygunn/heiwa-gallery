@@ -50,15 +50,16 @@
             "https://chimpstatic.com/mcjs-connected/js/users/ea91edf6940c130d5c85856bc/bccff5c5cb3f7c53889afd74a.js");
     </script>
     <!-- stripe -->
-    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <!-- personal -->
-    <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
     {% endblock %}
     <title>heiwa | art gallery & shop </title>
 </head>
-<div class="page-container">
+
 
     <body class="d-flex flex-column">
+        <div class="page-container">
         <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-brand-blue" id="main-nav">
             <a class="navbar-brand brand-text ml-2 text-responsive" href="{% url 'home' %}" id="nav-heading">heiwa</a>
             <!-- Collapsible icon for smaller screens -->
@@ -79,7 +80,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'exhibitions_list' %}
-                    green-text {% endif %}" " href=" {% url 'exhibitions_list' %}">exhibitions</a>
+                    green-text {% endif %}" href=" {% url 'exhibitions_list' %}">exhibitions</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle dropdown-toggle1" id="navbarDropdown" role="button"
@@ -283,9 +284,9 @@
         </footer>
         {% block extrajs %}
         {{ block.super }}
-        <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'>
+        <script src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'>
         </script>
-        <script type='text/javascript'>
+        <script>
             (function ($) {
                 window.fnames = new Array();
                 window.ftypes = new Array();
@@ -304,7 +305,7 @@
             }(jQuery));
             var $mcj = jQuery.noConflict(true);
         </script>
-        <script type="text/javascript">
+        <script>
             $('.toast').toast('show');
 
             //TODO: Mailchimp message
@@ -318,7 +319,8 @@
             // }
         </script>
         {% endblock %}
+    </div>
+
     </body>
-</div>
 
 </html>
