@@ -12,7 +12,9 @@ This is a full-stack e-commerce projecy built using Django, Python, HTML, CSS an
     - [**Scope**](#scope)
     - [**Structure**](#structure)
 
-2. [**Features**](#features)
+2. [**Marketing**](#marketing)
+
+3. [**Features**](#features)
 
 4. [**Technologies Used**](#technologies-used)
 
@@ -20,9 +22,7 @@ This is a full-stack e-commerce projecy built using Django, Python, HTML, CSS an
 
 6. [**Deployment**](#deployment)
 
-7. [**Marketing**](#marketing)
-
-8. [**Credits**](#credits)
+7. [**Credits**](#credits)
 
 
 ---
@@ -135,6 +135,18 @@ I have chosen the name 'heiwa' for the name of the gallery, which is the Japanes
 For the font I have chosen 'josefin sans' as I felt it continued with the peaceful theme and I wanted to carry this feeling throughout the entire project; this is also why I have opted to use lowercases throughout.
 
 ![Fonts](assets/images/font.jpg)
+
+---
+
+## Marketing
+
+Heiwa's website is a business to customer e-commerce platform, built and designed to sell products to the user & inform customers about exhibtions at the gallery. Before beginning this project I wrote a marketing plan which can be found here:
+
+[Marketing plan](assets/documents/marketing-plan.pdf)
+
+To further enhance sales there is also a heiwa gallery facebook page, that will display information about new exhibitions or prints that are for sale:
+
+![](assets/images/facebook-page-heiwa.png)
 
 ---
 ## Features
@@ -466,10 +478,6 @@ In the Deploy tab:
 3. Once you have chosen your deployment method and have clicked `Deploy Branch` your application will be built and you should see the below `View` button, click this to open your application:
 
 ![](assets/images/heroku_deployed_image.png)
-
----
-
-## Marketing
 
 ---
 ## Credits
