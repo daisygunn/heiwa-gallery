@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block subtitle %}
-<h2 class="mt-0 mb-3" id="subtitle">[ delete product ]</h2>
+<h2 class="mt-0 mb-3" id="subtitle">[ delete exhibition ]</h2>
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@
             {% csrf_token %}
             <h4>exhibition: {{ exhibition.name }}</h4>
             <p>{{ exhibition.date_starting }} - {{ exhibition.date_finishing }}</p>
-            <button type="button" class="btn btn-danger d-block text-center" data-toggle="modal" data-target="#exampleModalCenter">
+            <button type="button" class="btn btn-danger d-block mx-auto" data-toggle="modal" data-target="#exampleModalCenter">
                 delete exhibition
             </button>
             <!-- hidden modal to confirm deletion -->
@@ -28,8 +28,9 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            if you delete this exhibition you will no longer be able to see in admin panel and you will
-                            need to re-add. only delete if you are sure.</div>
+                            <p>if you delete "{{ exhibition.name }}" you will no longer be able to see it in the admin panel, and you will
+                                need to re-add it later should you need to advertise it again.<br>
+                                <strong>only delete if you are sure.</strong></p></div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-danger">Yes, delete exhibition</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
