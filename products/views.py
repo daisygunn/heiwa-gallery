@@ -2,7 +2,7 @@ from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from django.views import View
 from django.contrib import messages
-from .models import Product
+from .models import Product, Category
 from .forms import ProductForm, EditProductForm, StockForm
 
 
@@ -19,8 +19,13 @@ class AllProducts(View):
         if 'style' in request.GET:
             # get the style id from url
             style = request.GET['style']
+            # if the id is not in the category model
+            if int(style) > len(Category.objects.all()) or 0:
+                messages.error(request, "That category does exist.")
+                return redirect(reverse('all_products'))
             # filter using this id
             products = products.filter(style=style).order_by('name')
+
         # paginate by 12 products
         paginator = Paginator(products, 12)
         page_number = request.GET.get('page')
