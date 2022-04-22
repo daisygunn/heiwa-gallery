@@ -125,7 +125,7 @@ def remove_product(request, pk):
         basket.pop(pk)
         messages.success(request, f"{product} has been removed basket.")
     else:
-         # if product is not in the basket
+        # if product is not in the basket
         messages.error(request, f"{product} is not in your basket.")
     # update the basket
     request.session['basket'] = basket

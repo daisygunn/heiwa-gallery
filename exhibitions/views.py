@@ -26,13 +26,16 @@ def exhibitions_list(request):
 
 def exhibition_management(request):
     """ exhibitions display view """
+    # if not superuse redirect home
     if not request.user.is_superuser:
         messages.error(request,
                        "You are not authorised to view that page.")
         return redirect(reverse('home'))
     else:
+        # get exhibitions from database
         exhibitions_info = Exhibitions.objects.all().order_by('date_starting')
         for exhibition in exhibitions_info:
+            # make sure to update the status
             exhibition.now_showing_calc()
             exhibition.save()
         context = {
@@ -43,6 +46,7 @@ def exhibition_management(request):
 
 
 def convert_date(date):
+    # convert to format required by django
     date_converted = datetime.datetime.strptime(
                 date, "%d/%m/%Y").date()
     return date_converted
@@ -52,17 +56,20 @@ class AddExhibition(View):
     """ A view to return the all_products page """
     def get(self, request):
         """ get request """
+        # if not superuser redirect home
         if not request.user.is_superuser:
             messages.error(request,
                            "You are not authorised to view that page.")
             return redirect(reverse('home'))
         else:
+            # render exhibition form
             add_exhibition_form = ExhibitionForm()
             return render(request, 'exhibitions/add_exhibition.html',
                           {'add_exhibition_form': add_exhibition_form, })
 
     def post(self, request, *args, **kwargs):
         """ post view """
+        # get form data from POST
         form = ExhibitionForm(request.POST)
         if form.is_valid():
             exhibition = form.save(commit=False)
@@ -96,6 +103,7 @@ class EditExhibition(View):
     """ A view to return the edit_product page """
     def get(self, request, pk):
         """ get request """
+        # if not superuser redirect home
         if not request.user.is_superuser:
             messages.error(request,
                            "You are not authorised to view that page.")
@@ -109,6 +117,7 @@ class EditExhibition(View):
                     "%d/%m/%Y")
             exhibition.date_starting = start_date_to_string
             exhibition.date_finishing = end_date_to_string
+            # prefill form with exhibition instance
             edit_exhibition_form = ExhibitionForm(instance=exhibition)
             return render(request, 'exhibitions/edit_exhibition.html',
                           {'edit_exhibition_form': edit_exhibition_form,
@@ -118,7 +127,6 @@ class EditExhibition(View):
         """ post view """
         exhibition = get_object_or_404(Exhibitions, pk=pk)
         form = ExhibitionForm(request.POST, instance=exhibition)
-        print(form)
         if form.has_changed():
             if form.is_valid():
                 exhibition = form.save(commit=False)
@@ -130,7 +138,6 @@ class EditExhibition(View):
                 exhibition.date_finishing = convert_date(exhibition_end_date)
                 # work out the status
                 exhibition.now_showing_calc()
-                print(exhibition)
                 # save exhibition
                 exhibition.save()
                 messages.success(
@@ -138,13 +145,15 @@ class EditExhibition(View):
                 return redirect(reverse(
                     'exhibitions_list'), kwargs={'not_shopping': True})
             else:
-                print(form.errors.as_data())
+                # prefill the form with the same data and redirect
+                # back to edit page
                 form = ExhibitionForm(instance=exhibition)
                 messages.warning(request, "something went wrong...")
                 return redirect(
                     reverse('edit_exhibition', args=[exhibition.pk]),
                     kwargs={'not_shopping': True})
         else:
+            # if no info has changed redirect back to exhibitions list
             messages.info(request, "No information has changed.")
             return redirect(
                 reverse('exhibitions_list'), kwargs={'not_shopping': True})
@@ -154,11 +163,13 @@ class DeleteExhibition(View):
     """ deleting exhibition """
     def get(self, request, pk):
         """ get request """
+        # if not superuser redirect home
         if not request.user.is_superuser:
             messages.error(request,
                            "You are not authorised to view that page.")
             return redirect(reverse('home'))
         else:
+            # get exhibition
             exhibition = get_object_or_404(Exhibitions, pk=pk)
             return render(request, 'exhibitions/delete_exhibition.html',
                           {'exhibition': exhibition})
@@ -166,6 +177,7 @@ class DeleteExhibition(View):
     def post(self, request, pk, *args, **kwargs):
         """ post view """
         exhibition = get_object_or_404(Exhibitions, pk=pk)
+        # delete the exhibition
         exhibition.delete()
         messages.success(
             request, f"success, {exhibition.name} has been deleted.")

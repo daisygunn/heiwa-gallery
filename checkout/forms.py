@@ -6,8 +6,8 @@ class OrderForm(forms.ModelForm):
     """ form for users to place order """
     class Meta:
         model = Order
-        fields = ('full_name', 'email', 'phone_number', 
-                  'flat_house', 'street_address', 'town_city', 
+        fields = ('full_name', 'email', 'phone_number',
+                  'flat_house', 'street_address', 'town_city',
                   'county', 'postcode', 'country')
 
     def __init__(self, *args, **kwargs):
@@ -21,7 +21,7 @@ class OrderForm(forms.ModelForm):
             'town_city': 'Town or City',
             'county': 'County',
             'postcode': 'Post code',
-            'country': 'Country (delivery only possible in UK)',
+            'country': 'Country',
         }
 
         for field in self.fields:

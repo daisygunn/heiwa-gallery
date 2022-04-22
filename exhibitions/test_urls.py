@@ -1,7 +1,7 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
 from exhibitions.views import (exhibitions_list, AddExhibition,
-                               EditExhibition, DeleteExhibition, 
+                               EditExhibition, DeleteExhibition,
                                exhibition_management)
 
 

@@ -22,12 +22,3 @@ class TestExhibitionsViews(TestCase):
     def test_exhibition_name(self):
         exhibition = self.exhibition1
         self.assertEqual(str(exhibition), 'Test 1234 by Tester tester')
-
-    # def test_exhibition_status_label(self):
-    #     exhibition = self.exhibition1
-    #     exhibition.date_starting = datetime.datetime.strptime(
-    #             self.exhibition1.date_starting, "%d/%m/%Y").date()
-    #     exhibition.date_finishing = datetime.datetime.strptime(
-    #             self.exhibition1.date_finishing, "%d/%m/%Y").date()
-    #     exhibition.now_showing_calc()
-    #     self.assertEqual(exhibition.status, 'coming soon')

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    <title>heiwa | exhibitions showing at the gallery</title>
+<title>heiwa | exhibitions showing at the gallery</title>
 {% endblock %}
 
 {% block subtitle %}
@@ -17,24 +17,32 @@
                 advance.</h6>
         </div>
         <div class="col-12 mb-3">
+            <!-- Option to filter by date/status -->
             <h6>filter by date:</h6>
-            <a href="{% url 'exhibitions_list' %}?status=now showing" rel="canonical" class="btn bg-brand-blue green-link text-white fw-bolder">now
+            <a href="{% url 'exhibitions_list' %}?status=now showing" rel="canonical"
+                class="btn bg-brand-blue green-link text-white fw-bolder">now
                 showing</a>
-            <a href="{% url 'exhibitions_list' %}?status=coming soon" rel="canonical" class="btn bg-warning green-link text-white fw-bolder">coming
+            <a href="{% url 'exhibitions_list' %}?status=coming soon" rel="canonical"
+                class="btn bg-warning green-link text-white fw-bolder">coming
                 soon</a>
-            <a href="{% url 'exhibitions_list' %}?status=finished" rel="canonical" class="btn bg-secondary green-link text-white fw-bolder">finished</a>
+            <a href="{% url 'exhibitions_list' %}?status=finished" rel="canonical"
+                class="btn bg-secondary green-link text-white fw-bolder">finished</a>
+            <!-- If superuser then display cancelled and pending -->
             {% if request.user.is_superuser %}
-            <a href="{% url 'exhibitions_list' %}?status=pending" rel="canonical" class="btn bg-info green-link text-white fw-bolder">pending</a>
-            <a href="{% url 'exhibitions_list' %}?status=cancelled" rel="canonical" class="btn bg-danger green-link text-white fw-bolder">cancelled</a>
+            <a href="{% url 'exhibitions_list' %}?status=pending" rel="canonical"
+                class="btn bg-info green-link text-white fw-bolder">pending</a>
+            <a href="{% url 'exhibitions_list' %}?status=cancelled" rel="canonical"
+                class="btn bg-danger green-link text-white fw-bolder">cancelled</a>
             {% endif %}
-            <a href="{% url 'exhibitions_list' %}" rel="canonical" class="btn bg-brand-blue green-link fw-bolder">show all</a>
+            <a href="{% url 'exhibitions_list' %}" rel="canonical" class="btn bg-brand-blue green-link fw-bolder">show
+                all</a>
         </div>
     </div>
-
+    <!-- If there are exhibitions in the database -->
     {% if exhibitions %}
-
     <div class="row">
         {% for exhibition in exhibitions %}
+        <!-- If exhibition has been ticked to display -->
         {% if exhibition.display %}
         <div class="col-sm-6 mb-2">
             <div class="card">
@@ -43,7 +51,6 @@
                     </h5>
                 </div>
                 <div class="card-body brand-blue">
-                    <!-- <p class="read-more">read more <span><i class="fas fa-arrow-down" data-id="{{ exhibition.name }}-description"></i></span></p> -->
                     <div class="" id="{{ exhibition.name }}-description">
                         <p class="card-text fw-bolder">{{ exhibition.description }}</p>
                     </div>
@@ -53,8 +60,9 @@
                                 class="green-text">£{{ exhibition.entrance_fee }}</span></p>
                         <p class="card-text green-text fw-bolder">{{ exhibition.date_starting }} -
                             {{ exhibition.date_finishing }}
-                            {% if exhibition.status == 'now showing' %} <span
-                                class="badge badge-pill bg-brand-blue text-white mx-2">
+                            <!-- change colour of pill depending on status -->
+                            {% if exhibition.status == 'now showing' %}
+                            <span class="badge badge-pill bg-brand-blue text-white mx-2">
                                 {% elif exhibition.status == 'coming soon' %} <span
                                     class="badge badge-pill bg-warning mx-2">
                                     {% else %} <span class="badge badge-pill bg-secondary mx-2">{% endif %}
@@ -73,17 +81,7 @@
             <h5>sorry, no exhibition information currently available.</h5>
         </div>
     </div>
-    
     {% endif %}
 
 </div>
-</div>
-
-</div>
-</div>
-{% endblock %}
-
-{% block extrajs %}
-{{ block.super }}
-
 {% endblock %}

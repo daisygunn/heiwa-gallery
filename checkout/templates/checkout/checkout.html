@@ -17,6 +17,7 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center d-flex mb-3">
+        <!-- if there are items in the basket -->
         {% if items_in_basket %}
         <!-- customer info form -->
         <div class="col-sm-6 col-md-4 payment-form order-sm-1 order-xl-0">
@@ -26,20 +27,24 @@
                 {{ form_errors }}
                 {{ form|crispy }}
                 <div class="mt-2">
+                    <!-- if the user is logged in, give them the option to save their details -->
                     {% if request.user.is_authenticated %}
-                    <label for="save-address" class="brand-blue"><strong>make default address:</strong></label>
+                    <label for="save-address" class="brand-blue"><strong>save details to profile:</strong></label>
                     <input type="checkbox" id="save-address" name="save-address" checked>
                     {% else %}
+                    <!-- if not logged in then prompt them to register or sign in -->
                     <p class="fw-bolder brand-blue"><a class="green-link" href="{% url 'account_signup' %}">register</a> or
                     <a class="green-link" href="{% url 'account_login' %}">login</a> to save your address for next time!</p>
                     {% endif %}
                 </div>
                 <hr>
+                <!-- Card detail -->
                 <h5 class="brand-blue mb-3"><strong>card details</strong></h5>
                 <div id="payment-element">
                     <!--Stripe.js injects the Payment Element-->
                 </div>
                 <input type="hidden" value="{{ client_secret }}" name="client_secret">
+                <!-- used to display errors/success message -->
                 <div id="payment-message" class="hidden text-danger mb-2"></div>
                 <button id="payment-submit-button" type="submit" class="btn bg-brand-blue green-link w-100">
                     <div class="spinner hidden" id="spinner"></div>
@@ -47,7 +52,7 @@
                 </button>
             </form>
         </div>
-
+        <!-- display an overview of the basket -->
         <div class="col-sm-6 col-md-4 payment-form order-sm-0 order-xl-1">
             <h5 class="brand-blue mb-3"><strong>basket</strong></h5>
             {% for pk in items_in_basket %}

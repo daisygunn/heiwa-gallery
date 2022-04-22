@@ -8,14 +8,12 @@ class ExhibitionForm(forms.ModelForm):
     date_starting = forms.DateField(input_formats=settings.DATE_INPUT_FORMAT)
     date_finishing = forms.DateField(input_formats=settings.DATE_INPUT_FORMAT)
 
-
     class Meta:
         """ Exhibitions form """
         model = Exhibitions
-        fields = ('name', 'style', 'description', 'photographer_artist', 
-                  'entrance_fee', 'gallery_area', 'date_starting', 
+        fields = ('name', 'style', 'description', 'photographer_artist',
+                  'entrance_fee', 'gallery_area', 'date_starting',
                   'date_finishing', 'display',)
-
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -37,5 +35,8 @@ class ExhibitionForm(forms.ModelForm):
             self.fields[field].label = False
             self.fields['display'].label = placeholder
             self.fields[field].widget.attrs['class'] = 'w-100 p-2 mb-2'
-            self.fields['date_starting'].widget.attrs['class'] = 'date-picker dateinput w-100 p-2 mb-2'
-            self.fields['date_finishing'].widget.attrs['class'] = 'date-picker dateinput w-100 p-2 mb-2'
+            # make date fields datepickers
+            self.fields['date_starting'].widget.attrs['class'] = (
+                'date-picker dateinput w-100 p-2 mb-2')
+            self.fields['date_finishing'].widget.attrs['class'] = (
+                'date-picker dateinput w-100 p-2 mb-2')

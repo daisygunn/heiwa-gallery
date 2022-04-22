@@ -6,5 +6,5 @@ from .models import Exhibitions
 class ExhibitionsAdmin(admin.ModelAdmin):
     """ Category admin management """
     list_display = ("name", "style", "photographer_artist",
-                    "entrance_fee", "date_starting", "date_finishing", "status")
-    
+                    "entrance_fee", "date_starting", "date_finishing",
+                    "status")

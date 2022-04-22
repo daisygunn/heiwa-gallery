@@ -20,6 +20,7 @@ from .models import Order, OrderItem
 def cache_checkout_data(request):
     """ to store save address info """
     try:
+        # get the pid and api_key
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         # update the payment intents metadata, passing the information across
@@ -55,6 +56,7 @@ def send_confirmation_email(request, order_number):
 
 def checkout(request):
     """ checkout """
+    # get the pulic and secret key from settings
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     # post method
@@ -74,13 +76,15 @@ def checkout(request):
             'country': request.POST.get('country'),
         }
         order_form = OrderForm(form_data)
-
+        # if the form is valid
         if order_form.is_valid():
+            # create the order
             order = order_form.save(commit=False)
             order.stripe_pid = request.POST.get(
                 'client_secret').split('_secret')[0]
             # save the basket in the order model
             order.original_basket = json.dumps(basket)
+            # save order
             order.save()
             # for each item & quantity
             for pk, quantity in basket.items():
@@ -111,6 +115,7 @@ def checkout(request):
                                      f"{product.name} in stock for you"
                                      " to purchase your desired amount."
                                      " Please review your basket.")
+                        # delete the order
                         order.delete()
                         return redirect(reverse('basket_overview'))
                 except Product.DoesNotExist:
@@ -125,14 +130,17 @@ def checkout(request):
             order_number = order.order_number
             # send confirmation email to customer
             send_confirmation_email(request, order_number)
+            # add save_address to session if the box was ticked
             request.session['save_address'] = 'save-address' in request.POST
             return redirect(
                 reverse('checkout_success', args=[order.order_number]))
         else:
-            messages.error(request, "something wrong with form")
+            messages.error(request, "Sorry, there is something wrong with your form,\
+            please check the information you have entered.")
             return render(request, 'checkout/checkout.html',
                           {'form': order_form, })
     else:
+        # if user is logged in
         if request.user.is_authenticated:
             # get user profile
             user = UserProfile.objects.get(user=request.user)
@@ -178,9 +186,10 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     """ handle success """
+    # get save_address from session
     save_address = request.session.get('save_address')
-    print(save_address)
     order = get_object_or_404(Order, order_number=order_number)
+    # if user is logged in
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user=request.user)
         # Attach the user's profile to the order
@@ -210,6 +219,7 @@ def checkout_success(request, order_number):
                      f'{order_number}.')
 
     if 'basket' in request.session:
+        # delete the basket once processed
         del request.session['basket']
 
     return render(request, 'checkout/checkout_success.html',

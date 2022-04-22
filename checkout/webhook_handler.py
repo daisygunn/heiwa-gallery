@@ -1,10 +1,11 @@
 from django.http import HttpResponse
 from products.models import Product
 from .models import Order, OrderItem
-
+from user_account.models import UserProfile
 
 import json
 import time
+
 
 class StripeWhHandler:
     """ handle all stripe webhooks """
@@ -33,7 +34,27 @@ class StripeWhHandler:
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
-
+        # Update profile information if save_info was checked
+        user_profile = None
+        username = intent.metadata.username
+        if username != 'AnonymousUser':
+            user_profile = UserProfile.objects.get(user__username=username)
+            if save_address == "true":
+                user_profile.default_phone_number = (
+                    shipping_details.phone)
+                user_profile.default_flat_house = (
+                    shipping_details.address.line1)
+                user_profile.default_street_address = (
+                    shipping_details.address.line2)
+                user_profile.default_town_city = (
+                    shipping_details.address.city)
+                user_profile.default_county = (
+                    shipping_details.address.state)
+                user_profile.default_country = (
+                    shipping_details.address.country)
+                user_profile.default_postcode = (
+                    shipping_details.address.postal_code)
+                user_profile.save()
         order_exists = False
         # prevent the order being added twice
         attempt = 1

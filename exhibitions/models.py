@@ -77,5 +77,3 @@ class Exhibitions(models.Model):
             return False
         else:
             return True
-
-    # def status_name_to_display(self):

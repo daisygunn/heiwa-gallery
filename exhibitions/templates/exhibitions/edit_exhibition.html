@@ -18,6 +18,7 @@
 
 <div class="row d-flex justify-content-center">
     <div class="col-12 col-md-6">
+        <!-- edit exhibition form -->
         <form action="{% url 'edit_exhibition' exhibition.pk %}" method="POST" class="my-2 w-100">
             {% csrf_token %}
             {{ form_errors }}
@@ -34,10 +35,11 @@
 </div>
 {% endblock %}
 
-
 {% block extrajs %}
 {{ block.super }}
+<!-- jQuery datepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Inline script as it failed when loaded externally -->
 <script type="text/javascript">
 function datePicker() {
     $(".date-picker").datepicker({
@@ -49,5 +51,4 @@ $(document).ready(function () {
     datePicker();
     });
 </script>
-<!-- <script src="{% static 'products/js/products.js' %}"></script> -->
 {% endblock %}
