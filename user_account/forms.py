@@ -22,7 +22,7 @@ class UserProfileForm(forms.ModelForm):
             'default_town_city': 'Town or City',
             'default_county': 'County',
             'default_postcode': 'Post code',
-            'default_country': 'Country (delivery only possible in UK)',
+            'default_country': 'Country',
         }
 
         for field in self.fields:

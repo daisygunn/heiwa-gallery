@@ -11,7 +11,7 @@ class UserAdmin(admin.ModelAdmin):
               'default_flat_house', 'default_street_address',
               'default_town_city', 'default_county',
               'default_postcode', 'default_country')
-  
+
     list_display = ('user', 'full_name', 'email',)
     ordering = ('-registration_date',)
 

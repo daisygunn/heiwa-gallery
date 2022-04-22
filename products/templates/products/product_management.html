@@ -18,9 +18,9 @@
 
 {% block content %}
 <div class="container">
-
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-8 col-xl-10 my-2 justify-content-center">
+            <!-- products datatable -->
             <table id="products_table" class="data_table display wrap" width="100%">
                 <thead>
                     <tr>
@@ -79,5 +79,6 @@
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<!-- personal datatable js -->
 <script src="{% static 'js/datatable.js' %}"></script>
 {% endblock %}

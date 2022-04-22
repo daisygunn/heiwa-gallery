@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product, Category
+from .models import Product
 
 
 class ProductForm(forms.ModelForm):
@@ -7,9 +7,8 @@ class ProductForm(forms.ModelForm):
     class Meta:
         """ product form """
         model = Product
-        fields = ('name', 'style', 'photographer_artist', 'size', 
+        fields = ('name', 'style', 'photographer_artist', 'size',
                   'quantity_in_stock', 'price', 'image')
-        
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -22,7 +21,7 @@ class ProductForm(forms.ModelForm):
             'price': 'price',
             'image': 'product image',
         }
-        
+
         for field in self.fields:
             placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
@@ -35,7 +34,7 @@ class EditProductForm(forms.ModelForm):
     class Meta:
         """ product form """
         model = Product
-        fields = ('name', 'style', 'photographer_artist', 'size', 
+        fields = ('name', 'style', 'photographer_artist', 'size',
                   'quantity_in_stock', 'price', 'image')
 
     def __init__(self, *args, **kwargs):
@@ -49,10 +48,11 @@ class EditProductForm(forms.ModelForm):
             'price': 'price',
             'image': 'product image',
         }
-        
+
         for field in self.fields:
             placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
+            # make quantity in stock field hidden and readonly
             self.fields['quantity_in_stock'].widget.attrs['readonly'] = True
             self.fields['quantity_in_stock'].widget.attrs['class'] = 'hidden'
             self.fields[field].label = False
@@ -74,5 +74,6 @@ class StockForm(forms.ModelForm):
                 'quantity_in_stock': 'Updated quantity in stock',
             }
             self.fields[field].label = labels[field]
+            # make name field readonly
             self.fields['name'].widget.attrs['readonly'] = True
             self.fields[field].widget.attrs['class'] = 'w-100 mb-2'

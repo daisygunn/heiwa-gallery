@@ -14,6 +14,7 @@
 
 <div class="row d-flex justify-content-center">
     <div class="col-12 col-md-4">
+        <!-- edit product form -->
         <form action="{% url 'edit_product' product.pk %}" method="POST" class="my-2 w-100" enctype="multipart/form-data">
             {% csrf_token %}
             {{ edit_product_form | crispy }}
@@ -23,8 +24,8 @@
 </div>
 {% endblock %}
 
-
 {% block extrajs %}
 {{ block.super }}
+<!-- products js -->
 <script src="{% static 'products/js/products.js' %}"></script>
 {% endblock %}

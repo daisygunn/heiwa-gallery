@@ -58,7 +58,6 @@ class Product(models.Model):
         null=True, blank=True, storage=MediaFileSystemStorage())
     in_stock = models.BooleanField(default=False)
     date_added = models.DateField(auto_now_add=True)
-    # date_updated = models.DateField(auto_now_add=True)
 
     def __str__(self):
         """ return name to display on site """
@@ -79,8 +78,3 @@ class Product(models.Model):
         else:
             self.in_stock = True
         self.save()
-
-    # def save(self, *args, **kwargs):
-    #     if self.quantity_in_stock < 1:
-    #         self.in_stock = False
-    #     super(Product, self).save(*args, **kwargs)

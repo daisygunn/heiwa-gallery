@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
 {% block title %}
     <title>heiwa | artwork and prints online shop</title>
 {% endblock %}
 
 {% block subtitle %}
-<h2 class="mt-0 mb-3" id="subtitle">[ shop ]</h2>
-{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+    <h2 class="mt-0 mb-3" id="subtitle">[ shop ]</h2>
 {% endblock %}
 
 {% block content %}
@@ -22,6 +22,7 @@
     </div>
     <div class="row">
         <div class="col-12 mb-3">
+            <!-- category filter options -->
             <h6>filter by category:</h6>
             <a href="{% url 'all_products' %}?style=1" rel="canonical" class="btn bg-brand-blue green-link text-white fw-bolder">black
                 and white prints</a>
@@ -52,14 +53,17 @@
                     <li class="list-group-item">
                         <a href="{% url 'add_to_wishlist' product.pk %}" id="{{ product.pk }}-wishlist-btn"
                             class="btn card-link green-link">
+                            <!-- if there are no items in wishlist -->
                             {% if wishlist_items|length == 0 %}
                             <i class="far fa-heart" title="add to wishlist"></i>
                             {% else %}
-                            {% if product in wishlist_items %}
-                            <i class="fas fa-heart" title="remove from wishlist"></i>
-                            {% else %}
-                            <i class="far fa-heart" title="add to wishlist"></i>
-                            {% endif %}
+                                <!-- if the product is in the wishlist, display full heart -->
+                                {% if product in wishlist_items %}
+                                    <i class="fas fa-heart" title="remove from wishlist"></i>
+                                {% else %}
+                                    <!-- if the product is not in wishlist, display empty heart -->
+                                    <i class="far fa-heart" title="add to wishlist"></i>
+                                {% endif %}
                             {% endif %}
                         </a>
                     </li>
@@ -67,6 +71,7 @@
                 </ul>
                 <div class="card-body">
                     {% if product.in_stock %}
+                    <!-- only display add to product form if the product is in stock -->
                     <form action="{% url 'add_product_to_basket' product.pk %}" method="POST">
                         {% csrf_token %}
                         <select name="quantity" id="{{ product.pk }}_quantity">
@@ -113,9 +118,4 @@
     </div>
 
 </div>
-{% endblock %}
-
-{% block extrajs %}
-{{ block.super }}
-
 {% endblock %}

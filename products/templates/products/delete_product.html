@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block title %}
-    <title>heiwa | delete product from database</title>
+<title>heiwa | delete product from database</title>
 {% endblock %}
 
 {% block subtitle %}
@@ -10,51 +10,50 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-md-4 ">
+            <!-- delete product form -->
+            <form action="{% url 'delete_product' product.pk %}" method="POST" class="my-2 w-100 text-center"
+                enctype="multipart/form-data">
+                {% csrf_token %}
+                <h4 class="brand-blue">product: {{ product.name|lower }}</h4>
+                <img class="card-img-top" style="height: 50%; width: 50%" src="{{ MEDIA_URL}}{{ product.image }}"
+                    alt="{{ product.name }} image">
 
-<div class="row d-flex justify-content-center">
-    <div class="col-12 col-md-4 ">
-        <form action="{% url 'delete_product' product.pk %}" method="POST" class="my-2 w-100 text-center"
-            enctype="multipart/form-data">
-            {% csrf_token %}
-            <h4 class="brand-blue">product: {{ product.name|lower }}</h4>
-            <img class="card-img-top" style="height: 50%; width: 50%"
-                                src="{{ MEDIA_URL}}{{ product.image }}" alt="{{ product.name }} image">
-
-            <button type="button" class="btn btn-danger d-block mx-auto mt-3" data-toggle="modal" data-target="#exampleModalCenter">
-                delete product
-            </button>
-            <!-- hidden modal to confirm deletion -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">are you sure?</h5>
-                            <button type="button" class="close-button" data-dismiss="modal" aria-label="Close">
-                                <i class="fas fa-window-close"></i>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>if you delete {{ product.name|lower }} you will no longer be able to see it in admin panel, and you will
-                                need to re-add it later should you need to sell it again.<br>
-                                <strong>only delete if you are sure.</strong></p>
+                <button type="button" class="btn btn-danger d-block mx-auto mt-3" data-toggle="modal"
+                    data-target="#exampleModalCenter">
+                    delete product
+                </button>
+                <!-- hidden modal to confirm deletion -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">are you sure?</h5>
+                                <button type="button" class="close-button" data-dismiss="modal" aria-label="Close">
+                                    <i class="fas fa-window-close"></i>
+                                </button>
                             </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-danger">Yes, delete product</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <div class="modal-body">
+                                <p>if you delete {{ product.name|lower }} you will no longer be able to see it in admin
+                                    panel, and you will
+                                    need to re-add it later should you need to sell it again.<br>
+                                    <strong>only delete if you are sure.</strong></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger">Yes, delete product</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
-
-
-
-
 {% endblock %}
-
 
 {% block extrajs %}
 {{ block.super }}
