@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+
+{% block title %}
+    <title>heiwa | delete an exhibition from database</title>
+{% endblock %}
+
 {% block subtitle %}
 <h2 class="mt-0 mb-3" id="subtitle">[ delete exhibition ]</h2>
 {% endblock %}
 
 {% block content %}
-
 <div class="row d-flex justify-content-center">
     <div class="col-12 col-md-4 ">
         <form action="{% url 'delete_exhibition' exhibition.pk %}" method="POST" class="my-2 w-100 text-center">

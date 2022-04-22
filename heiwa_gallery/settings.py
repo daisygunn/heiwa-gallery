@@ -101,7 +101,8 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-SECURE_SSL_REDIRECT = True
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
 
 # email settings
 if 'DEVELOPMENT' in os.environ:
