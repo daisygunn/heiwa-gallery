@@ -10,9 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="heiwa gallery & shop located in East London, showcasing local and international artists in our 
-        three exhibition spaces.">
-    <meta name="description" content="artwork available to buy, we sell prints of artwork from previous & current artists,
-        both online and from our gallery shop.">
+        three exhibition spaces. Artwork available to buy, we sell prints & artwork online and from our gallery shop.">
     {% endblock %}
 
     {% block corecss %}
@@ -93,7 +91,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu1" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item {% if request.resolver_match.url_name == 'all_products' %}
-                        green-text {% endif %}" href="{% url 'all_products' %}">all prints</a>
+                        green-text {% endif %}" href="{% url 'all_products' %}">all prints & artwork</a>
                             {% for category in category_list %}
                             <a class="dropdown-item {% if request.resolver_match.url_name == 'all_products/?style={{ category.id }}>' %}
                         green-text {% endif %}"

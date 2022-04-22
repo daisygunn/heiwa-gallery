@@ -235,4 +235,12 @@
 
 26. As an **admin user** I conducted research and implemented SEO keywords to increase traction to my website.
 
+
+
 27. As an **admin user** I have created a FB shop page to increase traction to my website.
+
+- Facebook page for Heiwa can be found here:
+
+![](assets/images/facebook-page-heiwa.png)
+
+## JavaScript Testing
