@@ -251,7 +251,7 @@
                                             <p class="brandingLogo"><a href="http://eepurl.com/hZcfaX"
                                                     title="Mailchimp - email marketing made easy and fun"><img
                                                         src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_dark_dtp.svg"
-                                                        class="mailchimp-logo" alt="mailchimp-logo"></a>
+                                                        class="mailchimp-logo" alt="mailchimp-logo" target="_blank"></a>
                                             </p>
                                         </div>
                                     </div>
@@ -314,15 +314,18 @@
         <script>
             $('.toast').toast('show');
 
-            //TODO: Mailchimp message
-
-            // responseBlock = $("#mce-success-response")
-            // if(responseBlock.css('display') === 'block'){
-            //     console.log('working')
-            //     setTimeout( function(){ 
-            //     // Do something after 10 second 
-            //     responseBlocks.hide()}  , 10000 );
-            // }
+            setInterval(() => {
+                const errorResponse = document.getElementById("mce-error-response");
+                if (errorResponse && errorResponse.style.display === "block") {
+                    errorResponse.style.display = "none";
+                    return;
+                }
+                const successResponse = document.getElementById("mce-success-response");
+                if (successResponse && successResponse.style.display === "block") {
+                    successResponse.style.display = "none";
+                    return;
+                }
+            }, 5000);
         </script>
         {% endblock %}
     </div>

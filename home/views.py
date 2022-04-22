@@ -3,7 +3,6 @@ from django.shortcuts import render
 
 def index(request):
     """ A view to return the index page """
-    raise Exception("this is an exception.")
     return render(request, 'home/index.html')
 
 
