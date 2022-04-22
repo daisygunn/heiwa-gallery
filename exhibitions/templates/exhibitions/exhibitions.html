@@ -11,7 +11,7 @@
 
 {% block content %}
 <div class="container">
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center mb-5">
         <div class="col-sm-12 col-md-6">
             <h6 class="bg-brand-blue p-2 text-center green-text fw-bolder">please note, tickets cannot be purchased in
                 advance.</h6>
@@ -19,23 +19,35 @@
         <div class="col-12 mb-3">
             <!-- Option to filter by date/status -->
             <h6>filter by date:</h6>
+        </div>
+        <div class="col-sm-6 col-md-3 mb-2">
             <a href="{% url 'exhibitions_list' %}?status=now showing" rel="canonical"
-                class="btn bg-brand-blue green-link text-white fw-bolder">now
+                class="btn bg-brand-blue green-link text-white fw-bolder w-100">now
                 showing</a>
+        </div>
+        <div class="col-sm-6 col-md-3 mb-2">
             <a href="{% url 'exhibitions_list' %}?status=coming soon" rel="canonical"
-                class="btn bg-warning green-link text-white fw-bolder">coming
+                class="btn bg-warning green-link text-white fw-bolder w-100">coming
                 soon</a>
+        </div>
+        <div class="col-sm-6 col-md-3 mb-2">
             <a href="{% url 'exhibitions_list' %}?status=finished" rel="canonical"
-                class="btn bg-secondary green-link text-white fw-bolder">finished</a>
-            <!-- If superuser then display cancelled and pending -->
-            {% if request.user.is_superuser %}
+                class="btn bg-secondary green-link text-white fw-bolder w-100">finished</a>
+        </div>
+        <!-- If superuser then display cancelled and pending -->
+        {% if request.user.is_superuser %}
+        <div class="col-sm-6 col-md-3 mb-2">
             <a href="{% url 'exhibitions_list' %}?status=pending" rel="canonical"
-                class="btn bg-info green-link text-white fw-bolder">pending</a>
+                class="btn bg-info green-link text-white fw-bolder w-100">pending</a>
+        </div>
+        <div class="col-sm-6 col-md-3 mb-2">
             <a href="{% url 'exhibitions_list' %}?status=cancelled" rel="canonical"
-                class="btn bg-danger green-link text-white fw-bolder">cancelled</a>
-            {% endif %}
-            <a href="{% url 'exhibitions_list' %}" rel="canonical" class="btn bg-brand-blue green-link fw-bolder">show
-                all</a>
+            class="btn bg-danger green-link text-white fw-bolder w-100">cancelled</a>
+        </div>
+        {% endif %}
+        <div class="col-sm-6 col-md-3 mb-2">            
+            <a href="{% url 'exhibitions_list' %}" rel="canonical" class="btn bg-brand-blue green-link fw-bolder w-100">show
+            all</a>
         </div>
     </div>
     <!-- If there are exhibitions in the database -->

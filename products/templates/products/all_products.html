@@ -6,11 +6,11 @@
 {% endblock %}
 
 {% block title %}
-    <title>heiwa | artwork and prints online shop</title>
+<title>heiwa | artwork and prints online shop</title>
 {% endblock %}
 
 {% block subtitle %}
-    <h2 class="mt-0 mb-3" id="subtitle">[ shop ]</h2>
+<h2 class="mt-0 mb-3" id="subtitle">[ shop ]</h2>
 {% endblock %}
 
 {% block content %}
@@ -20,17 +20,27 @@
             <h6 class="bg-brand-blue p-2 text-center green-text fw-bolder">free shipping worldwide</h6>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 mb-3">
-            <!-- category filter options -->
+    <div class="row mb-5">
+        <div class="col-12 mb-3">   
             <h6>filter by category:</h6>
-            <a href="{% url 'all_products' %}?style=1" rel="canonical" class="btn bg-brand-blue green-link text-white fw-bolder">black
-                and white prints</a>
-            <a href="{% url 'all_products' %}?style=2" rel="canonical" class="btn bg-warning green-link text-white fw-bolder">graphic
-                art</a>
-            <a href="{% url 'all_products' %}?style=3" rel="canonical" class="btn bg-secondary green-link text-white fw-bolder">colour
+        </div>
+        <!-- category filter options -->
+        <div class="col-sm-6 col-md-3 mb-2"><a href="{% url 'all_products' %}?style=1" rel="canonical"
+                class="btn bg-brand-blue green-link text-white fw-bolder w-100">black
+                and white prints</a></div>
+        <div class="col-sm-6 col-md-3 mb-2"><a href="{% url 'all_products' %}?style=2" rel="canonical"
+                class="btn bg-warning green-link text-white fw-bolder w-100">graphic
+                art</a></div>
+
+        <div class="col-sm-6 col-md-3 mb-2">
+            <a href="{% url 'all_products' %}?style=3" rel="canonical"
+                class="btn bg-secondary green-link text-white fw-bolder w-100">colour
                 photography</a>
-            <a href="{% url 'all_products' %}" rel="canonical" class="btn bg-brand-blue green-link fw-bolder">show all</a>
+        </div>
+
+        <div class="col-sm-6 col-md-3 mb-2">
+            <a href="{% url 'all_products' %}" rel="canonical" class="btn bg-brand-blue green-link fw-bolder w-100">show
+                all</a>
         </div>
     </div>
     <div class="row">
@@ -57,13 +67,13 @@
                             {% if wishlist_items|length == 0 %}
                             <i class="far fa-heart" title="add to wishlist"></i>
                             {% else %}
-                                <!-- if the product is in the wishlist, display full heart -->
-                                {% if product in wishlist_items %}
-                                    <i class="fas fa-heart" title="remove from wishlist"></i>
-                                {% else %}
-                                    <!-- if the product is not in wishlist, display empty heart -->
-                                    <i class="far fa-heart" title="add to wishlist"></i>
-                                {% endif %}
+                            <!-- if the product is in the wishlist, display full heart -->
+                            {% if product in wishlist_items %}
+                            <i class="fas fa-heart" title="remove from wishlist"></i>
+                            {% else %}
+                            <!-- if the product is not in wishlist, display empty heart -->
+                            <i class="far fa-heart" title="add to wishlist"></i>
+                            {% endif %}
                             {% endif %}
                         </a>
                     </li>
