@@ -140,6 +140,8 @@ For the font I have chosen 'josefin sans' as I felt it continued with the peacef
 
 ## Marketing
 
+### Plan
+
 Heiwa's website is a business to customer e-commerce platform, built and designed to sell products to the user & inform customers about exhibtions at the gallery. Before beginning this project I wrote a marketing plan which can be found here:
 
 [Marketing plan](assets/documents/marketing-plan.pdf)
@@ -147,6 +149,19 @@ Heiwa's website is a business to customer e-commerce platform, built and designe
 To further enhance sales there is also a heiwa gallery facebook page, that will display information about new exhibitions or prints that are for sale:
 
 ![](assets/images/facebook-page-heiwa.png)
+
+### SEO's
+
+I conducted SEO research to decide on the keywords and phrases that would be used across the website, I wrote a list of as many words and phrases I could think of and then using Google, I searched by these keywords to see the sort of websites that were returned. 
+
+![](assets/images/art-gallery-google.jpg)
+
+I used this research to condense my list:
+
+![](assets/images/SEO research.jpeg)
+
+In addition to my own research, once the bulk of the website had been build I used an online tool called [Semrush](https://www.semrush.com/) which provided a report on ways that I could improve my SEO. This report showed that each page needed it's own title so I implemented this feedback. I chose the keep the meta tags and descriptions the same across each page as the content wouldn't have varied too much and there would have been a lot of replication.
+
 
 ---
 ## Features
