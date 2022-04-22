@@ -13,16 +13,16 @@
         </div>
         <div class="col-12 mb-3">
             <h6>filter by date:</h6>
-            <a href="{% url 'exhibitions_list' %}?status=now showing" class="btn bg-brand-blue green-link text-white fw-bolder">now
+            <a href="{% url 'exhibitions_list' %}?status=now showing" rel="canonical" class="btn bg-brand-blue green-link text-white fw-bolder">now
                 showing</a>
-            <a href="{% url 'exhibitions_list' %}?status=coming soon" class="btn bg-warning green-link text-white fw-bolder">coming
+            <a href="{% url 'exhibitions_list' %}?status=coming soon" rel="canonical" class="btn bg-warning green-link text-white fw-bolder">coming
                 soon</a>
-            <a href="{% url 'exhibitions_list' %}?status=finished" class="btn bg-secondary green-link text-white fw-bolder">finished</a>
+            <a href="{% url 'exhibitions_list' %}?status=finished" rel="canonical" class="btn bg-secondary green-link text-white fw-bolder">finished</a>
             {% if request.user.is_superuser %}
-            <a href="{% url 'exhibitions_list' %}?status=pending" class="btn bg-info green-link text-white fw-bolder">pending</a>
-            <a href="{% url 'exhibitions_list' %}?status=cancelled" class="btn bg-danger green-link text-white fw-bolder">cancelled</a>
+            <a href="{% url 'exhibitions_list' %}?status=pending" rel="canonical" class="btn bg-info green-link text-white fw-bolder">pending</a>
+            <a href="{% url 'exhibitions_list' %}?status=cancelled" rel="canonical" class="btn bg-danger green-link text-white fw-bolder">cancelled</a>
             {% endif %}
-            <a href="{% url 'exhibitions_list' %}" class="btn bg-brand-blue green-link fw-bolder">show all</a>
+            <a href="{% url 'exhibitions_list' %}" rel="canonical" class="btn bg-brand-blue green-link fw-bolder">show all</a>
         </div>
     </div>
 
