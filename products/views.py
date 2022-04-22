@@ -171,12 +171,14 @@ class StockManagement(View):
                     request, f"success, {product.name} has been updated,\
                     there are now {product.quantity_in_stock} available.")
                 return redirect(
-                    reverse('product_management'), kwargs={'not_shopping': True})
+                    reverse(
+                        'product_management'), kwargs={'not_shopping': True})
             else:
                 messages.warning(
                     request, f"You made no changes to {product.name}.")
                 return redirect(
-                    reverse('product_management'), kwargs={'not_shopping': True})
+                    reverse(
+                        'product_management'), kwargs={'not_shopping': True})
         else:
             form = StockForm(instance=product)
             messages.error(request, "something went wrong, stock level"
