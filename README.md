@@ -112,12 +112,43 @@ In order to achieve the desired user & business goals, the following features wi
 
 ### Databases
 
-<!-- Need to explain each model and the relationship -->
 I opted to connect to the Heroku postgres database from the beginning which is provided by Heroku as an add-on.
 
 Almost all of the app's (aside from home) I have created models for, the Entity Relationship Diagram below shows how the database models relate to each other: 
 
-![Database Schemas can be found here](assets/images/database_schemas.jpg)
+![Database Schemas can be found here](assets/images/database-schema.jpg)
+
+#### **User Account**
+
+This app enables an authenticated user to save their information so when they are logged in the order form is pre-filled, creating an improved user experience. The `UserProfile` model has a one-to-one field that is linked to the Django AllAuth user account, upon logging in the model method `create_or_update_user_profile` creates the profile if it isn't already present in the model.
+
+The second model in this app is `UserWishlist`, this model has two foreign keys, ones relating to the `UserProfile` and the other is `Product`. This model stores the products that the user wants saved to their wishlist. This information is then displayed in the wishlist view.
+
+#### **Products App**
+
+This app controls the products that are displayed in the online shop. I have created two models to store the necessary data: `Products` & `Category`.
+
+`Products` enables individual products to be added to the database in order for them to be purchased via the online shop. Only admin users are able to access this functionality and it can be done from the front end using the `add_product` view. This model has one FK which relates to the second model in this app, the category.
+
+`Category` stores the various category types of the artwork/prints on sale, this allows the user to filter the shop page by the category if they are looking for something specific.
+
+#### **Checkout**
+
+The checkout app is used solely for the the user to make purchases via the online shop; this app contains two models, `Order` & `OrderItem`. 
+
+`OrderItem` contains all of the information regarding the products that have been purchased as part of a specific order. It has a foreign key to `Product` & `Order`, it also contains the quantity purchased of that product and then the item total. This information is used to calculate the total cost for the order. For the product fk I chose to use `on_delete=models.SET('product deleted.')` as I didn't want there to be no information available in the database if the product was deleted.
+
+`Order` contains all of the relevant address information for billing/shipping, a foreign key to the `UserProfile`, email & phone number. It also contains information regarding the payment itself, the stripe PID, original basket contents (so that is the order is changed, the admin user is able to see what was purchased initially) and a boolean field called `order_success` that updates when the order is successful. Each order has an order number which is automatically generated when a new order is added to the database using `uuid`.
+
+There are some other model methods used at various points, `order.full_address` collates all of the users address in one f string, used when sending the confirmation email to the user. 
+
+`update_total` calculates the overall total depending on the orderitems linked to the order, ensuring the value is always correct.
+
+#### **Exhibitions**
+
+The exhibitions app contains one model - `Exhibitions` - that enables the admin user to add exhibitions to the database in order to be displayed on the website. This is a self contained model with no connections. The information added is name, descriptiion, artist/photographer, the start and end date & a boolean field called `'display'` which allows the admin to decide what is displayed on the website. There are a few model methods in place that calculate the 'status' depending on the dates input, which is called every time the exhibitions page is loaded to ensure that the status is correct.
+
+There is also a date validation method that is called when the admin user adds/edit a product to ensure that the end date is not before the start date.
 
 ### Skeleton
 [Wireframes can be viewed here](assets/documents/heiwa_wireframe.pdf)
@@ -158,10 +189,9 @@ I conducted SEO research to decide on the keywords and phrases that would be use
 
 I used this research to condense my list:
 
-![](assets/images/SEO research.jpeg)
+![](assets/images/SEO research.jpg)
 
 In addition to my own research, once the bulk of the website had been build I used an online tool called [Semrush](https://www.semrush.com/) which provided a report on ways that I could improve my SEO. This report showed that each page needed it's own title so I implemented this feedback. I chose the keep the meta tags and descriptions the same across each page as the content wouldn't have varied too much and there would have been a lot of replication.
-
 
 ---
 ## Features
@@ -243,7 +273,7 @@ This page is where the user is able to complete their purchase, split in to two 
 
 ![](assets/images/checkout.jpg)
 
-The card payment feature has been built using ![Stripe](https://stripe.com/gb), so upon submission of the payment form information is passed to stripe and then back, if successful the user is taken to the 'checkout success' page, that displays the order number and delivery details.
+The card payment feature has been built using [Stripe](https://stripe.com/gb), so upon submission of the payment form information is passed to stripe and then back, if successful the user is taken to the 'checkout success' page, that displays the order number and delivery details.
 
 ![](assets/images/checkout-success.jpg)
 
