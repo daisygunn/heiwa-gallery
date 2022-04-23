@@ -313,7 +313,7 @@ The admin section of this website allows a logged in superuser to update the exh
 
 #### **Product management**
 
-Products can be added using the `add product` dropdown, the superuser is taken to a form where upon submission the product is added to the model.
+Products can be added using the `add product` dropdown, the superuser is taken to a form where upon submission the product is added to the model:
 
 ![](assets/images/add-product.jpg)
 
@@ -394,12 +394,13 @@ I have used several technologies that have enabled this design to work:
     - Used to generate responsive image used in README file.
 - [Wave](https://wave.webaim.org/)
     - Used to test the accessibility of the website.
-- [Animate](https://animate.style/)
-    - Used to animate main heading and forms. 
 - [SQLite](https://www.sqlite.org/index.html)
     - I have SQLite to run my database tests locally.
 - [PostgreSQL](https://www.postgresql.org/)
     - I have used Heroku's PostgreSQL relational database in deployment to store the data for my models.
+- [AWS](https://aws.amazon.com/)
+    - I used Amazon AWS S3 to store all of my media files.
+
 ---
 ## Testing
 I have used a combination of manual and automated testing to ensure the website's functionality meets the desired intent.
@@ -458,6 +459,16 @@ To generate your own coverage report from the command line:
 4. You can view the report in a browser by using the command `python3 -m http.server` and opening the `index.html` file from inside the `htmlcov` folder.
 
 ### Bugs and Fixes
+
+Whilst in development there were a number of bugs that I had to resolve.
+
+- The stock level of a product is reduced by the quantity purchased by the customer each time the order is successful; this in turn should have changed the stock label so that if the stock level dropped below 1 then it was 'not in stock' and wouldn't be available to buy. However, I realised that this was not the case and there were a number of products that had 0 in stock but were still available to add to the basket.  I add the following section of code to resolve this:
+
+![](assets/images/update-stock.jpg)
+
+- When I first created the product model and began adding products to the database, all of the images were being added with a hashed name which is not what I wanted. After conducting some research I discovered that I could create a MediaFileStorage class that defined how they were saved:
+
+![](assets/images/media-file-storage.jpg)
 
 ---
 ## Deployment

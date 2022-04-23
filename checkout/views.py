@@ -99,11 +99,9 @@ def checkout(request):
                     # get the stock level, check the quantity desired
                     # is not more than the stock
                     stock = product.get_stock_level()
-                    print(stock)
                     if stock >= quantity:
                         # change the stock level
                         product.quantity_in_stock = stock - quantity
-                        print(product.quantity_in_stock)
                         # update the stock label
                         product.change_stock_label()
                         product.save()
