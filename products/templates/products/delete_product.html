@@ -18,7 +18,7 @@
                 enctype="multipart/form-data">
                 {% csrf_token %}
                 <h4 class="brand-blue">product: {{ product.name|lower }}</h4>
-                <img class="card-img-top" style="height: 50%; width: 50%" src="{{ MEDIA_URL}}{{ product.image }}"
+                <img class="card-img-top" category="height: 50%; width: 50%" src="{{ MEDIA_URL}}{{ product.image }}"
                     alt="{{ product.name }} image">
 
                 <button type="button" class="btn btn-danger d-block mx-auto mt-3" data-toggle="modal"

@@ -46,7 +46,7 @@ class MediaFileSystemStorage(FileSystemStorage):
 class Product(models.Model):
     """ Product model """
     name = models.CharField(max_length=254)
-    style = models.ForeignKey(
+    category = models.ForeignKey(
         'Category', on_delete=models.SET_NULL, null=True, blank=True)
     photographer_artist = models.CharField(max_length=254, blank=True)
     size = models.CharField(

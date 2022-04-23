@@ -31,7 +31,7 @@ class TestProductsViews(TestCase):
         )
         self.product1 = Product.objects.create(
             name='Test 1234',
-            style=self.category1,
+            category=self.category1,
             photographer_artist='Tester tester',
             size='A4',
             quantity_in_stock=5,
@@ -40,7 +40,7 @@ class TestProductsViews(TestCase):
 
         self.product2 = Product.objects.create(
             name='Test 123456',
-            style=self.category2,
+            category=self.category2,
             photographer_artist='Tester Smith',
             size='A4',
             quantity_in_stock=5,
@@ -63,16 +63,12 @@ class TestProductsViews(TestCase):
     def test_all_products_GET(self):
         """ get all products view """
         response = self.client.get(self.all_products_url)
-        # middleware = SessionMiddleware(request)
-        # middleware.process_request(request)
-        # request.session.save()
 
-        # response = AllProducts.as_view()(request)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/all_products.html')
 
     def test_add_products_superuser_GET(self):
-        """ get add_productsl view for superuser """
+        """ get add_products view for superuser """
         response = self.client.get(self.add_product_url)
 
         self.assertEqual(response.status_code, 200)
@@ -131,7 +127,7 @@ class TestProductsViews(TestCase):
         """ post add_product view for superuser """
         product3 = Product.objects.create(
             name='TestA6',
-            style=self.category2,
+            category=self.category2,
             photographer_artist='Anne Smith',
             size='A6',
             quantity_in_stock=9,
@@ -147,20 +143,20 @@ class TestProductsViews(TestCase):
         self.assertRedirects(response, reverse('add_product'))
         self.assertEqual(len(Product.objects.all()), 3)
 
-    # def test_edit_product_superuser_POST(self):
-    #     """ post edit_product view for superuser """
-    #     product = self.product1
-    #     product.price = 23
-    #     product.save()
-    #     response = self.client.post(reverse(
-    #         'edit_product', kwargs={'pk': self.product1.pk, }),
-    #         {'price': product.price}, follow=True)
-    #     # self.assertEqual(response.status_code, 302)
-    #     self.assertEqual(self.product1.price, 23)
-    #     self.assertRedirects(response, reverse('product_management'))
-        # self.assertRedirects(
-        #     response, self.update_products_url, status_code=302,
-        #     target_status_code=200, fetch_redirect_response=True)
+    def test_edit_product_superuser_POST(self):
+        """ post edit_product view for superuser """
+        product = self.product1
+        product.price = 23
+        product.save()
+        response = self.client.post(reverse(
+            'edit_product', pk=self.product1.pk),
+            data={'price': product.price}, follow=True)
+        # self.assertEqual(response.status_code, 302)
+        self.assertEqual(self.product1.price, 23)
+        self.assertRedirects(response, reverse('product_management'))
+        self.assertRedirects(
+            response, self.update_products_url, status_code=302,
+            target_status_code=200, fetch_redirect_response=True)
 
     # def test_delete_product_superuser_POST(self):
     #     """ post delete_product view for superuser """

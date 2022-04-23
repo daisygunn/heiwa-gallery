@@ -7,14 +7,14 @@ class ProductForm(forms.ModelForm):
     class Meta:
         """ product form """
         model = Product
-        fields = ('name', 'style', 'photographer_artist', 'size',
+        fields = ('name', 'category', 'photographer_artist', 'size',
                   'quantity_in_stock', 'price', 'image')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         placeholders = {
             'name': 'product name',
-            'style': 'style',
+            'category': 'category',
             'photographer_artist': 'photographer/artist',
             'size': 'size',
             'quantity_in_stock': 'quantity in stock',
@@ -34,14 +34,14 @@ class EditProductForm(forms.ModelForm):
     class Meta:
         """ product form """
         model = Product
-        fields = ('name', 'style', 'photographer_artist', 'size',
+        fields = ('name', 'category', 'photographer_artist', 'size',
                   'quantity_in_stock', 'price', 'image')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         placeholders = {
             'name': 'product name',
-            'style': 'style',
+            'category': 'category',
             'photographer_artist': 'photographer/artist',
             'size': 'size',
             'quantity_in_stock': 'quantity in stock',

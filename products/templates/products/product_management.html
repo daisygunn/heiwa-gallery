@@ -31,7 +31,7 @@
                         <th scope="col">price</th>
                         <th scope="col">stock level</th>
                         <th scope="col">image</th>
-                        <th scope="col">style</th>
+                        <th scope="col">category</th>
                         <th scope="col">date added</th>
                         <th scope="col">update</th>
                     </tr>
@@ -50,10 +50,10 @@
                             <strong class="text-danger">out of stock</strong>
                             {% endif %}</td>
                         <td>
-                            <img class="card-img-top" style="height: 50%; width: 50%"
+                            <img class="card-img-top" category="height: 50%; width: 50%"
                                 src="{{ MEDIA_URL}}{{ product.image }}" alt="{{ product.name }} image">
                         </td>
-                        <td>{{ product.style.name_to_display }}</td>
+                        <td>{{ product.category.name_to_display }}</td>
                         <td>{{ product.date_added }}</td>
                         <td>
                             <a class="btn btn-success btn-sm mb-1 w-100" href="{% url 'edit_product' product.pk %}">edit

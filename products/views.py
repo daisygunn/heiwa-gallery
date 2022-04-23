@@ -10,21 +10,21 @@ class AllProducts(View):
     """ A view to return the all_products page """
     def get(self, request):
         """ get request """
-        style = None
+        category = None
         products = Product.objects.all().order_by('name')
         # make sure the correct label is showing
         # for stock level
         for product in products:
             product.change_stock_label()
-        if 'style' in request.GET:
-            # get the style id from url
-            style = request.GET['style']
+        if 'category' in request.GET:
+            # get the category id from url
+            category = request.GET['category']
             # if the id is not in the category model
-            if int(style) > len(Category.objects.all()) or 0:
+            if int(category) > len(Category.objects.all()) or 0:
                 messages.error(request, "That category does exist.")
                 return redirect(reverse('all_products'))
             # filter using this id
-            products = products.filter(style=style).order_by('name')
+            products = products.filter(category=category).order_by('name')
 
         # paginate by 12 products
         paginator = Paginator(products, 12)

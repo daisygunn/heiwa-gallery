@@ -25,15 +25,15 @@
             <h6>filter by category:</h6>
         </div>
         <!-- category filter options -->
-        <div class="col-sm-6 col-md-3 mb-2"><a href="{% url 'all_products' %}?style=1" rel="canonical"
+        <div class="col-sm-6 col-md-3 mb-2"><a href="{% url 'all_products' %}?category=1" rel="canonical"
                 class="btn bg-brand-blue green-link text-white fw-bolder w-100">black
                 and white prints</a></div>
-        <div class="col-sm-6 col-md-3 mb-2"><a href="{% url 'all_products' %}?style=2" rel="canonical"
+        <div class="col-sm-6 col-md-3 mb-2"><a href="{% url 'all_products' %}?category=2" rel="canonical"
                 class="btn bg-warning green-link text-white fw-bolder w-100">graphic
                 art</a></div>
 
         <div class="col-sm-6 col-md-3 mb-2">
-            <a href="{% url 'all_products' %}?style=3" rel="canonical"
+            <a href="{% url 'all_products' %}?category=3" rel="canonical"
                 class="btn bg-secondary green-link text-white fw-bolder w-100">colour
                 photography</a>
         </div>
@@ -58,7 +58,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">size: {{ product.size }}</li>
                     <li class="list-group-item">price: £{{ product.price }}</li>
-                    <li class="list-group-item"><small>style: {{ product.style.name_to_display|lower }}</small></li>
+                    <li class="list-group-item"><small>category: {{ product.category.name_to_display|lower }}</small></li>
                     {% if request.user.is_authenticated %}
                     <li class="list-group-item">
                         <a href="{% url 'add_to_wishlist' product.pk %}" id="{{ product.pk }}-wishlist-btn"
