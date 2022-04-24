@@ -101,7 +101,7 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-if not DEBUG:
+if 'DEVELOPMENT' not in os.environ:
     SECURE_SSL_REDIRECT = True
 
 # email settings
@@ -132,17 +132,17 @@ WSGI_APPLICATION = 'heiwa_gallery.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-# if os.environ.get("DEVELOPMENT") == "True":
-#     # Testing database
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': BASE_DIR / 'db.sqlite3',
-#         }
-#     }
-# else:
+if os.environ.get("DEVELOPMENT") == "True":
+    # Testing database
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
     # Heroku database
-DATABASES = {
+    DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL")),
         }
 

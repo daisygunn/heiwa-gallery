@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block title %}
-    <title>heiwa | thank you for your order!</title>
+<title>heiwa | thank you for your order!</title>
 {% endblock %}
 
 {% block subtitle %}
@@ -24,35 +24,37 @@
     <div class="row">
         <!-- display order information -->
         <div class="col-sm-8">
-            <table class="table"style="width:100%">
-                <tr class="align-middle mb-2">
-                    <th>order number:</th>
-                    <td>{{ order.order_number }}</td>
-                </tr>
-                <tr class="mb-2">
-                    <th>items</th>
-                    <td>
-                        <!-- for each product in orderitems -->
-                        {% for product in order.orderitems.all %}
-                        <div class="text-right ">{{ product }}</div>
-                        {% endfor %}
-                    </td>
-                </tr>
-                <tr class="mb-2">
-                    <th>delivery details</th>
-                    <!-- call full address model method -->
-                    <td>{{ order.full_address }}</td>
-                </tr>
-                <tr class="mb-2">
-                    <th>total cost</th>
-                    <td><strong>£{{ order.order_total }}</strong></td>
-                </tr>
-            </table>
+            <div class="table-responsive">
+                <table class="table">
+                    <tr class="align-middle mb-2">
+                        <th>order number:</th>
+                        <td>{{ order.order_number }}</td>
+                    </tr>
+                    <tr class="mb-2">
+                        <th>items:</th>
+                        <td>
+                            <!-- for each product in orderitems -->
+                            {% for product in order.orderitems.all %}
+                            <div class="text-right ">{{ product }}</div>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr class="mb-2">
+                        <th>delivery details:</th>
+                        <!-- call full address model method -->
+                        <td>{{ order.full_address }}</td>
+                    </tr>
+                    <tr class="mb-2">
+                        <th>total cost:</th>
+                        <td><strong>£{{ order.order_total }}</strong></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
     <div class="row my-2">
         <div class="col-4">
-            <a href="{% url 'home' %}" class="btn bg-brand-blue green-link w-100">view exhibitions</a>     
+            <a href="{% url 'home' %}" class="btn bg-brand-blue green-link w-100">view exhibitions</a>
         </div>
         <div class="col-4">
             <a href="{% url 'home' %}" class="btn bg-brand-blue green-link w-100">home</a>
