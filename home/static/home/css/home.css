@@ -11,3 +11,27 @@
     height: auto;
     width: 100%;
 }
+
+@media screen and (max-width: 425px) {
+    .carousel-item {
+        height: 20vh;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .carousel-item {
+        height: 29vh;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .carousel-item {
+        height: 39vh;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .carousel-item {
+        height: 53vh;
+    }
+}

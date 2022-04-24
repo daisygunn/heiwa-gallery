@@ -288,13 +288,16 @@ ul.navbar-nav,
 }
 #mc_embed_signup .mc-field-group label {
   display: none;
-  /* margin-bottom: 3px; */
 }
 
 .mailchimp-logo {
   width: 5rem;
 }
 
+#mc_embed_signup div.response {
+  width: 100%;
+  padding: 0;
+}
 
 @media (max-width:768px) {
   .site-footer {
