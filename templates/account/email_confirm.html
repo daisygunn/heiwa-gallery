@@ -26,7 +26,7 @@
         {% url 'account_email' as email_url %}
 
         <p class="text-lowercase">{% blocktrans %}This e-mail confirmation link expired or is invalid. </p>
-        <p class="text-lowercase">Please <a href="{{ email_url }}" class="green-link">issue a new e-mail confirmation
+        <p class="text-lowercase">Please <a href="{{ email_url }}" class="brand-link">issue a new e-mail confirmation
                 request</a>.{% endblocktrans %}</p>
 
     {% endif %}

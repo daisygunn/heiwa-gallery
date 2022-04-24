@@ -13,9 +13,9 @@
 }
 
 .carousel-link {
-    background-color: #85c280;
-    color: #0d5c63;
-    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    text-decoration: underline;
 }
 
 .carousel-link:hover {
