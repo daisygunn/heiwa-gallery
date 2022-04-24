@@ -137,22 +137,23 @@ ul.navbar-nav,
 }
 
 .green-link {
-  color: white;
-  color: 0d5c63!important;
+  color: #85c280;
   cursor: pointer;
   font-weight: bolder;
   text-decoration: none;
 }
 
-.green-link:hover, #mc_embed_signup .button:hover {
-  background-color: #85c280!important;
-  color: #fff!important;
+.brand-link, .active-nav {
+  color: #0d5c63!important;
+  cursor: pointer;
+  font-weight: bolder;
+  text-decoration: none;
+  background-color: white;
 }
 
-.active-nav {
-  background-color: white;
-  color: #0d5c63!important; 
-  font-weight: bold;
+.green-link:hover, .brand-link:hover, #mc_embed_signup .button:hover {
+  background-color: #85c280!important;
+  color: #fff!important;
 }
 
 .img-thumbnail {

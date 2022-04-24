@@ -12,6 +12,18 @@
     width: 100%;
 }
 
+.carousel-link {
+    background-color: #85c280;
+    color: #0d5c63;
+    text-decoration: none;
+}
+
+.carousel-link:hover {
+    color: #85c280;
+    background-color: #0d5c63;
+    text-decoration: none;
+}
+
 @media screen and (max-width: 425px) {
     .carousel-item {
         height: 20vh;

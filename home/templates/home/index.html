@@ -29,29 +29,31 @@
                         <img class="d-block carousel-image" src="{{ MEDIA_URL }}carousel_image_1.jpg" alt="First slide with link to exhibitions page">
                         <div class="carousel-caption d-block">
                             <h5>exhibitions</h5>
-                            <p>see which <a href="{% url 'exhibitions_list' %}" class="green-link fw-bolder">exhibitions</a> are currently showing</p>
+                            <p>see which <a href="{% url 'exhibitions_list' %}" class="carousel-link fw-bolder">exhibitions</a> are currently showing</p>
                           </div>
                     </div>
                     <div class="carousel-item">
                         <img class="d-block carousel-image" src="{{ MEDIA_URL }}carousel_image_2.jpg" alt="Second slide with link to about page.">
                         <div class="carousel-caption d-block">
                             <h5>about heiwa</h5>
-                            <p>find out exactly <a href="{% url 'about' %}" class="green-link fw-bolder">who heiwa are</a> & what we value most</p>
+                            <p>find out exactly <a href="{% url 'about' %}" class="carousel-link fw-bolder">who heiwa are</a> & what we value most</p>
                           </div>
                     </div>
                     <div class="carousel-item">
                         <img class="d-block carousel-image" src="{{ MEDIA_URL }}carousel_image_3.jpg" alt="Third slide with link to shop page">
                         <div class="carousel-caption d-block">
                             <h5>shop</h5>
-                            <p>take home your very own piece of 'heiwa' with prints to buy from our <a href="{% url 'all_products' %}" class="green-link fw-bolder">online shop</a></p>
+                            <p>take home your very own piece of 'heiwa' with prints to buy from our <a href="{% url 'all_products' %}" class="carousel-link fw-bolder">online shop</a></p>
                           </div>
                     </div>
                     <div class="carousel-item">
                         <img class="d-block carousel-image" src="{{ MEDIA_URL }}carousel_image_4.jpg" alt="Fourth slide with link to email and newsletter signup">
                         <div class="carousel-caption d-block">
                             <h5>contact us</h5>
-                            <p>to keep up to date with our information <a href="#mc_embed_signup" class="green-link fw-bolder">sign up to our newsletter</a> or send us an email on:
-                            <strong><a href="mailto:hello@heiwa-gallery.com" class="green-link fw-bolder">hello@heiwa-gallery.com</a></strong></p>
+                            <p>
+                                {% if not request.user.is_authenticated and not request.user.email in email_list %}
+                                to keep up to date with our information <a href="#mc_embed_signup" class="carousel-link fw-bolder">sign up to our newsletter</a> or {% endif %}send us an email on:
+                            <strong><a href="mailto:hello@heiwa-gallery.com" class="carousel-link fw-bolder">hello@heiwa-gallery.com</a></strong></p>
                           </div>
                     </div>
                 </div>
