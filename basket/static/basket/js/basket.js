@@ -1,8 +1,11 @@
+/*jshint esversion: 6 */
+/*globals $:false, */
+
 $(document).ready(function() {
     $(".decrease").on('click', function(event){
         var id=$(this).attr('data-id');
-        var product = id.split('_')
-        var pk = product[0]
+        var product = id.split('_');
+        var pk = product[0];
         var value = parseInt(document.getElementById(pk).value, 10);
         value = isNaN(value) ? 0 : value;
         value < 1 ? value = 1 : '';
@@ -12,13 +15,13 @@ $(document).ready(function() {
 
     $(".increase").on('click', function(event){
         var id=$(this).attr('data-id');
-        var product = id.split('_')
-        var pk = product[0]
+        var product = id.split('_');
+        var pk = product[0];
         var value = parseInt(document.getElementById(pk).value, 10);
         value = isNaN(value) ? 0 : value;
         value++;
         document.getElementById(pk).value = value;
-    })
+    });
 
     // https://datatables.net/examples/index
     $('.data_table').DataTable({
@@ -39,4 +42,3 @@ $(document).ready(function() {
     });
     $('.dataTables_length').addClass('bs-select');
 });
-

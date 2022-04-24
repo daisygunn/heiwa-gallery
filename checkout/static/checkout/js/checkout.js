@@ -2,6 +2,8 @@ $('#save-address').click(function() {
     $(this).attr('checked') ? $(this).removeAttr('checked') : $(this).attr('checked', 'checked')
 });
 
+// https://stripe.com/docs/payments/accept-a-payment
+
 const stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 let clientSecret = $('#id_client_secret').text().slice(1, -1);
 let stripe = Stripe(stripePublicKey, {

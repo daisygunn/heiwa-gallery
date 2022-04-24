@@ -1,3 +1,6 @@
+/*jshint esversion: 6 */
+/*globals $:false */
+
 // https://datatables.net/examples/index
 
 $(document).ready(function () {
