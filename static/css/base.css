@@ -11,9 +11,9 @@ body {
 
 .page-container {
     display: flex;
-    /* min-height: 100vh; */
+    min-height: 100vh;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .hidden {
@@ -157,6 +157,7 @@ ul.navbar-nav,
   font-size: 15px;
   line-height: 24px;
   color: white;
+  margin-top: auto;
   /* position: absolute; */
   bottom: 0;
   width: 100%;

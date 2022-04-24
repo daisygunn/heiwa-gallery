@@ -3,7 +3,7 @@
 {% load basket_tools %}
 {% load crispy_forms_tags %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -35,7 +35,7 @@
                         <td>
                             <!-- for each product in orderitems -->
                             {% for product in order.orderitems.all %}
-                            <div class="text-right ">{{ product }}</div>
+                            <div class="text-right ">{{ product }} x {{ product.quantity }}</div>
                             {% endfor %}
                         </td>
                     </tr>
@@ -52,11 +52,11 @@
             </div>
         </div>
     </div>
-    <div class="row my-2">
-        <div class="col-4">
+    <div class="row mt-2 mb-4">
+        <div class="col-sm-6 col-md-4 mb-2">
             <a href="{% url 'home' %}" class="btn bg-brand-blue green-link w-100">view exhibitions</a>
         </div>
-        <div class="col-4">
+        <div class="col-sm-6 col-md-4">
             <a href="{% url 'home' %}" class="btn bg-brand-blue green-link w-100">home</a>
         </div>
     </div>
