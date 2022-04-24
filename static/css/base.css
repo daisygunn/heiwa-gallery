@@ -137,8 +137,10 @@ ul.navbar-nav,
 }
 
 .green-link {
-  color: #85c280;
+  color: white;
+  color: 0d5c63!important;
   cursor: pointer;
+  font-weight: bolder;
   text-decoration: none;
 }
 
@@ -148,7 +150,7 @@ ul.navbar-nav,
 }
 
 .active-nav {
-  background-color: #85c280;
+  background-color: white;
   color: #0d5c63!important; 
   font-weight: bold;
 }
