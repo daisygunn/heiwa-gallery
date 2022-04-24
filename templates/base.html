@@ -78,15 +78,15 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
                     <li class="nav-item light-text">
                         <a class="nav-link {% if request.resolver_match.url_name == 'home' %}
-                    green-text {% endif %}" href="{% url 'home' %}">home</a>
+                    active-nav {% endif %}" href="{% url 'home' %}">home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'about' %}
-                    green-text {% endif %}" href="{% url 'about' %}">about</a>
+                    active-nav {% endif %}" href="{% url 'about' %}">about</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'exhibitions_list' %}
-                    green-text {% endif %}" href=" {% url 'exhibitions_list' %}">exhibitions</a>
+                    active-nav {% endif %}" href=" {% url 'exhibitions_list' %}">exhibitions</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle dropdown-toggle1" id="navbarDropdown" role="button"
@@ -94,10 +94,10 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu1" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item {% if request.resolver_match.url_name == 'all_products' %}
-                        green-text {% endif %}" href="{% url 'all_products' %}">all prints & artwork</a>
+                        active-nav {% endif %}" href="{% url 'all_products' %}">all prints & artwork</a>
                             {% for category in category_list %}
                             <a class="dropdown-item {% if request.resolver_match.url_name == 'all_products/?style={{ category.id }}>' %}
-                        green-text {% endif %}"
+                        active-nav {% endif %}"
                                 href="{% url 'all_products' %}?style={{ category.id }}">{{ category.name_to_display|lower }}</a>
                             {% endfor %}
                         </div>
@@ -125,26 +125,26 @@
                     {% endif %}
                     <li class="nav-item ml-auto">
                         <a class="nav-link {% if request.resolver_match.url_name == 'account_overview' %}
-                        green-text {% endif %}" href="{% url 'account_overview' %}">my account</a>
+                        active-nav {% endif %}" href="{% url 'account_overview' %}">my account</a>
                     </li>
                     <li class="nav-item ml-auto">
                         <a class="nav-link {% if request.resolver_match.url_name == 'account_logout' %}
-                        green-text {% endif %}" href="{% url 'account_logout' %}">logout</a>
+                        active-nav {% endif %}" href="{% url 'account_logout' %}">logout</a>
                     </li>
                     <!-- If user is not logged in display Register & Login -->
                     {% else %}
                     <li class="nav-item ml-auto">
                         <a class="nav-link {% if request.resolver_match.url_name == 'account_signup' %}
-                        green-text {% endif %}" href="{% url 'account_signup' %}">register</a>
+                        active-nav {% endif %}" href="{% url 'account_signup' %}">register</a>
                     </li>
                     <li class="nav-item ml-auto">
                         <a class="nav-link {% if request.resolver_match.url_name == 'account_login' %}
-                        green-text {% endif %}" href="{% url 'account_login' %}">login</a>
+                        active-nav {% endif %}" href="{% url 'account_login' %}">login</a>
                     </li>
                     {% endif %}
                     <li class="nav-item ml-auto">
                         <a class="nav-link text-center {% if request.resolver_match.url_name == 'basket_overview' %}
-                    green-text {% endif %}" href="{% url 'basket_overview' %}"><i
+                    active-nav {% endif %}" href="{% url 'basket_overview' %}"><i
                                 class="fas fa-shopping-basket fa-lg"></i>
                             <p class="my-0">{% if total_cost %}
                                 £{{ total_cost|floatformat:2 }}

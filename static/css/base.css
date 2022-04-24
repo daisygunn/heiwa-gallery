@@ -115,8 +115,8 @@ p {
 
 /* navbar */
 
-.navbar {
-  color: #fff;
+.navbar, .nav-link {
+  color: white!important;
 }
 
 ul.navbar-nav,
@@ -145,6 +145,12 @@ ul.navbar-nav,
 .green-link:hover, #mc_embed_signup .button:hover {
   background-color: #85c280!important;
   color: #fff!important;
+}
+
+.active-nav {
+  background-color: #85c280;
+  color: #0d5c63!important; 
+  font-weight: bold;
 }
 
 .img-thumbnail {
