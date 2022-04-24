@@ -69,4 +69,6 @@ $(document).ready(function() {
     $("#show-location").on('click', function(event) {
         showLocation();
     });
+
 });
+
