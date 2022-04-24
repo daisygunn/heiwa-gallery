@@ -149,8 +149,7 @@
 
 - If the user clicks `yes, delete` then the product is deleted from the model, the user is taken back to the product management page and a toast confirming the deletion appears.
 
-<!-- Add image  -->
-![]()
+![](assets/images/delete-toast.jpg)
 
 ### **Epic 5 - User Account**:
 
@@ -231,16 +230,24 @@
 
 ![](assets/images/laptop-footer.jpg)
 
-- I have added a link in the 4th slide on the main carousel to link to this section of the website & also from the about page.
+- If the user is already present in the subscribed list then the form is hidden and a thank you message display instead:
+
+![](assets/images/already-subscribed.jpg)
+
+- I have also added a link in the 4th slide on the main carousel to link to this section of the website & also from the about page.
 
 26. As an **admin user** I conducted research and implemented SEO keywords to increase traction to my website.
 
+- During the planning stage, SEO research was conducted to decide which keywords would help with SEO's:
 
+![](assets/images/SEO%20research.jpeg)
+
+- These keywords were then added across the website content and added in the meta tags & descriptions:
+
+![](assets/images/meta.jpg)
 
 27. As an **admin user** I have created a FB shop page to increase traction to my website.
 
 - Facebook page for Heiwa can be found here:
 
 ![](assets/images/facebook-page-heiwa.png)
-
-## JavaScript Testing

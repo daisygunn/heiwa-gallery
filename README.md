@@ -362,8 +362,6 @@ I have used several technologies that have enabled this design to work:
     - Used to deploy my application.
 - [Lucid](https://lucid.app/documents#/dashboard)
     - Used to create the ERD for the project.
-- [Grammarly](https://www.grammarly.com/)
-    - Used to fix the thousands of grammar errors across the project.
 - [ImageResizer](https://imageresizer.com/)
     - Used to resize images to reduce loading time.
 - [Pep8](http://pep8online.com/)
@@ -411,12 +409,12 @@ All of my code has been validated using an online validator specific to the lang
 - [W3C Markup Validation Service](https://validator.w3.org/) 
     - Used to validate all HTML code written and used in this webpage.
 
-![]()
+![](assets/images/html-report.jpg)
 
 - [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_input)
     - Used to validate all CSS code written and used in this webpage.
 
-![]()
+![](assets/images/css-report.jpg)
 
 - [JSHint](https://jshint.com/)
     - Used to validate JS code
@@ -428,14 +426,13 @@ In addition to this I have also used online validators to test the accessibility
 - [Wave](https://wave.webaim.org/)
     - Used to test the accessibility of the website.
 
-![]()
+![](assets/images/wave-report.jpg)
 
-![]()
 
 - [Color Contrast Accessibility Validator](https://color.a11y.com/)
     - Allowed me to test the colour contrast of my webpage.
 
-![](assets/images/contrast_report.jpg)
+![](assets/images/contrast-report.jpg)
 
 ### Manual Testing
 
@@ -446,8 +443,6 @@ For all user story testing please view the manual testing document below:
 [MANUAL TESTING](MANUAL-TESTING.md)
 
 ### Automated Testing
-
-[UNIT TESTS](UNIT-TESTING.md)
 
 I have used the Coverage library throughout testing to keep track of how much of my Python code was covered by the tests I had written. From running the coverage report my website has 74% of my code tested. The remaining code is covered by manual testing.
 
