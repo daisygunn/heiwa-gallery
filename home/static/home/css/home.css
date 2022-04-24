@@ -3,3 +3,11 @@
     background-color: #0d5c63;
 }
 
+.carousel-item {
+    height: 60vh;
+}
+
+.carousel-image {
+    height: auto;
+    width: 100%;
+}
