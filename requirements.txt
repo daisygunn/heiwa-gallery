@@ -11,6 +11,8 @@ django-mail-templated==2.6.5
 django-storages==1.12.3
 gunicorn==20.1.0
 jmespath==0.10.0
+mailchimp-marketing==3.0.75
+mailchimp3==3.0.17
 oauthlib==3.2.0
 Pillow==9.0.1
 psycopg2==2.9.3

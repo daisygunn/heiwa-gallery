@@ -27,7 +27,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["heiwa-gallery.herokuapp.com", "localhost"]
 
@@ -84,6 +84,8 @@ TEMPLATES = [
                 'basket.context_processors.basket_contents',
                 # wishlist context
                 'user_account.context_processors.get_wish_list',
+                # mailchimp newsletter context
+                'home.context_processors.get_newsletter_emails',
             ],
         },
     },
@@ -132,17 +134,17 @@ WSGI_APPLICATION = 'heiwa_gallery.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-if os.environ.get("DEVELOPMENT") == "True":
-    # Testing database
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-else:
-    # Heroku database
-    DATABASES = {
+# if os.environ.get("DEVELOPMENT") == "True":
+#     # Testing database
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
+# else:
+# Heroku database
+DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL")),
         }
 
@@ -221,7 +223,12 @@ if 'USE_AWS' in os.environ:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# stripe settings 
 STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_KEY', '')
+
+# mailchimp settings 
+MAILCHIMP_API_KEY = os.getenv('MAILCHIMP_API_KEY', '')
+MC_USER = os.getenv('MC_USER', '')
