@@ -31,6 +31,19 @@ function showLocation(){
 }
 
 
+setInterval(() => {
+    const errorResponse = document.getElementById("mce-error-response");
+    if (errorResponse && errorResponse.style.display === "block") {
+        errorResponse.style.display = "none";
+        return;
+    }
+    const successResponse = document.getElementById("mce-success-response");
+    if (successResponse && successResponse.style.display === "block") {
+        successResponse.style.display = "none";
+        return;
+    }
+}, 30000);
+
 // navbar drop down toggle 
 $(document).ready(function() {
     screenClass();

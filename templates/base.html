@@ -316,19 +316,6 @@
         </script>
         <script>
             $('.toast').toast('show');
-
-            setInterval(() => {
-                const errorResponse = document.getElementById("mce-error-response");
-                if (errorResponse && errorResponse.style.display === "block") {
-                    errorResponse.style.display = "none";
-                    return;
-                }
-                const successResponse = document.getElementById("mce-success-response");
-                if (successResponse && successResponse.style.display === "block") {
-                    successResponse.style.display = "none";
-                    return;
-                }
-            }, 15000);
         </script>
         {% endblock %}
     </div>
