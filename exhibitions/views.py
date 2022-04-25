@@ -18,8 +18,11 @@ def exhibitions_list(request):
         # filter using this status
         exhibitions_info = Exhibitions.objects.filter(
             status=get_status).order_by('date_starting')
+    else:
+        get_status = None
     context = {
-        'exhibitions': exhibitions_info
+        'exhibitions': exhibitions_info,
+        'status': get_status,
     }
     return render(request, 'exhibitions/exhibitions.html', context)
 

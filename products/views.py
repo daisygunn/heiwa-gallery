@@ -25,13 +25,15 @@ class AllProducts(View):
                 return redirect(reverse('all_products'))
             # filter using this id
             products = products.filter(category=category).order_by('name')
-
+        else:
+            category = None
         # paginate by 12 products
         paginator = Paginator(products, 12)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         return render(request, 'products/all_products.html',
                       {'products': products,
+                       'category': category,
                        'page_obj': page_obj})
 
 
