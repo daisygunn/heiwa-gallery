@@ -4,7 +4,7 @@
 
 [Live application can be found here](https://heiwa-gallery.herokuapp.com/)
 
-This is a full-stack e-commerce projecy built using Django, Python, HTML, CSS and JavaScript. I have created a website for 'Heiwa Gallery' that has been designed to display exhibition information and allows customers to purchase prints of the photography/art from previous exhibition.
+This is a full-stack e-commerce project built using Django, Python, HTML, CSS and JavaScript. I have created a website for 'Heiwa Gallery' that has been designed to display exhibition information and allows customers to purchase prints of the photography & art from the online shop.
 
 ## Table of Contents
 1. [**UX**](#ux)
@@ -470,7 +470,7 @@ For all user story testing please view the manual testing document below:
 
 ### Automated Testing
 
-I have used the Coverage library throughout testing to keep track of how much of my Python code was covered by the tests I had written. From running the coverage report my website has 74% of my code tested. The remaining code is covered by manual testing.
+I have used the Coverage library throughout testing to keep track of how much of my Python code was covered by the tests I had written. From running the coverage report my website has 73% of my code tested. The remaining code is covered by manual testing.
 
 To generate your own coverage report from the command line:
 
@@ -558,6 +558,9 @@ In the Deploy tab:
 
 ![](assets/images/heroku_deployed_image.png)
 
+### AWS static and media storage
+
+All static and media files are stored in the cloud using Amazon AWS S3; 
 ---
 ## Credits
 
