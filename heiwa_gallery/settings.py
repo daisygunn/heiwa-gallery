@@ -104,8 +104,8 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 # Redirect to https on Heroku
-# if 'DEVELOPMENT' not in os.environ:
-#     SECURE_SSL_REDIRECT = True
+if 'DEVELOPMENT' not in os.environ:
+    SECURE_SSL_REDIRECT = True
 
 # email settings
 if 'DEVELOPMENT' in os.environ:

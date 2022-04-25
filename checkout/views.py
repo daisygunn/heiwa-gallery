@@ -40,7 +40,7 @@ def send_confirmation_email(request, order_number):
     """ Function to send email after order saved """
     order = Order.objects.get(order_number=order_number)
     customer_name = order.full_name
-    email_from = f"heiwa gallery <{settings.DEFAULT_FROM_EMAIL}>"
+    email_from = {settings.DEFAULT_FROM_EMAIL}
     address = order.full_address()
     subject = f"Order confirmation from Heiwa - order\
              number {order.order_number}"
@@ -90,7 +90,6 @@ def checkout(request):
             order.original_basket = json.dumps(basket)
             # save order
             order.save()
-            print("ORDER SAVED")
             # for each item & quantity
             for pk, quantity in basket.items():
                 try:
@@ -122,7 +121,6 @@ def checkout(request):
                         order.delete()
                         return redirect(reverse('basket_overview'))
                 except Product.DoesNotExist:
-                    print("PRODUCT NOT EXIST")
                     messages.error(
                         request, "Unfortunately one of"
                         " the items in your basket is not currently"
@@ -132,14 +130,11 @@ def checkout(request):
             # update order_success label
             order.order_success = True
             order_number = order.order_number
-            # send confirmation email to customer
-            send_confirmation_email(request, order_number)
             # add save_address to session if the box was ticked
             request.session['save_address'] = 'save-address' in request.POST
             return redirect(
                 reverse('checkout_success', args=[order.order_number]))
         else:
-            print("error")
             messages.error(request, "Sorry, there is something wrong with your form,\
             please check the information you have entered.")
             return render(request, 'checkout/checkout.html',
@@ -191,6 +186,8 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     """ handle success """
+    # send confirmation email to customer
+    send_confirmation_email(request, order_number)
     # get save_address from session
     save_address = request.session.get('save_address')
     order = get_object_or_404(Order, order_number=order_number)
