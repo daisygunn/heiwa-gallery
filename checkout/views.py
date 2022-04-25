@@ -61,6 +61,7 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     # post method
     if request.method == 'POST':
+        import pdb; pdb.set_trace()
         # get the basket or render an empty basket if it doesn't exist
         basket = request.session.get('basket', {})
         # get the form data from post request
@@ -78,6 +79,7 @@ def checkout(request):
         order_form = OrderForm(form_data)
         # if the form is valid
         if order_form.is_valid():
+            print("form valid")
             # create the order
             order = order_form.save(commit=False)
             order.stripe_pid = request.POST.get(
@@ -133,6 +135,7 @@ def checkout(request):
             return redirect(
                 reverse('checkout_success', args=[order.order_number]))
         else:
+            print("error")
             messages.error(request, "Sorry, there is something wrong with your form,\
             please check the information you have entered.")
             return render(request, 'checkout/checkout.html',
