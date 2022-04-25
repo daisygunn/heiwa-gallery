@@ -35,7 +35,6 @@ def cache_checkout_data(request):
         return HttpResponse(content=error, status=400)
 
 
-@require_POST
 def send_confirmation_email(request, order_number):
     """ Function to send email after order saved """
     order = Order.objects.get(order_number=order_number)
@@ -186,8 +185,6 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     """ handle success """
-    # send confirmation email to customer
-    send_confirmation_email(request, order_number)
     # get save_address from session
     save_address = request.session.get('save_address')
     order = get_object_or_404(Order, order_number=order_number)
@@ -215,6 +212,9 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 # profile being updated
                 user_profile_form.save()
+
+    # send confirmation email to customer
+    send_confirmation_email(request, order_number)
 
     messages.success(request, "Order processed - your order number is "
                      f'{order_number}.')
