@@ -40,7 +40,7 @@ def send_confirmation_email(request, order_number):
     """ Function to send email after order saved """
     order = Order.objects.get(order_number=order_number)
     customer_name = order.full_name
-    email_from = {settings.DEFAULT_FROM_EMAIL}
+    email_from = f"heiwa gallery <{settings.EMAIL_HOST_USER}>"
     address = order.full_address()
     subject = f"Order confirmation from Heiwa - order\
              number {order.order_number}"
@@ -199,7 +199,6 @@ def checkout_success(request, order_number):
         order.save()
         # Save the user's default billing details
         if save_address:
-            print('saving')
             default_data = {
                 'full_name': user.full_name,
                 'email': user.email,
