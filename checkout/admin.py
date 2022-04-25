@@ -16,11 +16,11 @@ class OrderAdmin(admin.ModelAdmin):
     readonly_fields = ('order_number', 'order_date', 'order_total',
                        'stripe_pid', 'original_basket',)
 
-    fields = ('order_number', 'full_name', 'email', 'phone_number', 
+    fields = ('order_number', 'full_name', 'email', 'phone_number',
               'flat_house', 'street_address', 'town_city', 'county',
               'country', 'postcode', 'order_date', 'order_total', 'stripe_pid',
               'original_basket',)
-  
+
     list_display = ('order_number', 'order_date', 'full_name',
                     'order_total', 'original_basket',)
     # displays most recent orders on the top

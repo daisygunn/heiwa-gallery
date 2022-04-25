@@ -1,20 +1,12 @@
-from django.test import TestCase, Client, RequestFactory
-# from django.contrib.sessions.middleware import SessionMiddleware
+from django.test import TestCase, Client
 from django.urls import reverse
 from .models import Product, Category
 from django.contrib.auth.models import User
-# from .views import (AllProducts, AddProduct, UpdateProduct,
-#                     EditProduct, DeleteProduct)
 
 
 class TestProductsViews(TestCase):
     """ products app view tests """
     def setUp(self):
-        self.factory = RequestFactory()
-        # middleware = SessionMiddleware()
-        # middleware.process_request(self.factory)
-        # self.factory.session.save()
-
         self.client = Client()
         self.user = User.objects.create_superuser(
             username='project.test@test.com',
@@ -142,41 +134,3 @@ class TestProductsViews(TestCase):
         self.assertEqual(product3.in_stock, True)
         self.assertRedirects(response, reverse('add_product'))
         self.assertEqual(len(Product.objects.all()), 3)
-
-    def test_edit_product_superuser_POST(self):
-        """ post edit_product view for superuser """
-        product = self.product1
-        product.price = 23
-        product.save()
-        response = self.client.post(reverse(
-            'edit_product', pk=self.product1.pk),
-            data={'price': product.price}, follow=True)
-        # self.assertEqual(response.status_code, 302)
-        self.assertEqual(self.product1.price, 23)
-        self.assertRedirects(response, reverse('product_management'))
-        self.assertRedirects(
-            response, self.update_products_url, status_code=302,
-            target_status_code=200, fetch_redirect_response=True)
-
-    # def test_delete_product_superuser_POST(self):
-    #     """ post delete_product view for superuser """
-    #     # self.product2.delete()
-    #     response = self.client.delete(
-    #         '/products/delete_product/2/')
-    #     # '.format(self.product2.pk))
-    #     # self.product2.delete()
-    #     # self.assertEqual(response.status_code, 302)
-    #     # self.assertEqual(len(Product.objects.all()), 1)
-    #     # self.assertNotIn(self.product2, Product.objects.all())
-    #     self.assertRedirects(response, '/all_products/',
-    #                          status_code=302, target_status_code=200,
-    #                          fetch_redirect_response=True)
-    # def test_update_stock_POST(self):
-    #     """ post stock view """
-    #     product = self.product1
-    #     response = self.client.get('stock', args=[product.pk])
-    #     product.quantity_in_stock = 8
-    #     response = self.client.post('stock', args=[product.pk])
-
-    #     self.assertEqual(response.status_code, 302)
-    #     self.assertEqual(self.product1.quantity_in_stock, 8)

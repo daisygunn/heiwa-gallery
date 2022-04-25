@@ -25,7 +25,7 @@ class StripeWhHandler:
         pid = intent.id
         basket = intent.metadata.basket
         save_address = intent.metadata.save_address
-
+        # get details from payment intent
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         order_total = round(intent.charges.data[0].amount / 100, 2)
@@ -34,7 +34,7 @@ class StripeWhHandler:
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
-        # Update profile information if save_info was checked
+        # Update profile information if save_address was checked
         user_profile = None
         username = intent.metadata.username
         if username != 'AnonymousUser':
@@ -76,15 +76,18 @@ class StripeWhHandler:
                 )
                 order_exists = True
                 break
+            # if the order does not exist then add 1 attempt
             except Order.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
+        # if it does exist then do not add again
         if order_exists:
             return HttpResponse(
                 content=f'Webhook received:\
                 {event["type"]} | SUCCESS: Verified order already in database',
                 status=200)
         else:
+            # create order if attempts are more than 5
             order = None
             try:
                 for pk, quantity in json.loads(basket).items():

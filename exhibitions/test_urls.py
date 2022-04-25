@@ -5,7 +5,6 @@ from exhibitions.views import (exhibitions_list, AddExhibition,
                                exhibition_management)
 
 
-# Create your tests here
 class TestExhibitionsUrls(SimpleTestCase):
     """ Exhibitions app url tests """
     def test_exhibitions_list_url_is_resolved(self):

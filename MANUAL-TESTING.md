@@ -58,7 +58,7 @@
 
 6. As a **user** I can easily find all of the relevant information about the products so that I can make informed decisions before purchasing.
 
-- Each product card displays a title, who it is by, size, price and style giving the user all information they could want before deciding to buy
+- Each product card displays a title, who it is by, size, price and category giving the user all information they could want before deciding to buy
 
 ![](assets/images/product-info.jpg)
 

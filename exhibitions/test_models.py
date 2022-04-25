@@ -1,6 +1,5 @@
 from django.test import TestCase, Client
 from .models import Exhibitions
-# import datetime
 
 
 class TestExhibitionsViews(TestCase):

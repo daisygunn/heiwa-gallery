@@ -6,9 +6,9 @@ class UserProfileForm(forms.ModelForm):
     """ form for users to place order """
     class Meta:
         model = UserProfile
-        fields = ('full_name', 'email', 'phone_number', 
-                  'default_flat_house', 'default_street_address', 
-                  'default_town_city', 'default_county', 
+        fields = ('full_name', 'email', 'phone_number',
+                  'default_flat_house', 'default_street_address',
+                  'default_town_city', 'default_county',
                   'default_postcode', 'default_country')
 
     def __init__(self, *args, **kwargs):

@@ -163,8 +163,6 @@ class TestExhibitionsViews(TestCase):
 
     def test_delete_exhibition_superuser_POST(self):
         """ post delete_exhibition view for superuser """
-        exhibition = self.exhibition2
-
         response = self.client.post(self.delete_exhibition2_url)
 
         self.assertEqual(response.status_code, 302)

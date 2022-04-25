@@ -9,10 +9,12 @@ def basket_contents(request):
     count = 0
     basket = request.session.get('basket', {})
 
+    # loop through each item in basket
     for pk, quantity in basket.items():
         product = get_object_or_404(Product, pk=pk)
         total += quantity * product.price
         count += quantity
+        # add product and quantity to items_in_basket
         items_in_basket.append({
             'pk': pk,
             'quantity': quantity,

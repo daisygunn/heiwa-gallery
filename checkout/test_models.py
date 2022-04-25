@@ -34,7 +34,7 @@ class TestCheckoutModels(TestCase):
         )
         self.product1 = Product.objects.create(
             name='Test 1234',
-            style=self.category1,
+            category=self.category1,
             photographer_artist='Tester tester',
             size='A4',
             quantity_in_stock=5,

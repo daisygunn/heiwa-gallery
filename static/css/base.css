@@ -13,7 +13,6 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    /* justify-content: space-between; */
 }
 
 .hidden {
@@ -63,20 +62,21 @@ body {
   float: right;
 }
 
+/* Crispy form */
 .controls > input {
   width: 100%;
   margin-bottom: 1rem;
 }
 
-/* Remove 100% on the clear box */
+.control-label {
+  display: none;
+}
 
+/* Remove 100% on the clear box for product forms */
 #image-clear_id {
   width: auto!important;
 }
 
-.control-label {
-  display: none;
-}
 /* Main page titles */
 
 #main-title h1 {
@@ -332,6 +332,8 @@ ul.navbar-nav,
   padding: 0;
 }
 
+/* media queries */
+
 @media (max-width:768px) {
   .site-footer {
     padding-bottom: 0
@@ -384,9 +386,7 @@ ul.navbar-nav,
 }
 
 @media screen and (min-width:1200px) {
-/* body, p {
-  font-size: 1.2rem;
-} */
+
 .text-responsive {
   font-size: 1.5rem;
 }

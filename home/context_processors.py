@@ -11,7 +11,7 @@ def get_newsletter_emails(request):
 
         response = client.lists.members.all(
             "a9f944f3e8", fields="members.email_address", offset=0)
-            
+
         email_list = []
         for x in response.values():
             for y in x:

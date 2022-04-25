@@ -94,8 +94,8 @@ def change_quantity(request, pk):
                 # do not update the basket
                 messages.error(
                     request, f"Sorry, we only have {stock} in stock of"
-                             f" {product} please reduce the number in"
-                             " your basket.")
+                              f" {product} please reduce the number in"
+                              " your basket.")
             else:
                 # if quantity is 0 then remove from basket
                 basket.pop(pk)
