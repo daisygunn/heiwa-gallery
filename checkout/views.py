@@ -60,10 +60,8 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     # post method
     if request.method == 'POST':
-        print("POST")
         # get the basket or render an empty basket if it doesn't exist
         basket = request.session.get('basket', {})
-        print(basket)
         # get the form data from post request
         form_data = {
             'full_name': request.POST.get('full_name'),
@@ -76,11 +74,9 @@ def checkout(request):
             'postcode': request.POST.get('postcode'),
             'country': request.POST.get('country'),
         }
-        print(form_data)
         order_form = OrderForm(form_data)
         # if the form is valid
         if order_form.is_valid():
-            print("form valid")
             # create the order
             order = order_form.save(commit=False)
             order.stripe_pid = request.POST.get(
