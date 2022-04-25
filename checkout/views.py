@@ -61,9 +61,10 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     # post method
     if request.method == 'POST':
-        import pdb; pdb.set_trace()
+        print("POST")
         # get the basket or render an empty basket if it doesn't exist
         basket = request.session.get('basket', {})
+        print(basket)
         # get the form data from post request
         form_data = {
             'full_name': request.POST.get('full_name'),
@@ -76,6 +77,7 @@ def checkout(request):
             'postcode': request.POST.get('postcode'),
             'country': request.POST.get('country'),
         }
+        print(form_data)
         order_form = OrderForm(form_data)
         # if the form is valid
         if order_form.is_valid():
@@ -88,6 +90,7 @@ def checkout(request):
             order.original_basket = json.dumps(basket)
             # save order
             order.save()
+            print("ORDER SAVED")
             # for each item & quantity
             for pk, quantity in basket.items():
                 try:
@@ -119,6 +122,7 @@ def checkout(request):
                         order.delete()
                         return redirect(reverse('basket_overview'))
                 except Product.DoesNotExist:
+                    print("PRODUCT NOT EXIST")
                     messages.error(
                         request, "Unfortunately one of"
                         " the items in your basket is not currently"
