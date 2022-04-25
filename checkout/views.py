@@ -133,7 +133,7 @@ def checkout(request):
             # add save_address to session if the box was ticked
             request.session['save_address'] = 'save-address' in request.POST
             return redirect(
-                reverse('checkout_success', args=[order.order_number]))
+                reverse('checkout_success', args=[order_number]))
         else:
             messages.error(request, "Sorry, there is something wrong with your form,\
             please check the information you have entered.")
