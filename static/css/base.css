@@ -33,6 +33,10 @@ body {
   font-weight: 600;
 }
 
+.bg-green {
+  background-color: #85c280!important;
+}
+
 .container-clip {
   margin: 0 auto;
   background: #fff;
@@ -149,6 +153,7 @@ ul.navbar-nav,
   font-weight: bolder;
   text-decoration: none;
   background-color: white;
+  border: dashed 1px #85c280;
 }
 
 .green-link:hover, .brand-link:hover, #mc_embed_signup .button:hover {
