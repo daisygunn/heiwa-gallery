@@ -1,9 +1,10 @@
 # Heiwa Gallery
 
+![](assets/images/responsive.jpg)
+
 [Live application can be found here](https://heiwa-gallery.herokuapp.com/)
 
 This is a full-stack e-commerce projecy built using Django, Python, HTML, CSS and JavaScript. I have created a website for 'Heiwa Gallery' that has been designed to display exhibition information and allows customers to purchase prints of the photography/art from previous exhibition.
-
 
 ## Table of Contents
 1. [**UX**](#ux)
@@ -23,7 +24,6 @@ This is a full-stack e-commerce projecy built using Django, Python, HTML, CSS an
 6. [**Deployment**](#deployment)
 
 7. [**Credits**](#credits)
-
 
 ---
 ## UX
@@ -48,44 +48,45 @@ This website will offer all of these things whilst also allowing for intuitive n
 Due to the age group of the users, it is assumed that there will be an even split between users viewing the website on their mobiles phone and laptops. Therefore creating something responsive is integral to the design, I have used Bootstrap grids and elements & custom CSS to allow for this.
 
 ## User Stories
+
 Please find all my defined user stories & their acceptance criteria [here](https://github.com/daisygunn/heiwa-gallery/issues)
 
 ### **Epic 1 - Core Functionality**:
 
 1. As a **user** I can intuitively navigate through the site so that I can view desired content.
 2. As a **user** I can find a navigation bar and footer so that I can see what content there is on the website.
-2. As a **user** I can get key information about the gallery from the landing page so that I can spend less time having to search for information.
-3. As a **user** I am notified about any changes I have made so that I have a clear understanding of what has been completed/updated/failed.
-4. As a **user** I can access the website on both mobile and desktop so that I can view the information regardless of my location.
+3. As a **user** I can get key information about the gallery from the landing page so that I can spend less time having to search for information.
+4. As a **user** I am notified about any changes I have made so that I have a clear understanding of what has been completed/updated/failed.
+5. As a **user** I can access the website on both mobile and desktop so that I can view the information regardless of my location.
 
 ### **Epic 2 - Products**:
 
-5. As a **user** I can view all products that are in stock and available to buy.
-6. As a **user** I can easily find all of the relevant information about the products so that I can make informed decisions before purchasing.
-7. As a **user** I can filter the prints by categories to have more control over what I'm viewing.
-8. As a **user** I can easily identify prints that are not in stock so that I can avoid later frustration if they are not available.
+6. As a **user** I can view all products that are in stock and available to buy.
+7. As a **user** I can easily find all of the relevant information about the products so that I can make informed decisions before purchasing.
+8. As a **user** I can filter the prints by categories to have more control over what I'm viewing.
+9. As a **user** I can easily identify prints that are not in stock so that I can avoid later frustration if they are not available.
 
 ### **Epic 3 - Orders/Basket**:
 
-9. As a **user** I am able to process orders by making a card payment.
-10. As a **user** I can view a breakdown of their current basket so that I can make changes if required.
-11. As a **user** I can only add prints to my basket that are in stock so that I can avoid later frustration if my order cannot be fulfilled.
-12. As a **user** I receive order confirmations to be sure my order has been processed.
+10. As a **user** I am able to process orders by making a card payment.
+11. As a **user** I can view a breakdown of their current basket so that I can make changes if required.
+12. As a **user** I can only add prints to my basket that are in stock so that I can avoid later frustration if my order cannot be fulfilled.
+13. As a **user** I receive order confirmations to be sure my order has been processed.
 
 ### **Epic 4 - Admin Functionality**:
 
-13. As an **admin user** I can log in so that I can access the site's backend.
-14. As an **admin user** I am able to login to see the product management page so that I can make changes in the front end.
-15. As an **admin user** I can add/edit/remove items from the product model so that I can make sure the website is up to date and accurately reflects what is being sold.
-16. As an **admin user** I can update the stock levels for the products so that customers are only able to purchase items in stock.
+14. As an **admin user** I can log in so that I can access the site's backend.
+15. As an **admin user** I am able to login to see the product management page so that I can make changes in the front end.
+16. As an **admin user** I can add/edit/remove items from the product model so that I can make sure the website is up to date and accurately reflects what is being sold.
+17. As an **admin user** I can update the stock levels for the products so that customers are only able to purchase items in stock.
 
 ### **Epic 5 - User Account**:
 
-17. As a **user** I can register & log in so that I can view my orders.
-18. As a **user** I can easily see if I'm logged in or not so that I can choose to log in or log out.
-19. As a **user** I am prompted to register for an account so that I can create an account and receive the benefits from having a profile.
-20. As a **user** I can log in so that I can auto-populate forms with my information on the site.
-21. As a **user** I can save my default billing/shipping details so that I can save time making my next purchase.
+18. As a **user** I can register & log in so that I can view my orders.
+19. As a **user** I can easily see if I'm logged in or not so that I can choose to log in or log out.
+20. As a **user** I am prompted to register for an account so that I can create an account and receive the benefits from having a profile.
+21. As a **user** I can log in so that I can auto-populate forms with my information on the site.
+22. As a **user** I can save my default billing/shipping details so that I can save time making my next purchase.
 
 ### **Epic 6 - Exhibition Information**:
 
@@ -105,16 +106,15 @@ In order to achieve the desired user & business goals, the following features wi
 - Responsive navbar that will navigate to the various pages throughout the site
 - Landing page with image carousel with information to be found on the website
 - Shop page, that displays all prints available for purchase with the option to filter on the print category.
-- My Account page, for logged in users to update their details which in turn updates the user model. 
-- Register/login feature using Django allauth
+- Exhibitions page, that displays exhibition information for the gallery.
+- My Account page, for logged in users to update their details which in turn updates the user model. User is also able to view their previous orders and wishlist.
+- Register/login feature using Django AllAuth so that users are able to create an account.
 
 ## Structure
 
 ### Databases
 
-I opted to connect to the Heroku postgres database from the beginning which is provided by Heroku as an add-on.
-
-Almost all of the app's (aside from home) I have created models for, the Entity Relationship Diagram below shows how the database models relate to each other: 
+I opted to connect to the Heroku postgres database from the beginning which is provided by Heroku as an add-on. Almost all of the app's (aside from home) I have created models for, the Entity Relationship Diagram below shows how the database models relate to each other: 
 
 ![Database Schemas can be found here](assets/images/database-schema.jpg)
 
@@ -155,7 +155,7 @@ There is also a date validation method that is called when the admin user adds/e
 
 Please note the actual website differs slightly from the original wireframes. 
 
-The theme of simplicity follows through to the design, I've used bootstrap columns and rows to divide the pages and tried to keep the same layout throughout so that the user has a sense of ease when on the various pages.
+The theme of simplicity follows through to the design, I've used bootstrap columns and rows to divide the pages and tried to keep the same layout throughout so that the user has a sense of ease when on the various pages. Some content has been hidden on mobiles 
 
 ### Surface
 
@@ -181,6 +181,15 @@ To further enhance sales there is also a heiwa gallery facebook page, that will 
 
 ![](assets/images/facebook-page-heiwa.png)
 
+Users are also able to subscribe to receive the gallery's newsletter, using the mailchimp form found in the footer. 
+
+![](assets/images/mailchimp-form.jpg)
+
+If the user is logged in and has previously subscribed then the form is hidden.
+
+![](assets/images/already-subscribed.jpg)
+
+
 ### SEO's
 
 I conducted SEO research to decide on the keywords and phrases that would be used across the website, I wrote a list of as many words and phrases I could think of and then using Google, I searched by these keywords to see the sort of websites that were returned. 
@@ -189,7 +198,7 @@ I conducted SEO research to decide on the keywords and phrases that would be use
 
 I used this research to condense my list:
 
-![](assets/images/SEO research.jpg)
+![](assets/images/SEO-research.jpg)
 
 In addition to my own research, once the bulk of the website had been build I used an online tool called [Semrush](https://www.semrush.com/) which provided a report on ways that I could improve my SEO. This report showed that each page needed it's own title so I implemented this feedback. I chose the keep the meta tags and descriptions the same across each page as the content wouldn't have varied too much and there would have been a lot of replication.
 
@@ -208,7 +217,7 @@ On mobiles the menu is one list displayed in the center.
 
 ![](assets/images/mobile-menu.jpg)
 
-Active navlinks turn green and bold to clearly indicate to the user which page they are on, further enhancing the usability and ease of the website.
+Active navlinks have a white background with a green dashed border to clearly indicate to the user which page they are on, further enhancing the usability and ease of the website.
 
 There is also a basket icon with a subtotal displayed below it, to allow the user to keep track of the cost of the products in their basket.
 
@@ -248,7 +257,9 @@ Additionally, if a user is logged in then an empty loveheart icon is displayed, 
 
 ![](assets/images/hearts.jpg)
 
-The products can be filtered by their respective category, this can be done in the navbar and also from the all products page. This filter sends a query to the database and only returns the products that have a category matching the id passed in the url. 
+The products can be filtered by their respective category, this can be done in the navbar and also from the all products page (on a laptop). I chose to hide the filter options on a smaller screen as I felt it took up too much of the page.
+
+This filter sends a query to the database and only returns the products that have a category matching the id passed in the url. 
 
 ![](assets/images/category-filters.jpg)
 
@@ -283,11 +294,21 @@ If the payment is not successful, the form does not submit, an error message is 
 
 The exhibitions page displays all exhibition information, they are displayed in a bootstrap card with a title, description, entrance fee and the dates the exhibition showing. There is also a status badge, so it's clear without looking at the dates if it is currently showing or finished.
 
-Similarly to the categories page you can filter by the status so the user is able to only see the exhibitions they want to.
+Similarly to the categories page you can filter by the status on a laptop so the user is able to only see the exhibitions they want to.
 
 ![](assets/images/exhibitions.jpg)
 
 ![](assets/images/exhibitions-mobile.jpg)
+
+The filter buttons also change depending on the user as it didn't make sense for a normal to be able to see exhibitions that has finished, were pending or had been cancelled.
+
+A normal user see's the below:
+
+![](assets/images/exhibitions-filter-normal-user.jpg)
+
+And an admin user see's the following options: 
+
+![](assets/images/exhibition-filter-admin.jpg)
 
 ### User profile
 
@@ -398,7 +419,8 @@ I have used several technologies that have enabled this design to work:
     - I have used Heroku's PostgreSQL relational database in deployment to store the data for my models.
 - [AWS](https://aws.amazon.com/)
     - I used Amazon AWS S3 to store all of my media files.
-
+- [Kaffeine](https://kaffeine.herokuapp.com/)
+    - Used to ping the app every 30 minutes so it speeds up loading.
 ---
 ## Testing
 I have used a combination of manual and automated testing to ensure the website's functionality meets the desired intent.
@@ -427,6 +449,10 @@ In addition to this I have also used online validators to test the accessibility
     - Used to test the accessibility of the website.
 
 ![](assets/images/wave-report.jpg)
+
+There is one error in the wave report that relates to a missing form input, this is due to an empty input required by Mailchimp to prevent bots from being able to submit the form and so I have not resolved this error.
+
+![](assets/images/missing-label-error.jpg)
 
 
 - [Color Contrast Accessibility Validator](https://color.a11y.com/)
