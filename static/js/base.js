@@ -1,9 +1,5 @@
 /*jshint esversion: 6 */
-/*globals $:false */
-
-
-// show toasts
-$('.toast').toast('show');
+/*globals $ */
 
 // If window is less than 760 hide footer elements
 function screenClass() {

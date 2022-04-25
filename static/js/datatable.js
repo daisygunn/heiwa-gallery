@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-/*globals $:false */
+/*globals $ */
 
 // https://datatables.net/examples/index
 

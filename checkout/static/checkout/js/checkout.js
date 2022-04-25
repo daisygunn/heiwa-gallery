@@ -1,6 +1,14 @@
+/*jshint esversion: 6 */
+/*globals $, Stripe */
+
+// If save address box is ticked then add or remove checked attribute
 $('#save-address').click(function() {
-    $(this).attr('checked') ? $(this).removeAttr('checked') : $(this).attr('checked', 'checked')
-});
+  if($(this).attr('checked')){
+     $(this).removeAttr('checked');
+    } else {
+      $(this).attr('checked', 'checked');
+    }
+ });
 
 // https://stripe.com/docs/payments/accept-a-payment
 
@@ -51,7 +59,7 @@ card.mount('#payment-element');
 
 card.addEventListener('change', function (event) {
     if (event.error) {
-        showMessage(`${event.error.message}`)
+        showMessage(`${event.error.message}`);
     }
 });
 
@@ -100,7 +108,7 @@ form.addEventListener('submit', function (e) {
             },
         }).then(function (result) {
             if (result.error) {
-                showMessage(`${result.error.message}`)
+                showMessage(`${result.error.message}`);
                 setLoading(false); 
             } else {
                 if (result.paymentIntent.status == 'succeeded') {
@@ -111,7 +119,7 @@ form.addEventListener('submit', function (e) {
         });
     }).fail(function() {
         location.reload();
-    })
+    });
 });
 
 // ------- UI helpers -------

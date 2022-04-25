@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-/*globals $:false */
+/*globals $ */
 
 // Make date fields date picker
 function datePicker() {
