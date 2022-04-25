@@ -25,8 +25,15 @@ class AllProducts(View):
                 return redirect(reverse('all_products'))
             # filter using this id
             products = products.filter(category=category).order_by('name')
+            in_stock = False
+        # used to show only the products that are in stock
+        elif 'in_stock' in request.GET:
+            products = products.filter(in_stock=True).order_by('name')
+            in_stock = True
+            category = None
         else:
             category = None
+            in_stock = False
         # paginate by 12 products
         paginator = Paginator(products, 12)
         page_number = request.GET.get('page')
@@ -34,6 +41,7 @@ class AllProducts(View):
         return render(request, 'products/all_products.html',
                       {'products': products,
                        'category': category,
+                       'in_stock': in_stock,
                        'page_obj': page_obj})
 
 
