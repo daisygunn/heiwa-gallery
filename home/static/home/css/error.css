@@ -1,9 +1,4 @@
 /* https://codepen.io/remid/pen/YOVawm */
-
-body {
-	margin: 0;
-	font-size: 20px;
-  }
   
   * {
 	box-sizing: border-box;
@@ -17,7 +12,6 @@ body {
 	height: 40vh;
 	background: white;
 	color: #0d5c63;
-	font-family: 'josefin-sans', sans-serif;
 	overflow: hidden;
   }
   
