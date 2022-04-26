@@ -10,9 +10,9 @@ class UserAdmin(admin.ModelAdmin):
     fields = ('user', 'full_name', 'email', 'phone_number',
               'default_flat_house', 'default_street_address',
               'default_town_city', 'default_county',
-              'default_postcode', 'default_country')
+              'default_postcode', 'default_country', 'registration_date',)
 
-    list_display = ('user', 'full_name', 'email',)
+    list_display = ('user', 'full_name', 'email', 'registration_date',)
     ordering = ('-registration_date',)
 
 

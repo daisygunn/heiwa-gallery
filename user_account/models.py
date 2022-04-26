@@ -25,7 +25,7 @@ class UserProfile(models.Model):
         max_length=20, null=True, blank=True)
     default_country = CountryField(blank_label='Country',
                                    null=True, blank=True)
-    registration_date = models.DateField(auto_now=True)
+    registration_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.user.username
