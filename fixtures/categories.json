@@ -1,0 +1,22 @@
+[{
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+        "category_name": "b_and_w",
+        "name_to_display": "Black & White"
+    }
+}, {
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+        "category_name": "graphic_art",
+        "name_to_display": "Graphic Art"
+    }
+}, {
+    "model": "products.category",
+    "pk": 3,
+    "fields": {
+        "category_name": "colour_photography",
+        "name_to_display": "Colour Photography"
+    }
+}]

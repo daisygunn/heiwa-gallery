@@ -1,0 +1,463 @@
+[{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "name": "Oil Merge",
+        "category": 2,
+        "photographer_artist": "Alexander Ant",
+        "size": "A4",
+        "quantity_in_stock": 9,
+        "price": "18.99",
+        "image": "alexander-ant-oil-paint-merge.jpg",
+        "in_stock": true,
+        "date_added": "2022-03-08"
+    }
+}, {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+        "name": "Growing Upwards",
+        "category": 3,
+        "photographer_artist": "Annie Spratt",
+        "size": "A3",
+        "quantity_in_stock": 3,
+        "price": "14.99",
+        "image": "annie-spratt-growing-upwards.jpg",
+        "in_stock": true,
+        "date_added": "2022-03-08"
+    }
+}, {
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+        "name": "How the light hits my books",
+        "category": 3,
+        "photographer_artist": "Asal Lotfi",
+        "size": "A5",
+        "quantity_in_stock": 2,
+        "price": "12.99",
+        "image": "asal-lotfi-how-the-light-hits-my-books.jpg",
+        "in_stock": true,
+        "date_added": "2022-03-08"
+    }
+}, {
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+        "name": "Desert Contrast",
+        "category": 3,
+        "photographer_artist": "Caleb George",
+        "size": "A3",
+        "quantity_in_stock": 4,
+        "price": "27.00",
+        "image": "caleb-george-desert-contrast.jpg",
+        "in_stock": true,
+        "date_added": "2022-03-08"
+    }
+}, {
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+        "name": "cheeeeeeeeeese",
+        "category": 3,
+        "photographer_artist": "Chris Lee",
+        "size": "A5",
+        "quantity_in_stock": 0,
+        "price": "16.99",
+        "image": "chris-lee-cheeeeeese.jpg",
+        "in_stock": false,
+        "date_added": "2022-03-08"
+    }
+}, {
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+        "name": "spikes are sometimes friendly",
+        "category": 3,
+        "photographer_artist": "Chua Bing Quan",
+        "size": "A3",
+        "quantity_in_stock": 0,
+        "price": "18.99",
+        "image": "chua-bing-quan-spikes-are-not-always-hostile.jpg",
+        "in_stock": false,
+        "date_added": "2022-03-08"
+    }
+}, {
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+        "name": "mY gRapHic LovE",
+        "category": 2,
+        "photographer_artist": "Cris Dinoto",
+        "size": "A5",
+        "quantity_in_stock": 0,
+        "price": "8.99",
+        "image": "cris-dinoto-z-my-graphic-love.jpg",
+        "in_stock": false,
+        "date_added": "2022-03-08"
+    }
+}, {
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+        "name": "psychedelic carwash",
+        "category": 2,
+        "photographer_artist": "Dippyman Nath",
+        "size": "A3",
+        "quantity_in_stock": 1,
+        "price": "25.99",
+        "image": "dippyaman-nath-psychedelic-car-wash.jpg",
+        "in_stock": true,
+        "date_added": "2022-03-15"
+    }
+}, {
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+        "name": "sea foam",
+        "category": 3,
+        "photographer_artist": "Elizabeth Lies",
+        "size": "A2",
+        "quantity_in_stock": 16,
+        "price": "32.99",
+        "image": "elizabeth-lies-sea-foam.jpg",
+        "in_stock": true,
+        "date_added": "2022-03-15"
+    }
+}, {
+    "model": "products.product",
+    "pk": 12,
+    "fields": {
+        "name": "l o n e l y  e x p l o r e r",
+        "category": 1,
+        "photographer_artist": "Emile Seguin",
+        "size": "A3",
+        "quantity_in_stock": 0,
+        "price": "40.00",
+        "image": "emile-seguin-lonely-explorer.jpg",
+        "in_stock": false,
+        "date_added": "2022-03-15"
+    }
+}, {
+    "model": "products.product",
+    "pk": 13,
+    "fields": {
+        "name": "how my head feels",
+        "category": 2,
+        "photographer_artist": "Ernest Karchmi",
+        "size": "A5",
+        "quantity_in_stock": 0,
+        "price": "12.50",
+        "image": "ernest-karchmit-how-my-head-feels.jpg",
+        "in_stock": false,
+        "date_added": "2022-03-15"
+    }
+}, {
+    "model": "products.product",
+    "pk": 17,
+    "fields": {
+        "name": "london eye",
+        "category": 1,
+        "photographer_artist": "Adam Birkett",
+        "size": "A4",
+        "quantity_in_stock": 0,
+        "price": "19.99",
+        "image": "adam-birkett-london-eye.jpg",
+        "in_stock": false,
+        "date_added": "2022-03-15"
+    }
+}, {
+    "model": "products.product",
+    "pk": 20,
+    "fields": {
+        "name": "still flowers",
+        "category": 2,
+        "photographer_artist": "Europeana",
+        "size": "A4",
+        "quantity_in_stock": 12,
+        "price": "13.50",
+        "image": "europeana-still-flowers.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 21,
+    "fields": {
+        "name": "Simple Light",
+        "category": 1,
+        "photographer_artist": "Evie S",
+        "size": "A3",
+        "quantity_in_stock": 25,
+        "price": "22.99",
+        "image": "evie-s-simple-light.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 22,
+    "fields": {
+        "name": "strength in distance",
+        "category": 1,
+        "photographer_artist": "Fabrice Villard",
+        "size": "A3",
+        "quantity_in_stock": 21,
+        "price": "32.00",
+        "image": "fabrice-villard-strength-in-the-distance.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 23,
+    "fields": {
+        "name": "balloon.",
+        "category": 3,
+        "photographer_artist": "Florian Klauer",
+        "size": "A5",
+        "quantity_in_stock": 0,
+        "price": "12.00",
+        "image": "florian-klauer-balloon.jpg",
+        "in_stock": false,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 24,
+    "fields": {
+        "name": "Universe in ME",
+        "category": 2,
+        "photographer_artist": "Fuu J",
+        "size": "A4",
+        "quantity_in_stock": 12,
+        "price": "8.99",
+        "image": "fuu-j-universe-in-me.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 25,
+    "fields": {
+        "name": "three little birds",
+        "category": 1,
+        "photographer_artist": "Glen Carrie",
+        "size": "A2",
+        "quantity_in_stock": 29,
+        "price": "35.00",
+        "image": "glen-carrie-three-little-birds.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 26,
+    "fields": {
+        "name": "grief",
+        "category": 1,
+        "photographer_artist": "Hulki Okan Tabak",
+        "size": "A5",
+        "quantity_in_stock": 32,
+        "price": "18.00",
+        "image": "hulki-okan-tabak-grief.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 27,
+    "fields": {
+        "name": "the rainbow road",
+        "category": 2,
+        "photographer_artist": "Jens Schwan",
+        "size": "A3",
+        "quantity_in_stock": 17,
+        "price": "23.99",
+        "image": "jens-schwan-rainbow-road.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 28,
+    "fields": {
+        "name": "d o h",
+        "category": 2,
+        "photographer_artist": "Jinsoo Choi",
+        "size": "A4",
+        "quantity_in_stock": 17,
+        "price": "14.50",
+        "image": "jinsoo-choi-doh.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 29,
+    "fields": {
+        "name": "Bold Rings",
+        "category": 2,
+        "photographer_artist": "Jon Tyson",
+        "size": "A3",
+        "quantity_in_stock": 5,
+        "price": "23.99",
+        "image": "jon-tyson-bold-rings.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 30,
+    "fields": {
+        "name": "perspective",
+        "category": 2,
+        "photographer_artist": "Khara Woods",
+        "size": "A4",
+        "quantity_in_stock": 12,
+        "price": "18.00",
+        "image": "khara-woods-perspective.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 31,
+    "fields": {
+        "name": "simple view",
+        "category": 3,
+        "photographer_artist": "Laura Cleffmann",
+        "size": "A5",
+        "quantity_in_stock": 19,
+        "price": "10.00",
+        "image": "laura-cleffmann-simple-view.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 32,
+    "fields": {
+        "name": "don't mix em",
+        "category": 2,
+        "photographer_artist": "Library of Congress",
+        "size": "A4",
+        "quantity_in_stock": 10,
+        "price": "15.00",
+        "image": "library-of-congress-dont-mix-em.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 33,
+    "fields": {
+        "name": "light in the dark",
+        "category": 1,
+        "photographer_artist": "Luca Nicoletti",
+        "size": "A4",
+        "quantity_in_stock": 15,
+        "price": "16.00",
+        "image": "luca-nicoletti-light-in-the-dark.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 34,
+    "fields": {
+        "name": "face",
+        "category": 2,
+        "photographer_artist": "Malena Gonzalez",
+        "size": "A5",
+        "quantity_in_stock": 11,
+        "price": "8.00",
+        "image": "malena-gonzalez-serena-face.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 35,
+    "fields": {
+        "name": "lillies",
+        "category": 1,
+        "photographer_artist": "Mathew Schwartz",
+        "size": "A4",
+        "quantity_in_stock": 76,
+        "price": "13.99",
+        "image": "mathew-schwartz-lillies.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 36,
+    "fields": {
+        "name": "The Statue",
+        "category": 1,
+        "photographer_artist": "Michele Caliani",
+        "size": "A4",
+        "quantity_in_stock": 18,
+        "price": "14.00",
+        "image": "michele-caliani-the-statue.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 37,
+    "fields": {
+        "name": "eye",
+        "category": 2,
+        "photographer_artist": "annoymous",
+        "size": "A3",
+        "quantity_in_stock": 2,
+        "price": "18.00",
+        "image": "mymind-eye.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 38,
+    "fields": {
+        "name": "vase on table",
+        "category": 3,
+        "photographer_artist": "Oriento",
+        "size": "A4",
+        "quantity_in_stock": 19,
+        "price": "10.00",
+        "image": "oriento-vase-on-table.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-21"
+    }
+}, {
+    "model": "products.product",
+    "pk": 45,
+    "fields": {
+        "name": "test",
+        "category": 3,
+        "photographer_artist": "testetstest",
+        "size": "A4",
+        "quantity_in_stock": 12,
+        "price": "18.00",
+        "image": "caleb-george-desert-contrast.jpg",
+        "in_stock": true,
+        "date_added": "2022-04-26"
+    }
+}, {
+    "model": "products.product",
+    "pk": 46,
+    "fields": {
+        "name": "twtsetstet",
+        "category": 2,
+        "photographer_artist": "tetstetste",
+        "size": "A4",
+        "quantity_in_stock": 8,
+        "price": "2.50",
+        "image": "robot_thing.png",
+        "in_stock": true,
+        "date_added": "2022-04-26"
+    }
+}]

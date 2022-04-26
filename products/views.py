@@ -67,10 +67,10 @@ class AddProduct(View):
         if form.is_valid():
             # save product
             product = form.save(commit=False)
-            product.change_stock_label()
             product.save()
+            product.change_stock_label()
             messages.success(
-                request, f"success, {product.name} has been added.")
+                request, f"success,{product.name} has been added.")
             return redirect(
                 reverse('all_products'), kwargs={'not_shopping': True})
         else:

@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.files.storage import FileSystemStorage
 from django.core.validators import MinValueValidator
 
 
@@ -29,20 +28,6 @@ product_size_choices = (
 )
 
 
-class MediaFileSystemStorage(FileSystemStorage):
-    """ stop files being renamed if they already exist """
-    def get_available_name(self, name, max_length=None):
-        if self.exists(name):
-            return name
-
-    def _save(self, name, content):
-        if self.exists(name):
-            # if the file exists, do not call the superclasses _save method
-            return name
-        # if the file is new, DO call it
-        return super(MediaFileSystemStorage, self)._save(name, content)
-
-
 class Product(models.Model):
     """ Product model """
     name = models.CharField(max_length=254)
@@ -55,7 +40,7 @@ class Product(models.Model):
         blank=False, validators=[MinValueValidator(0)])
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(
-        null=True, blank=True, storage=MediaFileSystemStorage())
+        null=True, blank=True)
     in_stock = models.BooleanField(default=False)
     date_added = models.DateField(auto_now_add=True)
 

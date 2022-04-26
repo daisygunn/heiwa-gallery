@@ -1,0 +1,81 @@
+[{
+    "model": "exhibitions.exhibitions",
+    "pk": 1,
+    "fields": {
+        "name": "It's a wonderful world",
+        "style": "photography",
+        "description": "Soarse Killegan has spent the last 20 years as an intrepid explorer, scouring the four corners of the earth in search for something... Along the way she has documented her journey, taking photos of the beautiful, heartbreaking and strange things that make us human. This is her first exhibition in London in 10 years and is set to be truly spellbinding.",
+        "photographer_artist": "Soarse Killegan",
+        "entrance_fee": "23.00",
+        "gallery_area": "main gallery",
+        "display": true,
+        "status": "coming soon",
+        "date_starting": "2022-08-14",
+        "date_finishing": "2022-09-30",
+        "date_added": "2022-04-06"
+    }
+}, {
+    "model": "exhibitions.exhibitions",
+    "pk": 2,
+    "fields": {
+        "name": "Interstellar",
+        "style": "photography",
+        "description": "See the stars as you never have before...",
+        "photographer_artist": "A collection of astrologists",
+        "entrance_fee": "24.00",
+        "gallery_area": "studio",
+        "display": true,
+        "status": "coming soon",
+        "date_starting": "2022-09-04",
+        "date_finishing": "2022-09-30",
+        "date_added": "2022-04-07"
+    }
+}, {
+    "model": "exhibitions.exhibitions",
+    "pk": 4,
+    "fields": {
+        "name": "A f r i c a",
+        "style": "sculpture",
+        "description": "Africa as told by the phenomenal Aziz Abubakar",
+        "photographer_artist": "Aziz Abubakar",
+        "entrance_fee": "15.00",
+        "gallery_area": "studio",
+        "display": true,
+        "status": "coming soon",
+        "date_starting": "2022-05-08",
+        "date_finishing": "2022-05-14",
+        "date_added": "2022-04-07"
+    }
+}, {
+    "model": "exhibitions.exhibitions",
+    "pk": 5,
+    "fields": {
+        "name": "Nick Palmer on film",
+        "style": "photography",
+        "description": "Follow the last 25 years of Palmsey's life",
+        "photographer_artist": "Nick Palmer",
+        "entrance_fee": "24.00",
+        "gallery_area": "main gallery",
+        "display": true,
+        "status": "coming soon",
+        "date_starting": "2022-06-26",
+        "date_finishing": "2022-07-16",
+        "date_added": "2022-04-07"
+    }
+}, {
+    "model": "exhibitions.exhibitions",
+    "pk": 7,
+    "fields": {
+        "name": "Ancient Rome",
+        "style": "sculpture",
+        "description": "Rare chance to see these fascinating sculptures from Ancient Rome.",
+        "photographer_artist": "Various",
+        "entrance_fee": "25.00",
+        "gallery_area": "main gallery",
+        "display": true,
+        "status": "finished",
+        "date_starting": "2022-02-06",
+        "date_finishing": "2022-02-06",
+        "date_added": "2022-04-09"
+    }
+}]
