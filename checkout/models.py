@@ -15,7 +15,7 @@ class Order(models.Model):
         blank=True, related_name="orders")
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
-    phone_number = models.CharField(max_length=20, null=False, blank=False)
+    phone_number = models.CharField(max_length=15, null=False, blank=False)
     flat_house = models.CharField(max_length=80, null=False, blank=False)
     town_city = models.CharField(max_length=40, null=False, blank=False)
     street_address = models.CharField(max_length=80, null=True, blank=True)
@@ -28,7 +28,6 @@ class Order(models.Model):
     original_basket = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False,
                                   blank=False, default='')
-    order_success = models.BooleanField(default=False)
 
     def _generate_order_number(self):
         """ generate a random, unique order number """
@@ -61,7 +60,7 @@ class OrderItem(models.Model):
                               on_delete=models.CASCADE,
                               related_name='orderitems')
     product = models.ForeignKey(Product, null=False, blank=False,
-                                on_delete=models.SET('product deleted.'))
+                                on_delete=models.CASCADE)
     quantity = models.IntegerField(
         null=False, blank=False, default=0)
     orderitem_total = models.DecimalField(
@@ -78,3 +77,5 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f'{self.product.name} in {self.product.size}'
+
+

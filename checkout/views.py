@@ -122,8 +122,6 @@ def checkout(request):
                         " being sold.")
                     order.delete()
                     return redirect(reverse('basket_overview'))
-            # update order_success label
-            order.order_success = True
             order_number = order.order_number
             # add save_address to session if the box was ticked
             request.session['save_address'] = 'save-address' in request.POST
