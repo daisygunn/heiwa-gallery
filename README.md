@@ -365,6 +365,8 @@ Using the `exhibition management` dropdown the admin user is taken to the exhibi
 
 I have designed custom 404 and 500 error pages using this [template](https://codepen.io/remid/pen/YOVawm); this allows the user to easily navigate back to the home page should they experience any errors.
 
+![](assets/images/404-error.jpg)
+
 ---
 ## Technologies Used
 
