@@ -284,11 +284,15 @@ This page is where the user is able to complete their purchase, split in to two 
 
 ![](assets/images/checkout.jpg)
 
-The card payment feature has been built using [Stripe](https://stripe.com/gb), so upon submission of the payment form information is passed to stripe and then back, if successful the user is taken to the 'checkout success' page, that displays the order number and delivery details.
+The card payment feature has been built using [Stripe](https://stripe.com/gb), to make test payments I have used the card details found in Stripe docs:
+
+![](assets/images/stripe-test-details.jpg)
+
+so upon submission of the payment form information is passed to stripe and then back, if successful the user is taken to the 'checkout success' page, that displays the order number and delivery details.  
 
 ![](assets/images/checkout-success.jpg)
 
-If the payment is not successful, the form does not submit, an error message is displayed and the user is able to recitfy the issues.
+If the payment is not successful, the form does not submit, an inline error message is displayed and the user is able to recitfy the issues.
 
 ### Exhibitions
 
@@ -302,11 +306,11 @@ Similarly to the categories page you can filter by the status on a laptop so the
 
 The filter buttons also change depending on the user as it didn't make sense for a normal to be able to see exhibitions that has finished, were pending or had been cancelled.
 
-A normal user see's the below:
+A normal user sees only the 'now showing', 'coming soon' and 'show all' options:
 
 ![](assets/images/exhibitions-filter-normal-user.jpg)
 
-And an admin user see's the following options: 
+And an admin user sees the following options: 
 
 ![](assets/images/exhibition-filter-admin.jpg)
 
@@ -442,9 +446,10 @@ All of my code has been validated using an online validator specific to the lang
     - Used to validate JS code
 
 - [Pep8](http://pep8online.com/)
-    - Used to test my code for any issues or errors.
+    - Used to test my Python code for any issues or errors; please note when using inline Flake8 linter there were some errors that flagged up that didn't flag in pep8 and have therefore been left as they are.
 
 In addition to this I have also used online validators to test the accessibility of my website:
+
 - [Wave](https://wave.webaim.org/)
     - Used to test the accessibility of the website.
 
@@ -453,7 +458,6 @@ In addition to this I have also used online validators to test the accessibility
 There is one error in the wave report that relates to a missing form input, this is due to an empty input required by Mailchimp to prevent bots from being able to submit the form and so I have not resolved this error.
 
 ![](assets/images/missing-label-error.jpg)
-
 
 - [Color Contrast Accessibility Validator](https://color.a11y.com/)
     - Allowed me to test the colour contrast of my webpage.
@@ -529,6 +533,22 @@ Cloning your repository will allow you to download a local version of the reposi
 5. In the terminal type 'git clone' & then paste the link you copied in GitHub
 6. Press enter and your local clone will be created.
 
+### Gmail SMTP
+
+I have used Gmail SMTP to send confirmation emails and all AllAuth related emails when the deployed version is used. I used the following [documentation](https://kb.synology.com/en-global/SRM/tutorial/How_to_use_Gmail_SMTP_server_to_send_emails_for_SRM) to set it up and add these settings to my settings.py file:
+
+![](assets/images/email-settings.jpg)
+
+### Stripe
+
+In order to take payments for the online store I have implemented Stripe; you must create an account with them and then using the [documentation](https://stripe.com/docs/payments/quickstart) add the relevant html, python & JS code for your needs.
+
+### AWS static and media storage
+
+All static and media files are stored in the cloud using Amazon AWS S3; i have created a bucket, usergroup and user that is able to access this site and the relevant file. In order for the files to be correclty served the following settings have to added to your main settings.py file:
+
+![](assets/images/aws-settings.jpg)
+
 ### Creating an Application with Heroku
 
 I followed the below steps using the Code Institute tutorial and [Django Blog cheatsheat](https://codeinstitute.s3.amazonaws.com/fst/Django%20Blog%20Cheat%20Sheet%20v1.pdf)
@@ -543,11 +563,12 @@ I followed the below steps using the Code Institute tutorial and [Django Blog ch
 *Heroku Settings*
 You will need to set your Environment Variables - this is a key step to ensuring your application is deployed properly.
 - In the Settings tab, click on `Reveal Config Vars` and set the following variables:
-    - SECRET_KEY - to be set to your chosen key
-    - CLOUDINARY_URL - to be set to your Cloudinary API environment variable
+
+![](assets/images/config-vars.jpg)
+
 - In the resources tab you must install 'Heroku Postgres'
 
-*Heroku Deployment*
+*Heroku Deployment using website*
 In the Deploy tab:
 1. Connect your Heroku account to your Github Repository following these steps:
     1. Click on the `Deploy` tab and choose `Github-Connect to Github`.
@@ -558,9 +579,16 @@ In the Deploy tab:
 
 ![](assets/images/heroku_deployed_image.png)
 
-### AWS static and media storage
+*Heroku CLI deployment*
+Whilst building this project there was a security breach on Heroku which caused issues with deployment via their website. Due to this, I had to add a `runtime.txt` file specifiying which version of Python to build the app with and used the following commands to push the code to Heroku:
 
-All static and media files are stored in the cloud using Amazon AWS S3; 
+1. Login to Heroku via the CLI using `heroku login -i`
+2. Enter your email and password
+3. Connect to the Heroku git remote using the `heroku git:remote -a YOURAPPNAME`
+4. Push to the heroku git remote using `git push heroku main`
+
+![](assets/images/heroku-cli-login.jpg)
+
 ---
 ## Credits
 
