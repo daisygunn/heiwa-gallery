@@ -55,7 +55,13 @@
         <div class="col-sm-6 col-md-4 col-xl-3 my-2 d-flex justify-content-center">
             <div class="card">
                 <div class="image-container align-middle">
+                    <!-- if there isn't an image assigned to the product display text -->
+                    {% if not product.image %}
+                    <p class="mt-5 text-danger text-center">no current image to display</p>
+                    {% else %}
+                    <!-- if there is an image, display the image -->
                     <img class="card-img-top" src="{{ MEDIA_URL}}{{ product.image }}" alt="{{ product.name }} image">
+                    {% endif %}
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
