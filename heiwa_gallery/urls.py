@@ -30,5 +30,6 @@ urlpatterns = [
     path('exhibitions/', include('exhibitions.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+# override the standard 404 and 500 handlers
 handler404 = 'home.views.error_404'
 handler500 = 'home.views.error_500'
