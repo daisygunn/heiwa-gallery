@@ -6,7 +6,16 @@ function screenClass() {
     if($(window).innerWidth() < 760) {
         $(".read-more").removeClass("hidden");
         $(".read-less").addClass("hidden");
+        $(".dropdown-toggle1").on('click', function(event) {
+            $(".dropdown-menu1").toggleClass("show");
+        });
+        $(".dropdown-toggle1").attr("disabled", true);
+        $(".dropdown-toggle2").on('click', function(event) {
+            $(".dropdown-menu2").toggleClass("show");
+        $
+    });
     } else {
+        $(".dropdown-toggle1").attr("disabled", false);
         $(".read-more").addClass("hidden");
         $(".read-less").removeClass("hidden");
     }
