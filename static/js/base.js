@@ -47,13 +47,6 @@ setInterval(() => {
 $(document).ready(function() {
     screenClass();
 
-    $(".dropdown-toggle1").on('click', function(event) {
-        $(".dropdown-menu1").toggleClass("show");
-    });
-    $(".dropdown-toggle2").on('click', function(event) {
-        $(".dropdown-menu2").toggleClass("show");
-    });
-
     $(".navbar-toggler").on('click', function(event) {
         $(".navbar-collapse").toggleClass("show");
     });
