@@ -83,10 +83,11 @@ Please find all my defined user stories & their acceptance criteria [here](https
 ### **Epic 5 - User Account**:
 
 18. As a **user** I can register & login so that I can view my orders.
-19. As a **user** I can easily see if I'm logged in or not so that I can choose to log in or log out.
-20. As a **user** I am prompted to register for an account so that I can create an account and receive the benefits of having a profile.
-21. As a **user** I can log in so that I can auto-populate forms with my information on the site.
-22. As a **user** I can save my default billing/shipping details so that I can save time making my next purchase.
+19. As a **user** I can access my profile page so that I can view my previous orders & wishlist.
+20. As a **user** I can easily see if I'm logged in or not so that I can choose to log in or log out.
+21. As a **user** I am prompted to register for an account so that I can create an account and receive the benefits of having a profile.
+22. As a **user** I can log in so that I can auto-populate forms with my information on the site.
+23. As a **user** I can save my default billing/shipping details so that I can save time making my next purchase.
 
 ### **Epic 6 - Exhibition Information**:
 
