@@ -379,6 +379,10 @@ ul.navbar-nav,
   .footer-row>* {
     width: 50%;
   }
+
+  .mailchimp-logo {
+    width: 2.5rem;
+  }
 }
 
 @media screen and (min-width:769px) {

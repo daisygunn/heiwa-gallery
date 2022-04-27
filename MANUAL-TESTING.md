@@ -43,7 +43,9 @@
 
 ![](assets/images/basket-mobile.jpg)
 
--  The user is then able to click on the green icon to expand the table row to show all of the information:
+-  The user is then able to click on the green icon to expand the table row to show all of the information & I have added a clear message at the top of the screen so the user isn't confused:
+
+![](assets/images/datatable-message.jpg)
 
 ![](assets/images/basket-mobile-expanded.jpg)
 
@@ -239,7 +241,7 @@
 
 - During the planning stage, SEO research was conducted to decide which keywords would help with SEOs:
 
-![](assets/images/SEO%20research.jpeg)
+![](assets/images/planning/SEO-research.jpeg)
 
 - These keywords were then added across the website content and added in the meta tags & descriptions:
 
@@ -251,7 +253,7 @@
 
 ![](assets/images/facebook-page-heiwa.png)
 
-
+---
 ## Javascript testing
 
 I have written a number of javascript functions in order to acheive the desired functionality across the website. For functions required across the website, these are featured the base.js file, specific page-related functions are within the app js folder.
@@ -262,11 +264,13 @@ I have written a number of javascript functions in order to acheive the desired 
 
 ![](assets/images/screenClass.jpg)![](assets/images/footer-toggle.jpg)
 
-This function determines the size of the screen and hide the footer elements if the screen is smaller than 760px
+This function determines the size of the screen and trigger various changes if the screen is smaller than 760px.
+
+Some of the footer elements collapse and a down arrow icon appears:
 
 ![](assets/images/footer-collapsed.jpg)
 
-This set of functions, `showHours` and `showLocation` then allow the user to click on the down arrow to show the relevant section, you can see that the hidden class is added when the information isn't shown:
+This set of functions, `showHours` and `showLocation`, then allow the user to click on the down arrow to show the relevant section, you can see that the hidden class is added when the information isn't shown:
 
 ![](assets/images/read-less-hidden.jpg)
 
@@ -274,7 +278,7 @@ and then removed in order to show it:
 
 ![](assets/images/read-less-not-hidden.jpg)
 
-The `dropdown-toggle` function ensure that the navbar works correctly on a mobile, on a laptop you are able to hover on the dropdown menus to display the links nested within this menu. However, this does not work on mobiles and so I have added on click events, so that when the icon is clicked the menu shows using the `show` class:
+The `dropdown-toggle` functions ensure that the navbar works correctly on a mobile, on a laptop you are able to hover on the dropdown menus to display the links nested within this menu. However, this does not work on mobiles and so I have added `click` events, so that when the icon is clicked the menu shows using the `show` class:
 
 ![](assets/images/no-href.jpg)
 
@@ -372,3 +376,4 @@ If there is an error with the payment then a error message is displayed and the 
 
 ![](assets/images/decline-message.jpg)
 
+[Back to main README](README.md)

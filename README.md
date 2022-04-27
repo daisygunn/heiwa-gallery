@@ -259,7 +259,7 @@ Additionally, if a user is logged in then an empty love heart icon is displayed,
 
 ![](assets/images/hearts.jpg)
 
-The products can be filtered by their respective category, this can be done in the navbar and also from the all products page (on a laptop). I chose to hide the filter options on a smaller screen as I felt it took up too much of the page.
+The products can be filtered by their respective category, this can be done in the navbar and also from the all products page (on a laptop). I chose to hide some the filter options on a smaller screen as I felt it took up too much of the page; I left the 'show only products in stock' and 'all products' on a mobile screen as I felt filtering out the not in stock products made a big difference to the user experience.
 
 This filter sends a query to the database and only returns the products that have a category matching the id passed in the URL. 
 
@@ -279,7 +279,6 @@ If there is nothing in the basket then there is no table is displayed, and inste
 
 ![](assets/images/empty-basket.jpg)
 
-
 ### Checkout
 
 This page is where the user can complete their purchase, split into two columns, billing & card details on one side and their basket overview on the other. The forms are simple, with placeholders explaining what each input is for.
@@ -295,6 +294,8 @@ so upon submission of the payment form information is passed to stripe and then 
 ![](assets/images/checkout-success.jpg)
 
 If the payment is not successful, the form does not submit, an inline error message is displayed and the user is able to rectify the issues.
+
+![](assets/images/card-error.jpg)
 
 ### Exhibitions
 
@@ -330,7 +331,7 @@ The previous order displays a list of all the orders previously made by the user
 
 ![](assets/images/order-history.jpg)
 
-- Wishlist displays the list of items the user has saved to their wishlist.
+- Wishlist displays the list of items the user has saved to their wishlist, with the ability to remove the product.
 
 ![](assets/images/wishlist.jpg)
 
