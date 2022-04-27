@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block title %}
-    <title>heiwa | basket overview</title>
+<title>heiwa | basket overview</title>
 {% endblock %}
 
 {% block subtitle %}
@@ -20,6 +20,8 @@
 {% block content %}
 <div class="container">
     {% if items_in_basket %}
+    <!-- show message regarding datatable -->
+    {% include 'includes/mobile-message.html' %}
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-8 col-xl-10 my-2 justify-content-center">
             <!--datatable to display basket information  -->
@@ -55,7 +57,7 @@
                                 <div class="value-button decrease" data-id="{{ pk.pk }}_decrease"
                                     value="Decrease Value">-</div>
                                 <input type="number" id="{{ pk.pk }}" class="number" name="quantity"
-                                    value="{{ pk.quantity }}"/>
+                                    value="{{ pk.quantity }}" />
                                 <div class="value-button increase" data-id="{{ pk.pk }}_increase"
                                     value="Increase Value">+</div>
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
