@@ -1,6 +1,7 @@
 .carousel-caption {
     color: #fff;
     background-color: #0d5c63;
+    bottom: 2.5rem;
 }
 
 .carousel-item {
@@ -26,9 +27,16 @@
 
 @media screen and (max-width: 425px) {
     .carousel-item {
-        height: 20vh;
+        height: 18vh;
     }
 }
+
+@media screen and (min-width: 426px) {
+    .carousel-item {
+        height: 25vh;
+    }
+}
+
 
 @media screen and (min-width: 768px) {
     .carousel-item {
@@ -38,12 +46,12 @@
 
 @media screen and (min-width: 1024px) {
     .carousel-item {
-        height: 39vh;
+        height: 36vh;
     }
 }
 
 @media screen and (min-width: 1440px) {
     .carousel-item {
-        height: 53vh;
+        height: 50vh;
     }
 }
