@@ -9,13 +9,13 @@ function screenClass() {
         $(".dropdown-toggle1").on('click', function(event) {
             $(".dropdown-menu1").toggleClass("show");
         });
-        $(".dropdown-toggle1").attr("disabled", true);
+        $(".dropdown-toggle1").removeAttr("href");
         $(".dropdown-toggle2").on('click', function(event) {
             $(".dropdown-menu2").toggleClass("show");
         $
     });
     } else {
-        $(".dropdown-toggle1").attr("disabled", false);
+        $(".dropdown-toggle1").addAttr("href", "{% url 'all_products' %}");
         $(".read-more").addClass("hidden");
         $(".read-less").removeClass("hidden");
     }
