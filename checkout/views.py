@@ -31,7 +31,8 @@ def cache_checkout_data(request):
         })
         return HttpResponse(status=200)
     except Exception as error:
-        messages.error(request, "Something isn't quite right.")
+        messages.error(
+            request, "Something not quite right with caching checkout data.")
         return HttpResponse(content=error, status=400)
 
 
