@@ -226,7 +226,7 @@
                         <h6>newsletter sign up!</h6>
                         <!-- Begin Mailchimp Signup Form -->
                         {% if request.user.is_authenticated and request.user.email in email_list %}
-                        <p class="green-text">thank you, you have already subscribed.</p>
+                        <p class="white-text"><em>thank you, you have already subscribed.</em></p>
                         {% else %}
                         <div id="mc_embed_signup">
                             <form
