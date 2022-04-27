@@ -274,6 +274,13 @@ and then removed in order to show it:
 
 ![](assets/images/read-less-not-hidden.jpg)
 
+The `dropdown-toggle` function ensure that the navbar works correctly on a mobile, on a laptop you are able to hover on the dropdown menus to display the links nested within this menu. However, this does not work on mobiles and so I have added on click events, so that when the icon is clicked the menu shows using the `show` class:
+
+![](assets/images/no-href.jpg)
+
+You can also see in the image above that there is no `href` for the shop item as I didn't want the user to be frustrated when trying to expand the shop menu if they were navigated to the shop page rather than being able to click on one of the dropdown menu links. The href is removed on smaller screens and then added back in again on larger screens:
+
+![](assets/images/dropdown-toggle-href.jpg)
 
 **Mailchimp message**
 

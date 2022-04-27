@@ -128,9 +128,6 @@ ul.navbar-nav,
   margin-left: 1rem;
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
 
 .dropdown-item,
 .nav-link:hover {
@@ -339,6 +336,7 @@ ul.navbar-nav,
 /* media queries */
 
 @media (max-width:768px) {
+
   .site-footer {
     padding-bottom: 0
   }
@@ -381,6 +379,13 @@ ul.navbar-nav,
   .footer-row>* {
     width: 50%;
   }
+}
+
+@media screen and (min-width:769px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
 }
 
 @media (max-width:991px) {
