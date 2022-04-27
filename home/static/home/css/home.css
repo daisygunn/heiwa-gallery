@@ -4,6 +4,8 @@
     color: #fff;
     background-color: #0d5c63;
     bottom: 2.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .carousel-item {
@@ -27,9 +29,9 @@
     text-decoration: none;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (min-width:280px) {
     .carousel-item {
-        height: 18vh;
+        height: 27vh;
     }
 }
 
@@ -38,7 +40,6 @@
         height: 25vh;
     }
 }
-
 
 @media screen and (min-width: 768px) {
     .carousel-item {
