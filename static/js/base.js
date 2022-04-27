@@ -17,7 +17,6 @@ function screenClass() {
         });
         $(".dropdown-toggle2").on('click', function(event) {
             $(".dropdown-menu2").toggleClass("show");
-        $
     });
     } else {
         // add href on larger screen so 'shop' can be clicked

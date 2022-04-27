@@ -39,14 +39,14 @@
                 bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">colour
                 photography</a>
         </div>
-        <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block">
+        <div class="col-sm-4 col-md-3 mb-2">
             <a href="{% url 'all_products' %}?in_stock=True" rel="canonical" class="btn {% if in_stock %}
-            bg-green text-white {% else %} brand-link {% endif %}  fw-bolder w-100">products in stock</a>
+            bg-green text-white {% else %} brand-link {% endif %}  fw-bolder w-100">show only products in stock</a>
         </div>
-        <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block">
-            <a href="{% url 'all_products' %}" rel="canonical" class="btn {% if not category %}
+        <div class="col-sm-4 col-md-3 mb-2">
+            <a href="{% url 'all_products' %}" rel="canonical" class="btn {% if not category and not in_stock %}
             bg-green text-white {% else %} brand-link {% endif %}  fw-bolder w-100">show
-                all</a>
+                all products</a>
         </div>
     </div>
     <div class="row">
