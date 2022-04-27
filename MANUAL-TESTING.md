@@ -250,3 +250,118 @@
 - Facebook page for Heiwa can be found here:
 
 ![](assets/images/facebook-page-heiwa.png)
+
+
+## Javascript testing
+
+I have written a number of javascript functions in order to acheive the desired functionality across the website. For functions required across the website, these are featured the base.js file, specific page-related functions are within the app js folder.
+
+### Base.js 
+
+`**screenClass()**` & **Footer toggle**
+
+![](assets/images/screenClass.jpg)![](assets/images/footer-toggle.jpg)
+
+This function determines the size of the screen and hide the footer elements if the screen is smaller than 760px
+
+![](assets/images/footer-collapsed.jpg)
+
+This set of functions, `showHours` and `showLocation` then allow the user to click on the down arrow to show the relevant section, you can see that the hidden class is added when the information isn't shown:
+
+![](assets/images/read-less-hidden.jpg)
+
+and then removed in order to show it:
+
+![](assets/images/read-less-not-hidden.jpg)
+
+
+**Mailchimp message**
+
+![](assets/images/mailchimp-function.jpg)
+
+This `setInterval` function hide the MailChimp message (either success or failure) after 30 seconds:
+
+![](assets/images/thank-you-subscribing.jpg)
+
+![](assets/images/subcribe-gone.jpg)
+
+When testing this there have been a handful of occasions where the subscribe message flashes rather than waiting the full 30 seconds but I haven't been able to determine exactly what causes this as there is no consistency with it.
+
+### Datatable.js
+
+![](assets/images/datatables.jpg)
+
+This function simply creates a datatable when the class `data_table` is added to a table, this is used on the products management, exhibition management and basket overview page. 
+
+![](assets/images/exhibition-management.jpg)
+
+### Exhibitions
+
+**`datePicker()`**
+
+This function uses jQuery to make the date fields in the exhibition form datepickers:
+
+![](assets/images/date-picker-function.jpg)
+
+![](assets/images/datepicker.jpg)
+
+
+### Basket
+
+`decrease` & `increase` functions are used to change the value of the quantity button for each product.
+
+![](assets/images/basket.js.jpg)
+
+I have added a data-id to each of the product increase/decrease buttons, so that when the button is clicked the correct quantity field is update. For testing purposes I added print statements within the functions to show that the correct product was having it's quantity changed:
+
+![](assets/images/basket-js-testing.jpg)
+
+There is an alert in the decrease function that is called if the user tries to reduce the quantity below zero:
+
+![](assets/images/bigger-than-0.jpg)
+
+And one in the increase function that is called if the user tries to increase the quanity higher than 5, as it is the shops policy that only 5 of a single product can be bought at any one time:
+
+![](assets/images/max-5.jpg)
+
+### Checkout
+
+**save-address**
+
+![](assets/images/save-address.jpg)
+
+This function simply changes the 'checked' state of the save details box on the checkout page, once clicked if the check attribute is already present then it removes it and if not present then it adds it:
+
+![](assets/images/save-details-checked.jpg)
+
+![](assets/images/save-details-not-checked.jpg)
+
+**Stripe**
+
+![](assets/images/create-card.jpg)
+
+This function injects the card payment using the Stripe JS file import
+
+![](assets/images/show-message-and-spinner.jpg)
+
+The showMessage and setLoading functions are from the stripe docs, and simply show the messages associated with the card payment and add a spinner on the pay now button once it has been clicked:
+
+![](assets/images/loading.jpg)
+
+![](assets/images/success-payment.jpg)
+
+
+![](assets/images/stripe-payment-js.jpg)
+
+This function submits the payment form, posting the data to Stripe via the `cache_checkout_data` view and returns a success message if the payment was successful:
+
+![](assets/images/success-payment.jpg)
+
+You can see via the messages in the terminal that the cache_checkout_data view was called and got a 200 response, which is a success, POST checkout got a 302 response as it then redirected to `checkout success` and the confirmation email was sent.
+
+![](assets/images/checkout-http.jpg)
+
+If there is an error with the payment then a error message is displayed and the form isn't submitted:
+
+![](assets/images/decline-message.jpg)
+
