@@ -33,9 +33,9 @@
                     <input type="checkbox" id="save-address" name="save-address" checked>
                     {% else %}
                     <!-- if not logged in then prompt them to register or sign in -->
-                    <p class="fw-bolder brand-blue"><a class="green-link" href="{% url 'account_signup' %}">register</a>
+                    <p class="fw-bolder brand-blue"><a class="green-link green-text" href="{% url 'account_signup' %}">register</a>
                         or
-                        <a class="green-link" href="{% url 'account_login' %}">login</a> to save your address for next
+                        <a class="green-link green-text" href="{% url 'account_login' %}">login</a> to save your address for next
                         time!</p>
                     {% endif %}
                 </div>
