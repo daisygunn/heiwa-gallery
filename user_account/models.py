@@ -15,10 +15,10 @@ class UserProfile(models.Model):
         max_length=20, null=False, blank=False)
     default_flat_house = models.CharField(
         max_length=80, null=False, blank=False)
-    default_town_city = models.CharField(
-        max_length=40, null=False, blank=False)
     default_street_address = models.CharField(
         max_length=80, null=True, blank=True)
+    default_town_city = models.CharField(
+        max_length=40, null=False, blank=False)
     default_county = models.CharField(
         max_length=80, null=True, blank=True)
     default_postcode = models.CharField(

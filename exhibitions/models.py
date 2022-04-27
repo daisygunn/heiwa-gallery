@@ -69,7 +69,7 @@ class Exhibitions(models.Model):
             self.status = 'now showing'
 
     def start_end_validation(self):
-        """ set now showing """
+        """ make sure end date does not come before start date """
         start_date = self.date_starting
         end_date = self.date_finishing
 
