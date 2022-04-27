@@ -117,7 +117,7 @@ In order to achieve the desired user & business goals, the following features wi
 
 I opted to connect to the Heroku Postgres database from the beginning which is provided by Heroku as an add-on. For almost all of the apps (aside from home) I have created models for, the Entity-Relationship Diagram below shows how the database models relate to each other: 
 
-![Database Schemas can be found here](assets/images/database-schema.jpg)
+![Database Schemas can be found here](assets/images/planning/HEIWA_DB_SCHEMA.jpeg)
 
 #### **User Account**
 
@@ -186,7 +186,7 @@ Users are also able to subscribe to receive the gallery's newsletter, using the 
 
 ![](assets/images/mailchimp-form.jpg)
 
-If the user is logged in and has previously subscribed then the form is hidden to provide clarity to the user. I have achieved this using a call to the [MailChimp API](https://mailchimp.com/developer/marketing/api/list-members/) to retrieve a list of all of the emails currently registered if the email address of the logged-in user is present in this list then the following message is shown;
+If the user is logged in and has previously subscribed then the form is hidden to provide clarity to the user. I have achieved this using a call to the [MailChimp API](https://mailchimp.com/developer/marketing/api/list-members/) to retrieve a list of all of the emails currently registered if the email address of the logged-in user is present in this list then the following message is shown:
 
 ![](assets/images/already-subscribed.jpg)
 
@@ -195,11 +195,11 @@ If the user is logged in and has previously subscribed then the form is hidden t
 
 I conducted SEO research to decide on the keywords and phrases that would be used across the website, I wrote a list of as many words and phrases I could think of and then using Google, I searched by these keywords to see the sort of websites that were returned. 
 
-![](assets/images/art-gallery-google.jpg)
+![](assets/planning/art-gallery-google.jpg)
 
 I used this research to condense my list:
 
-![](assets/images/SEO-research.jpg)
+![](assets/planning/SEO-research.jpg)
 
 In addition to my research, once the bulk of the website had been built I used an online tool called [Semrush](https://www.semrush.com/) which provided a report on ways that I could improve my SEO. This report showed that each page needed its own title so I implemented this feedback. I chose the keep the meta tags and descriptions the same across each page as the content wouldn't have varied too much and there would have been a lot of replication.
 
@@ -452,6 +452,8 @@ All of my code has been validated using an online validator specific to the lang
 
 - [Pep8](http://pep8online.com/)
     - Used to test my Python code for any issues or errors; please note when using inline Flake8 linter some errors flagged up that didn't flag in pep8 and have therefore been left as they are.
+    
+    ![](assets/images/flake8-errors.jpg)
 
 In addition to this I have also used online validators to test the accessibility of my website:
 

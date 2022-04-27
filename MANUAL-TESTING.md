@@ -6,26 +6,25 @@
 
 1. As a **user** I can intuitively navigate through the site so that I can view desired content.
 2. As a **user** I can find a navigation bar and footer so that I can see what content there is on the website.
-
 3. As a **user** I can get key information about the gallery from the landing page so that I can spend less time having to search for information.
 
 
-- The navigation bar remains at the top constantly so it can always be seen by the user. Each page is clearly named and there are dropdowns for subsections of the website so that there isn't too much information in the navbar.
+- The navigation bar is fixed at the top of the screen, meaning it is always seen by the user, allowing the user to navigate through the content easily & intuitively. Each nav link is named with an obvious link to the page content, for the shop and admin links there are dropdowns for subsections of the website so that there isn't too much information in the navbar.
 
 ![](assets/images/nav-bar-laptop.jpg)
 
 
-- The footer is at the bottom of the page but isn't fixed and contains key information about the gallery. Contact details, opening times, social media links & address are items that will be frequently searched for by a user, so placing them in the footer makes it easier to find.
+- The footer is at the bottom of the page but isn't fixed and contains key information about the gallery. Contact details, opening times, social media links & the gallery address are all items that will be frequently searched for by a user, so placing them in the footer makes them easier to find thus ensuring that the user can obtain key information quickly.
 
 ![](assets/images/laptop-footer.jpg)
 
 4. As a **user** I am notified about any changes I have made so that I have a clear understanding of what has been completed/updated/failed.
 
-- I have used bootstrap toasts to display messages to the user at various points, the success toast is used often and when adding a product to the basket also displays a short basket overview:
+- I have used bootstrap toasts to display messages to the user at various points throughout their customer journey. The success toast is used often and when adding a product to the basket also displays a short basket overview:
 
 ![](assets/images/add-to-basket-toast.jpg)
 
-- I have also used info, warning and error toasts to display different messages:
+- I have also used info, warning and error toasts to display various other messages; this ensures the user has awareness of any changes that have been made or have been unsuccessful:
 
 ![](assets/images/info-toast.jpg)
 ![](assets/images/not-authorised-toast.jpg)
@@ -34,23 +33,23 @@
 
 5. As a **user** I can access the website on both mobile and desktop so that I can view the information regardless of my location.
 
-- As I have used bootstrap the website is entirely responsive and can be viewed on any size screen and have the same functionality. 
+- As I have used bootstrap the website is entirely responsive and can be viewed on any size screen and have the same functionality; however, some non-critical content has been hidden on smaller screens to enhance the user experience.
 
 ![](assets/images/mobile-menu.jpg)
 
 ![](assets/images/mobile-footer.jpg)
 
-- I have also taken advantage of JQuery datatables which collapse the tables on smaller screens so the user doesn't have to scroll across, 
+- I have also taken advantage of JQuery data tables which will collapse a table, with a specified class name, on smaller screens so the user doesn't have to scroll across. I have implemented this on both the product and exhibition management pages and also on the basket overview.
 
 ![](assets/images/basket-mobile.jpg)
 
-- & then clicking on the green icon expands the table row to show all of the columns
+-  The user is then able to click on the green icon to expand the table row to show all of the information:
 
 ![](assets/images/basket-mobile-expanded.jpg)
 
 ### **Epic 2 - Products**:
 
-5. As a **user** I can view all products that are in stock and available to buy.
+5. As a **user** I can view all products that are in stock and available to buy
 
 - Using the `shop` nav link the user is directed to the `all_products` page, this is a view that returns all products in the product model.
 
@@ -65,11 +64,11 @@
 
 7. As a **user** I can filter the prints by categories to have more control over what I'm viewing.
 
-- At the top of the products page there are four buttons that will allow the user to filter by category:
+- At the top of the products page are four buttons that allow the user to filter by category and a 'products in stock' button that only shows the products that are available to buy:
 
 ![](assets/images/category-filters.jpg)
 
-- clicking on one of these buttons sends a query to the database and returns the relevant products using the style id:
+- Clicking on one of these buttons sends a query to the database and returns the relevant products using the style id or the 'in_stock' field:
 
 ![](assets/images/filtered-products.jpg)
 
@@ -83,7 +82,7 @@
 
 9. As a **user** I am able to process orders by making a card payment.
 
-- Using Stripe, each time the checkout page is loaded a payment intent is created and a card element is injected in to the page. Using the test card details from the Stripe documentation you can test the checkout process, if successful a `'Payment success!'` message is displayed above the pay now button and the user is redirected to the checkout success page.
+- Using Stripe, each time the checkout page is loaded a payment intent is created and a card element is injected into the page. Using the test card details from the Stripe documentation you can test the checkout process, if successful a `'Payment success!'` message is displayed above the pay now button and the user is redirected to the checkout success page.
 
 ![](assets/images/success-payment.jpg)
 
@@ -99,13 +98,13 @@
 
 11. As a **user** I can only add prints to my basket that are in stock so that I can avoid later frustration if my order cannot be fulfilled.
 
-- As the add to basket button is removed the user will not easily be able to add any product to the basket but if they were to try and overwrite the url by changing the product pk passed then I have used defensive programming so that if the required data is not passed through the post requets the user is shown an error message and they are redirected back to the all_products page.
+- As the `add to basket` button is removed the user is not easily able to add any product to the basket. However, if they were to try and overwrite the URL by changing the product pk passed, then I have used defensive programming so that if the required data is not passed through the post request the user is shown an error message and they are redirected back to the all_products page.
 
 ![](assets/images/add-without-quantity-error.jpg)
 
 12. As a **user** I receive order confirmations to be sure my order has been processed.
 
-- Upon submitting the payment form, if successful and the user is redirect to checkout success then `send_confirmation_email` function is called which uses the email address from the order form, this function sends an email that has the order total, shipping details, order number and products purchased in:
+- Upon submitting the payment form, if successful and the user is redirected to checkout success then the `send_confirmation_email` function is called, which uses the email address from the order form, this function sends an email that has the order total, shipping details, order number and products purchased in:
 
 ![](assets/images/order-confirmation.jpg)
 
@@ -113,11 +112,11 @@
 
 13. As an **admin user** I can log in so that I can access the site's backend.
 
-- Using a specified superuser account an admin user can access the `/admin` url and login, they will then be taken to the 'Django Administration' page:
+- Using a specified superuser account an admin user can access the `/admin` URL and login, they will then be taken to the 'Django Administration' page:
 
 ![](assets/images/django-admin.jpg)
 
-14. As an **admin user** I am able to login to see the product management page so that I can make changes in the front end.
+14. As an **admin user** I am able to log in to see the product management page so that I can make changes in the front end.
 
 - Once logged in as an admin superuser the navbar displays `admin`, clicking this shows the below menu:
 
@@ -135,15 +134,15 @@
 
 ![](assets/images/crud-functionality.jpg)
 
-- The `edit` button takes the user to a specified edit page, there is form pre-populated using the product instance and the user is able to update the information and submit the form. The quantity in stock field is hidden on this form to ensure the user can only edit the stock level using the stock form. 
+- The `edit` button takes the user to a specified edit page, there is a form pre-populated using the product instance and the user can update the information and submit the form. The quantity in stock field is hidden on this form to ensure the user can only edit the stock level using the stock form. 
 
 ![](assets/images/edit-product.jpg)
 
-- The `delete` button take the user to specified delete page for the product, this page displays the product image, name and a delete buttom.
+- The `delete` button takes the user to a specified delete page for the product, this page displays the product image, name and a delete button.
 
 ![](assets/images/delete-prodcut.jpg)
 
-- If the user clicks `delete product` then a modal pops up to ensure that the user definitely wants to delete the product
+- If the user clicks `delete product` then a modal pops up to ensure that the user definitely wants to delete the product and has not pressed this by mistake
 
 ![](assets/images/delete-modal.jpg)
 
@@ -153,7 +152,7 @@
 
 ### **Epic 5 - User Account**:
 
-17. As a **user** I can register & log in so that I can view my orders/wishlist.
+17. As a **user** I can register & login so that I can view my orders/wishlist.
 
 - Once a user is logged in, using the `my account` link in the navbar will bring the user to their account overview page. From here they can access either their personal details, previous orders or wishlist.
 
@@ -161,28 +160,28 @@
 
 18. As a **user** I can easily see if I'm logged in or not so that I can choose to log in or log out.
 
-- The navbar links on the right hand side change depending on the authentication state of the user, if logged in then `my account` & `logout` shows:
+- The navbar links on the right-hand side change depending on the authentication state of the user, if logged in then `my account` & `logout` show:
 
 ![](assets/images/logged-in.jpg)
 
-- and if the user is not authenticated then `register` and `login` are displayed. This differentiation makes is very clear and obvious to the user if they are currently logged in:
+- and if the user is not authenticated then `register` and `login` are displayed. This differentiation makes it very clear and obvious to the user if they are currently logged in:
 
 ![](assets/images/logged-out.jpg)
 
-19. As a **user** I am prompted to register for an account so that I can create an account and receive the benefits from having a profile.
+19. As a **user** I am prompted to register for an account so that I can create an account and receive the benefits of having a profile.
 
-- The register link in the navbar is the first prompt, if the user clicks to log in this page will prompted to register for an account if they don't already have one:
+- The register link in the navbar is the first prompt, if the user clicks to log in this page will prompt them to register for an account if they don't already have one:
 
 ![](assets/images/sign-in-prompt.jpg)
 
-- On the checkout page, if the user isn't logged in there is a paragraph that prompts the user to register or login to save their details for next time:
+- On the checkout page, if the user isn't logged in there is a paragraph that prompts the user to register or log in to save their details for next time:
 
 ![](assets/images/register-prompt-checkout.jpg)
 
 20. As a **user** I can log in so that I can auto-populate forms with my information on the site.
 21. As a **user** I can save my default billing/shipping details so that I can save time making my next purchase.
 
-- When a user first creates an account and log in none of their information will be saved to their profile yet; but after completing the user profile form or making their first order (with the save details box ticked) then both the user profile form and the order form will be pre-filled with their details:
+- When a user first creates an account and logs in none of their information will be saved to their profile yet, but after completing the user profile form or making their first order (with the save details box ticked) then both the user profile form and the order form will be pre-filled with their details:
 
 ![](assets/images/pre-filled-form.jpg)
 
@@ -190,9 +189,9 @@
 
 ### **Epic 6 - Exhibition Information**:
 
-23. As an **admin user** I can add/edit/delete exhibition to be displayed on the website.
+23. As an **admin user** I can add/edit/delete exhibitions to be displayed on the website.
 
-- The exhibitions functionality works in the same way as products, there are `add exhibition` and `exhibition management` in the admin dropdown menu. `add exhibition` takes the admin user to the the add exhibition page, which is comprised of a form:
+- The exhibitions functionality works in the same way as products, there are `add exhibition` and `exhibition management` in the admin dropdown menu. `add exhibition` takes the admin user to the add exhibition page, which is comprised of a form:
 
 ![](assets/images/add-exhibition.jpg)
 
@@ -224,13 +223,13 @@
 
 ### **Epic 7 - Marketing**:
 
-25. As a **user** I can sign up to a newsletter to up to date information regarding exhibitions and items for sale.
+25. As a **user** I can sign up for a newsletter to receive up to date information regarding exhibitions and items for sale.
 
-- In the footer there is a mailchimp sign up form to allow the user to sign up:
+- In the footer there is a MailChimp sign up form to allow the user to sign up:
 
 ![](assets/images/laptop-footer.jpg)
 
-- If the user is already present in the subscribed list then the form is hidden and a thank you message display instead:
+- If the user is already present in the subscribed list then the form is hidden and a thank you message is displayed instead:
 
 ![](assets/images/already-subscribed.jpg)
 
@@ -238,7 +237,7 @@
 
 26. As an **admin user** I conducted research and implemented SEO keywords to increase traction to my website.
 
-- During the planning stage, SEO research was conducted to decide which keywords would help with SEO's:
+- During the planning stage, SEO research was conducted to decide which keywords would help with SEOs:
 
 ![](assets/images/SEO%20research.jpeg)
 
