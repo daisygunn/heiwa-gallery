@@ -23,38 +23,32 @@
             <h5 class="green-text fw-bolder">filter by date</h5>
         </div>
         <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block">
-            <a href="{% url 'exhibitions_list' %}?status=now showing" rel="canonical"
-                class="btn {% if status == 'now showing' %}
+            <a href="{% url 'exhibitions_list' %}?status=now showing" rel="canonical" class="btn {% if status == 'now showing' %}
                 bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">now
                 showing</a>
         </div>
         <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block">
-            <a href="{% url 'exhibitions_list' %}?status=coming soon" rel="canonical"
-                class="btn {% if status == 'coming soon' %}
+            <a href="{% url 'exhibitions_list' %}?status=coming soon" rel="canonical" class="btn {% if status == 'coming soon' %}
                 bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">coming
                 soon</a>
         </div>
         <!-- If superuser then display cancelled, finished and pending -->
         {% if request.user.is_superuser %}
         <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block">
-            <a href="{% url 'exhibitions_list' %}?status=pending" rel="canonical"
-                class="btn  {% if status == 'pending' %}
+            <a href="{% url 'exhibitions_list' %}?status=pending" rel="canonical" class="btn  {% if status == 'pending' %}
                 bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">pending</a>
         </div>
         <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block">
-            <a href="{% url 'exhibitions_list' %}?status=finished" rel="canonical"
-                class="btn  {% if status == 'finished' %}
+            <a href="{% url 'exhibitions_list' %}?status=finished" rel="canonical" class="btn  {% if status == 'finished' %}
                 bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">finished</a>
         </div>
         <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block">
-            <a href="{% url 'exhibitions_list' %}?status=cancelled" rel="canonical"
-                class="btn  {% if status == 'cancelled' %}
+            <a href="{% url 'exhibitions_list' %}?status=cancelled" rel="canonical" class="btn  {% if status == 'cancelled' %}
                 bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">cancelled</a>
         </div>
         {% endif %}
         <div class="col-sm-4 col-md-3 mb-4 d-none d-sm-block">
-            <a href="{% url 'exhibitions_list' %}" rel="canonical"
-                class="btn {% if not status %}
+            <a href="{% url 'exhibitions_list' %}" rel="canonical" class="btn {% if not status %}
                 bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">show
                 all</a>
         </div>
@@ -65,7 +59,8 @@
         {% for exhibition in exhibitions %}
         <!-- If exhibition has been ticked to display -->
         {% if exhibition.display %}
-        <div class="col-sm-6 mb-2 {% if not request.user.is_superuser and exhibition.status == 'finished' %} hidden {% endif %}">
+        <div
+            class="col-sm-6 mb-2 {% if not request.user.is_superuser and exhibition.status == 'finished' %} hidden {% endif %}">
             <div class="card">
                 <div class="card-title bg-brand-blue text-white">
                     <h5 class="mt-2 mx-2"><strong>{{ exhibition.name }} </strong>by {{ exhibition.photographer_artist }}

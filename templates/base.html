@@ -106,8 +106,8 @@
                     {% if request.user.is_authenticated %}
                     {% if request.user.is_superuser %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle dropdown-toggle2" id="navbarDropdown2" role="button" data-bs-toggle="dropdown"
-                            aria-haspopup="true" href="#" aria-expanded="false">admin
+                        <a class="nav-link dropdown-toggle dropdown-toggle2" id="navbarDropdown2" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" href="#" aria-expanded="false">admin
                         </a>
                         <div class="dropdown-menu dropdown-menu2" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item {% if request.resolver_match.url_name == 'add_product' %}

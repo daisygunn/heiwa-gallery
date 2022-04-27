@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block title %}
-    <title>heiwa | exhibition management</title>
+<title>heiwa | exhibition management</title>
 {% endblock %}
 
 {% block subtitle %}
@@ -20,7 +20,7 @@
 <div class="container">
     <!-- show message regarding datatable -->
     {% include 'includes/mobile-message.html' %}
-    
+
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-8 col-xl-10 my-2 justify-content-center">
             <!-- Datatable for exhibitions -->
@@ -53,9 +53,9 @@
                         <td>{{ exhibition.status }}</td>
                         <td>
                             <a class="btn btn-success btn-sm mb-1 w-100"
-                            href="{% url 'edit_exhibition' exhibition.pk %}">edit</a>
-                        <a class="btn btn-danger btn-sm mb-1 w-100"
-                            href="{% url 'delete_exhibition' exhibition.pk %}">delete</a>
+                                href="{% url 'edit_exhibition' exhibition.pk %}">edit</a>
+                            <a class="btn btn-danger btn-sm mb-1 w-100"
+                                href="{% url 'delete_exhibition' exhibition.pk %}">delete</a>
                         </td>
                     </tr>
                     {% endfor %}

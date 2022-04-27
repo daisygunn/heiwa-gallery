@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block title %}
-    <title>heiwa | add an exhibition to database</title>
+<title>heiwa | add an exhibition to database</title>
 {% endblock %}
 
 {% block subtitle %}
@@ -36,17 +36,19 @@
 {% block extrajs %}
 {{ block.super }}
 <!-- JQuery datepicker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+    integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- inline script as it failed to work when loaded in an external js file -->
 <script type="text/javascript">
-function datePicker() {
-    $(".date-picker").datepicker({
-        dateFormat: 'dd/mm/yy'
-    });
-};
+    function datePicker() {
+        $(".date-picker").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    };
 
-$(document).ready(function () {
-    datePicker();
+    $(document).ready(function () {
+        datePicker();
     });
 </script>
 {% endblock %}

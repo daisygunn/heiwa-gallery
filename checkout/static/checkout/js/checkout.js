@@ -2,13 +2,13 @@
 /*globals $, Stripe */
 
 // If save address box is ticked then add or remove checked attribute
-$('#save-address').click(function() {
-  if($(this).attr('checked')){
-     $(this).removeAttr('checked');
+$('#save-address').click(function () {
+    if ($(this).attr('checked')) {
+        $(this).removeAttr('checked');
     } else {
-      $(this).attr('checked', 'checked');
+        $(this).attr('checked', 'checked');
     }
- });
+});
 
 // https://stripe.com/docs/payments/accept-a-payment
 
@@ -109,7 +109,7 @@ form.addEventListener('submit', function (e) {
         }).then(function (result) {
             if (result.error) {
                 showMessage(`${result.error.message}`);
-                setLoading(false); 
+                setLoading(false);
             } else {
                 if (result.paymentIntent.status == 'succeeded') {
                     showMessage("Payment succeeded!");
@@ -117,7 +117,7 @@ form.addEventListener('submit', function (e) {
                 }
             }
         });
-    }).fail(function() {
+    }).fail(function () {
         location.reload();
     });
 });

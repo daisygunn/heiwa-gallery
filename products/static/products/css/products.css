@@ -2,6 +2,7 @@
     height: 20rem;
 }
 
+/* if image is landscape then display in the middle */
 .card-img-top {
     max-height: 20rem;
     position: relative;

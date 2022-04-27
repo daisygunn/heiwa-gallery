@@ -13,6 +13,9 @@
 
 ![](assets/images/nav-bar-laptop.jpg)
 
+- I have added a back to top button that appears when the user scrolls down any of the pages, enabling them to quickly navigate back to the top without having to scroll:
+
+![](assets/images/back-to-top.jpg)
 
 - The footer is at the bottom of the page but isn't fixed and contains key information about the gallery. Contact details, opening times, social media links & the gallery address are all items that will be frequently searched for by a user, so placing them in the footer makes them easier to find thus ensuring that the user can obtain key information quickly.
 

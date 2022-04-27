@@ -21,21 +21,20 @@
         </div>
     </div>
     <div class="row mb-5">
-        <div class="col-12 mb-2 text-center d-none d-sm-block">   
+        <div class="col-12 mb-2 text-center d-none d-sm-block">
             <h5 class="green-text fw-bolder">filter by category</h5>
         </div>
         <!-- category filter options / hidden on extra small screens-->
-        <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block"><a href="{% url 'all_products' %}?category=1" rel="canonical"
-                class="btn {% if category == '1' %}
+        <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block"><a href="{% url 'all_products' %}?category=1"
+                rel="canonical" class="btn {% if category == '1' %}
                 bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">black
                 and white prints</a></div>
-        <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block"><a href="{% url 'all_products' %}?category=2" rel="canonical"
-                class="btn {% if category == '2' %}
+        <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block"><a href="{% url 'all_products' %}?category=2"
+                rel="canonical" class="btn {% if category == '2' %}
                 bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">graphic
                 art</a></div>
         <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block">
-            <a href="{% url 'all_products' %}?category=3" rel="canonical"
-                class="btn {% if category == '3' %}
+            <a href="{% url 'all_products' %}?category=3" rel="canonical" class="btn {% if category == '3' %}
                 bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">colour
                 photography</a>
         </div>
@@ -70,7 +69,8 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">size: {{ product.size }}</li>
                     <li class="list-group-item">price: £{{ product.price }}</li>
-                    <li class="list-group-item"><small>category: {{ product.category.name_to_display|lower }}</small></li>
+                    <li class="list-group-item"><small>category: {{ product.category.name_to_display|lower }}</small>
+                    </li>
                     {% if request.user.is_authenticated %}
                     <li class="list-group-item">
                         <a href="{% url 'add_to_wishlist' product.pk %}" id="{{ product.pk }}-wishlist-btn"
