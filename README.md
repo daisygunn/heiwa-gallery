@@ -4,7 +4,7 @@
 
 [Live application can be found here](https://heiwa-gallery.herokuapp.com/)
 
-This is a full-stack e-commerce project built using Django, Python, HTML, CSS and JavaScript. I have created a website for 'Heiwa Gallery' that has been designed to display exhibition information and allows customers to purchase prints of the photography & art from the online shop.
+This is a full-stack e-commerce project built using Django, Python, HTML, CSS and JavaScript. I have created a website for 'Heiwa Gallery' that has been designed to display exhibition information and allows customers to purchase prints of photography & artwork from the online shop.
 
 ## Table of Contents
 1. [**UX**](#ux)
@@ -116,7 +116,7 @@ In order to achieve the desired user & business goals, the following features wi
 
 ### Databases
 
-I opted to connect to the Heroku Postgres database from the beginning which is provided by Heroku as an add-on. For almost all of the apps (aside from home) I have created models for, the Entity-Relationship Diagram below shows how the database models relate to each other: 
+I opted to connect to the Heroku Postgres database from the beginning which is provided by Heroku as an add-on. For almost all of the apps (aside from home) I have created models, the Entity-Relationship Diagram below shows how the database models relate to each other: 
 
 ![Database Schemas can be found here](assets/images/planning/HEIWA_DB_SCHEMA.jpeg)
 
@@ -138,7 +138,7 @@ This app controls the products that are displayed in the online shop. I have cre
 
 The checkout app is used solely for the user to make purchases via the online shop; this app contains two models, `Order` & `OrderItem`. 
 
-`OrderItem` contains all of the information regarding the products that have been purchased as part of a specific order. It has a foreign key to `Product` & `Order`, it also contains the quantity purchased of that product and then the item total. This information is used to calculate the total cost for the order. For the product FK I chose to use `on_delete=models.CASCADE')`, using the 'original basket' field the admin can still see what the original purchase was.
+`OrderItem` contains all of the information regarding the products that have been purchased as part of a specific order. It has a foreign key to `Product` & `Order`, it also contains the quantity purchased of that product and then the item total. This information is used to calculate the total cost for the order. For the product FK I chose to use `on_delete=models.CASCADE`, using the 'original basket' field the admin can still see what the original purchase was.
 
 `Order` contains all of the relevant address information for billing/shipping, a foreign key to the `UserProfile`, email & phone number. It also contains information regarding the payment itself, the stripe PID, original basket contents (so that if the order is changed, the admin user can see what was purchased initially) and a boolean field called `order_success` that updates when the order is successful. Each order has an order number which is automatically generated when a new order is added to the database using `UUID`.
 
@@ -196,13 +196,13 @@ If the user is logged in and has previously subscribed then the form is hidden t
 
 I conducted SEO research to decide on the keywords and phrases that would be used across the website, I wrote a list of as many words and phrases I could think of and then using Google, I searched by these keywords to see the sort of websites that were returned. 
 
-![](assets/planning/art-gallery-google.jpg)
+![](assets/images/planning/art-gallery-google.jpg)
 
 I used this research to condense my list:
 
-![](assets/planning/SEO-research.jpg)
+![](assets/images/planning/SEO-research.jpg)
 
-In addition to my research, once the bulk of the website had been built I used an online tool called [Semrush](https://www.semrush.com/) which provided a report on ways that I could improve my SEO. This report showed that each page needed its own title so I implemented this feedback. I chose the keep the meta tags and descriptions the same across each page as the content wouldn't have varied too much and there would have been a lot of replication.
+In addition to my research, once the bulk of the website had been built I used an online tool called [Semrush](https://www.semrush.com/) which provided a report on ways that I could improve my SEO. This report showed that each page needed its own title so I implemented this. I chose the keep the meta tags and descriptions the same across each page as the content wouldn't have varied too much and there would have been a lot of replication.
 
 ---
 ## Features
