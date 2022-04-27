@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row d-flex justify-content-center my-2">
         <div class="col-sm-12 col-md-6 ">
-            <h6 class="bg-brand-blue p-2 text-center green-text fw-bolder">free shipping worldwide</h6>
+            <h6 class="bg-brand-blue p-2 text-center text-white fw-bolder">free shipping worldwide</h6>
         </div>
     </div>
     <div class="row mb-5">
@@ -40,11 +40,11 @@
         </div>
         <div class="col-sm-4 col-md-3 mb-2">
             <a href="{% url 'all_products' %}?in_stock=True" rel="canonical" class="btn {% if in_stock %}
-            bg-green text-white {% else %} brand-link {% endif %}  fw-bolder w-100">show only products in stock</a>
+            bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">show only products in stock</a>
         </div>
         <div class="col-sm-4 col-md-3 mb-2">
             <a href="{% url 'all_products' %}" rel="canonical" class="btn {% if not category and not in_stock %}
-            bg-green text-white {% else %} brand-link {% endif %}  fw-bolder w-100">show
+            bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">show
                 all products</a>
         </div>
     </div>

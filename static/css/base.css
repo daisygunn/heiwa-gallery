@@ -23,6 +23,7 @@ body {
 /* background and text colours */
 .bg-brand-blue {
   background-color: #0d5c63;
+  color: #fff;
 }
 
 .brand-blue {
@@ -30,12 +31,13 @@ body {
 }
 
 .green-text {
-  color: #85c280 !important;
+  color: #1F6C19 !important;
   font-weight: 600;
+  font-size: 16px;
 }
 
 .bg-green {
-  background-color: #85c280 !important;
+  background-color: #1F6C19 !important;
 }
 
 .container-clip {
@@ -148,7 +150,7 @@ ul.navbar-nav,
 }
 
 .green-link {
-  color: #85c280;
+  /* color: #85c280; */
   cursor: pointer;
   font-weight: bolder;
   text-decoration: none;
@@ -202,7 +204,6 @@ ul.navbar-nav,
   line-height: 24px;
   color: white;
   margin-top: auto;
-  /* position: absolute; */
   bottom: 0;
   width: 100%;
 }
@@ -299,7 +300,7 @@ ul.navbar-nav,
 
 .social-icons a {
   background-color: #eceeef;
-  color: #818a91;
+  /* color: #818a91; */
   font-size: 16px;
   display: inline-block;
   line-height: 44px;
