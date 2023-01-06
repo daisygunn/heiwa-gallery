@@ -31,12 +31,16 @@ body {
 }
 
 .green-text {
-  color: #1F6C19 !important;
+  color: #85c280 !important;
   font-weight: 600;
 }
 
 .bg-green {
-  background-color: #1F6C19 !important;
+  background-color: #85c280 !important;
+}
+
+.green-border {
+  border: dashed 1px #85c280;
 }
 
 .container-clip {
@@ -157,12 +161,12 @@ ul.navbar-nav,
 
 .brand-link,
 .active-nav {
-  color: #0d5c63 !important;
+  color: #85c280 !important;
   cursor: pointer;
   font-weight: bolder;
   text-decoration: none;
-  background-color: white;
-  border: dashed 1px #85c280;
+  /* background-color: white; */
+/* border: dashed 1px #85c280; */
 }
 
 .green-link:hover,
@@ -170,6 +174,10 @@ ul.navbar-nav,
 #mc_embed_signup .button:hover {
   background-color: #85c280 !important;
   color: #fff !important;
+}
+
+#navbarDropdown1 {
+  text-align: center;
 }
 
 .img-thumbnail {

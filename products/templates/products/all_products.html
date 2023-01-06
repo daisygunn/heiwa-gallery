@@ -27,24 +27,24 @@
         <!-- category filter options / hidden on extra small screens-->
         <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block"><a href="{% url 'all_products' %}?category=1"
                 rel="canonical" class="btn {% if category == '1' %}
-                bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">black
+                bg-green text-white {% else %} brand-link {% endif %} green-border fw-bolder w-100">black
                 and white prints</a></div>
         <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block"><a href="{% url 'all_products' %}?category=2"
                 rel="canonical" class="btn {% if category == '2' %}
-                bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">graphic
+                bg-green text-white {% else %} brand-link {% endif %} green-border fw-bolder w-100">graphic
                 art</a></div>
         <div class="col-sm-4 col-md-3 mb-2 d-none d-sm-block">
             <a href="{% url 'all_products' %}?category=3" rel="canonical" class="btn {% if category == '3' %}
-                bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">colour
+                bg-green text-white {% else %} brand-link {% endif %} green-border fw-bolder w-100">colour
                 photography</a>
         </div>
         <div class="col-sm-4 col-md-3 mb-2">
             <a href="{% url 'all_products' %}?in_stock=True" rel="canonical" class="btn {% if in_stock %}
-            bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">show only products in stock</a>
+            bg-green text-white {% else %} brand-link {% endif %} green-border fw-bolder w-100">show in stock only</a>
         </div>
         <div class="col-sm-4 col-md-3 mb-2">
             <a href="{% url 'all_products' %}" rel="canonical" class="btn {% if not category and not in_stock %}
-            bg-green text-white {% else %} brand-link {% endif %} fw-bolder w-100">show
+            bg-green text-white {% else %} brand-link {% endif %} green-border fw-bolder w-100">show
                 all products</a>
         </div>
     </div>
